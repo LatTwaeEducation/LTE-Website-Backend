@@ -27,7 +27,7 @@ If not. You'll see the following error response.
 {
 	"sys": {
 		"type": "Error",
-    "id": "AccessTokenInvalid"
+    		"id": "AccessTokenInvalid"
 	},
 	"message": "An access token is required. Please send one through the HTTP Authorization header or as the query parameter \"access_token\".",
 	"requestId": "82b58473-7350-4349-9b6d-aa14e3b176fe"
