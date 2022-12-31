@@ -74,6 +74,6 @@ const getCourses = async () => {
 }
 ```
 
-## Rich Text Format {#rich-text-format}
+<h2 id='rich-text'>Rich Text Format</h2>
 
 When handling the rich text format, it is better to use with the JavaScript Library, the structure for Rich Text Format can be seen in DataSchema. 
