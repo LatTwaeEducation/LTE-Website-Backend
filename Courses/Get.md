@@ -3,7 +3,7 @@ title: Course Get
 ---
 
 # Prerequisites
-<h2 id="class-category">Class Schema</h2>
+<h2 id="class-category">Class Category</h2>
 
 As classCategory, you can use one of this 4 string
 ```ts
@@ -12,7 +12,16 @@ type ClassCategory = 'Junior' | 'Youth' | 'Everyone' | 'IGCSE'
 
 # Get all the brief descriptions for courses (Home Page)
 
-Get the brief descriptions of respective courses to display in Home page:
+Get the brief descriptions of respective courses to display in Home page.
+
+## Endpoint URL
+
+`https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/entries?content_type=course&select=fields.name&fields.classCategory=<classCategory>`
+
+Where `<classCategory>` can be [ClassCategory](#class-category)
+
+## JavaScript Library
+
 ```ts
 const getCoursesBrief = async (classCategory: ClassCategory) => {
 	const response = await client.getEntries({
@@ -52,12 +61,21 @@ An example response for **Youth** is as follow:
 
 # Get all the courses with more details (Courses for X)
 
-Get more descriptions for respective courses to display in Home page:
+Get more descriptions for respective courses to display in respective courses page.
+
+## Endpoint URL
+
+`https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/entries?content_type=course&select=sys.id,fields.name,fields.slug,fields.timelineHour,fields.students&fields.classCategory=<classCategory>`
+
+Where `<classCategory>` can be [ClassCategory](#class-category)
+
+## JavaScript Library
+
 ```ts
 const getCourses = async (classCategory: ClassCategory) => {
 	const response = await client.getEntries({
 		content_type: 'course',
-		select: 'sys.id,fields.name,fields.slug,fields.timelineHour', 
+		select: 'sys.id,fields.name,fields.slug,fields.timelineHour,fields.students', 
 		'fields.classCategory': classCategory
 	});
 	
@@ -106,7 +124,24 @@ Get details for each course with ID or slug, whatever you prefer.
 
 P.S. For details, the response will still be an array, since we cannot get any assets information with `getEntry` function. Therefore, it is required to use `getEntries` function, and get the first element. 
 
-## With ID
+## Endpoint URL
+
+### With ID
+
+`https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/entries?sys.id=<id>`
+
+Where `<id>` is the ID of the entry.
+
+### With Slug
+
+`https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/entries?content_type=course&fields.slug=<slug>`
+
+Where `<slug>` is the slug name of the entry.
+
+## JavaScript Library
+
+### With ID
+
 ```ts
 const getCourseDetails = async (id) => {
 	const response = await client.getEntries({
@@ -117,7 +152,8 @@ const getCourseDetails = async (id) => {
 }
 ```
 
-## With slug 
+### With slug 
+
 ```ts 
 const getCourseDetails = async (slug) => {
 	const response = await client.getEntries({
@@ -130,6 +166,7 @@ const getCourseDetails = async (slug) => {
 ```
 
 An example response is as followed
+
 ```json
 {
   "sys": {

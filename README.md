@@ -27,12 +27,17 @@ If not. You'll see the following error response.
 {
 	"sys": {
 		"type": "Error",
-    "id": "AccessTokenInvalid"
+	    "id": "AccessTokenInvalid"
 	},
 	"message": "An access token is required. Please send one through the HTTP Authorization header or as the query parameter \"access_token\".",
 	"requestId": "82b58473-7350-4349-9b6d-aa14e3b176fe"
 }
 ```
+
+<h2 id=base-endpoint>Base Endpoint</h2>
+
+Every endpoints has the following url
+https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/entries
 
 ## JavaScript CDN Client Library
 
