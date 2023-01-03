@@ -76,4 +76,46 @@ const getCourses = async () => {
 
 <h2 id='rich-text'>Rich Text Format</h2>
 
-When handling the rich text format, it is better to use with the JavaScript Library, the structure for Rich Text Format can be seen in DataSchema. 
+Since we are rendering with React, Contentful has `rich-text-react-renderer`. However, we need to customise for some features such as displaying images, etc. The library can be refer [here](https://github.com/contentful/rich-text/tree/master/packages/rich-text-react-renderer).
+
+### Installation
+
+Using npm:
+
+```sh
+npm install @contentful/rich-text-react-renderer
+```
+
+Using yarn:
+
+```sh
+yarn add @contentful/rich-text-react-renderer
+```
+
+### Usage 
+
+```js
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+
+const document = {
+  nodeType: 'document',
+  data: {},
+  content: [
+    {
+      nodeType: 'paragraph',
+      data: {},
+      content: [
+        {
+          nodeType: 'text',
+          value: 'Hello world!',
+          marks: [],
+          data: {},
+        },
+      ],
+    },
+  ],
+};
+
+documentToReactComponents(document); // -> <p>Hello world!</p>
+```
+
