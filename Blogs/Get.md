@@ -2,8 +2,138 @@
 title: Blog get
 author: Zaw Nay Lin
 ---
+# Get the tags 
+
+Get all the tags related to blogs. 
+
+## Endpoint URL
+
+`https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/tags`
+
+## JavaScript Library
+
+```ts
+const getBlogsTags = async () => {
+	const response = await client.getTags();
+
+	return response;
+}
+```
+
+## Response 
+
+```json
+{
+  "sys": {
+    "type": "Array"
+  },
+  "total": 2,
+  "skip": 0,
+  "limit": 100,
+  "items": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "gxxheul7hh8o"
+          }
+        },
+        "id": "codingForKids",
+        "type": "Tag",
+        "createdAt": "2023-01-03T13:43:41.830Z",
+        "updatedAt": "2023-01-03T13:43:41.830Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "0XzjJ8kLQzI5HFamo5kuEA"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "0XzjJ8kLQzI5HFamo5kuEA"
+          }
+        },
+        "version": 1,
+        "visibility": "public"
+      },
+      "name": "Coding for kids"
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "gxxheul7hh8o"
+          }
+        },
+        "id": "programmingConcept",
+        "type": "Tag",
+        "createdAt": "2022-11-05T06:23:25.424Z",
+        "updatedAt": "2023-01-03T12:16:41.852Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "0XzjJ8kLQzI5HFamo5kuEA"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "0XzjJ8kLQzI5HFamo5kuEA"
+          }
+        },
+        "version": 2,
+        "visibility": "public"
+      },
+      "name": "Programming Concept"
+    }
+  ]
+}
+```
+
+You might need to use only `sys.id` for id and `name` for display name in frontend. 
+
 # Get all the blogs
+
 Get all the blogs, filtered by tags
+
+## Endpoint URL
+
+### Without tags filtering
+
+`https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/entries?content_type=blog&select=sys.id,sys.updatedAt,fields.title,fields.slug,fields.description,metadata`
+
+### With tags filtering
+
+`https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/entries?content_type=blog&select=sys.id,sys.updatedAt,fields.title,fields.slug,fields.description,metadata&metadata.tags.sys.id[all]=<tags>`
+
+Where `<tags>` should be the comma separated string of tags ID to filter.
+Example - `metadata.tags.sys.id[all]=programmingConcept,python`
+
+## JavaScript Library
+
 ```ts
 const getBlogs = async (tags: string[]) => {
 
@@ -72,9 +202,24 @@ And here is the example response with `python` tags
 # Get each blog detail
 Get details for each blog with ID or slug, whatever you prefer.
 
-P.S. For details, the response will still be an array, since we cannot get any assets information with `getEntry` function. Therefore, it is required to use `getEntries` function, and get the first element. 
+## Notes
 
-## With ID
+* For details, the response will still be an array, since we cannot get any assets information with `getEntry` function. Therefore, it is required to use `getEntries` function, and get the first element.
+* To handle Rich Text, refer to [Rich Text Format](../README#rich-text) on main page.
+
+## Endpoint URL
+
+### With ID
+`https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/entries?sys.id=<id>`
+Where `<id>` is the id of the blog.
+
+### With Slug
+`https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/entries?content_type=blog&fields.slug=<slug>`
+Where `<slug>` is the slug name of the blog.
+
+## JavaScript Library
+
+### With ID
 ```ts
 const getBlogDetails = async (id) => {
 	const response = await client.getEntries({
@@ -85,7 +230,7 @@ const getBlogDetails = async (id) => {
 }
 ```
 
-## With slug 
+### With slug 
 ```ts 
 const getCourseDetails = async (slug) => {
 	const response = await client.getEntries({
@@ -375,6 +520,4 @@ An example response is as followed
     ]
   }
 }
-
 ```
-
