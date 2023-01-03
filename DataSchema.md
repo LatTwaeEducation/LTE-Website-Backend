@@ -23,20 +23,22 @@ Contentful response contains the following wrapper object for extra information 
 
 ## Items
 Each item consists of three keys
-1. metadata
-2. sys
-3. fields
+1. [metadata](#metadata-object)
+2. [sys](#sys-object)
+3. [fields](#fields-object)
 
-### Metadata 
+<h3 id="metadata-object">Metadata </h3>
+
 Name | Type | Description
 --- | --- | ---
-tags | [string] | The list of tags related to that entry
+tags | [Tags](#tag-object)[] | The list of tags related to that entry
 
-### sys
+<h3 id="sys-object">sys</h3>
+
 Name | Type | Description
 --- | --- | ---
-space |	Link | 	Link to resource's space.
-environment | Link | Link to a resource's environment.
+space |	[Link](#link-object) | 	Link to resource's space.
+environment | [Link](#link-object) | Link to a resource's environment.
 id | string | The id of the entry 
 type | string | The type of the data, usually "Entry" or "Asset"
 createdAt | date | 	Date and time a resource was published for the first time.
@@ -44,13 +46,12 @@ updatedAt | date | Date and time a resource was published after an update.
 revision | int | Published version of resource.
 locale | string | Locale of the entry, currently it'll be 'en-US'
 
-The structure of the [Link](#link-object) object is described below.
+<h3 id="fields-object">fields</h3>
 
-### fields
 Fields contains our main data schema, and can be seen in their endpoints' documentation. 
 
-
 ## includes
+
 If we have assets to included in the list, the response will be as followed.
 ```json 
 {
@@ -67,24 +68,13 @@ If we have assets to included in the list, the response will be as followed.
 }
 ```
 As before, each asset will also have three keys,
-1. metadata
-2. sys
-3. fields
-
+1. [metadata](#metadata-object)
+2. [sys](#sys-object)
+3. [fields](#asset-object)
 The structure for metadata and sys is the same. 
 
-<h3 id="link-object">Link object</h3>
-
-The structure of the link object is as followed
-Name | Type | Description
---- | --- | ---
-type | string | it should be 'Link' 
-linkType | string | The object which it is linked to, such as 'Space', 'Environment', etc. 
-id | string | id of the linked object
-
-
-### Asset fields
-For the asset, the fields has the following structure.
+<h3 id="asset-object">Asset object</h3>
+The schema of the [Asset](#asset-object) object is as followed:
 Name | Type | Description
 --- | --- | --- 
 title | string | The Title of the asset 
@@ -103,3 +93,25 @@ details.size | int | the file size of the asset
 details.image | Image | The dimension information of the image
 details.image.width | int | The width of the image
 details.image.height | int | The height of the image
+
+## Miscellaneous objects
+
+<h3 id="link-object">Link object</h3>
+
+The schema of the [Link](#link-object) object is as followed:
+Name | Type | Description
+--- | --- | ---
+type | string | it should be "Link" 
+linkType | string | The object which it is linked to, such as 'Space', 'Environment', etc. 
+id | string | id of the linked object
+
+<h3 id="tag-object">Tag object</h3>
+
+The schema of the [Tag](#tag-object) object is just link with `linkType: "Tag"`:
+Name | Type | Description
+--- | --- | ---
+type | string | it should be "Link"
+linkType | string | it should be "Tag"
+id | string | id of the tag
+
+**Note: the id of the tag will be the tag name, but it will always be in camelCase/snake_case. It will be better if you can convert it to Title Case or Sentence case.**
