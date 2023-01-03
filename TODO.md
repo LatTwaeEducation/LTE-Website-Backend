@@ -1,1 +1,1 @@
-* Discuss the casing for the tags to use. 
+* ~~Discuss the casing for the tags to use. ~~

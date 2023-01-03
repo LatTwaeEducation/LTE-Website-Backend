@@ -1,8 +1,10 @@
 ---
-title: DataSchema
+title: Contentful DataSchema
 author: Zaw Nay Lin
 ---
-# Data Schema
+# Contentful Data Schema
+
+These are the schema for contentful objects. If there are anything missing, you can refer to [Contentful Documentation](https://www.contentful.com/developers/docs/references/content-delivery-api/#/reference). 
 
 ## Wrapper
 
@@ -21,34 +23,17 @@ Contentful response contains the following wrapper object for extra information 
 }
 ```
 
-## Items
-Each item consists of three keys
-1. [metadata](#metadata-object)
-2. [sys](#sys-object)
-3. [fields](#fields-object)
-
-<h3 id="metadata-object">Metadata </h3>
-
+## items
+Each item has the following schema
 Name | Type | Description
---- | --- | ---
-tags | [Tags](#tag-object)[] | The list of tags related to that entry
+--- | --- | --- 
+metadata | [Metadata](#metadata-object) | The metadata of the item
+sys | [Sys](#entry-asset-sys-object) | The information of the item
+fields | [Fields](#item-fields-object) | The main schema of the database
 
-<h3 id="sys-object">sys</h3>
+<h3 id="item-fields-object">fields</h3>
 
-Name | Type | Description
---- | --- | ---
-space |	[Link](#link-object) | 	Link to resource's space.
-environment | [Link](#link-object) | Link to a resource's environment.
-id | string | The id of the entry 
-type | string | The type of the data, usually "Entry" or "Asset"
-createdAt | date | 	Date and time a resource was published for the first time.
-updatedAt | date | Date and time a resource was published after an update.
-revision | int | Published version of resource.
-locale | string | Locale of the entry, currently it'll be 'en-US'
-
-<h3 id="fields-object">fields</h3>
-
-Fields contains our main data schema, and can be seen in their endpoints' documentation. 
+`fields` contains our main data schema, and can be seen in their endpoints' documentation. 
 
 ## includes
 
@@ -67,19 +52,21 @@ If we have assets to included in the list, the response will be as followed.
 	}
 }
 ```
-As before, each asset will also have three keys,
-1. [metadata](#metadata-object)
-2. [sys](#sys-object)
-3. [fields](#asset-object)
-The structure for metadata and sys is the same. 
 
-<h3 id="asset-object">Asset object</h3>
-The schema of the [Asset](#asset-object) object is as followed:
+Each asset has the following schema
+Name | Type | Description
+--- | --- | --- 
+metadata | [Metadata](#metadata-object) | The metadata of the asset
+sys | [Sys](#entry-asset-sys-object) | The information of the asset
+fields | [Fields](#asset-fields-object) | The main schema of the asset
+
+<h3 id="asset-fields-object">fields</h3>
+
 Name | Type | Description
 --- | --- | --- 
 title | string | The Title of the asset 
 description | string | The Description of the asset
-file | File | File(s) of the asset
+file | File | File of the asset
 
 The file object has the following structure
 
@@ -94,24 +81,63 @@ details.image | Image | The dimension information of the image
 details.image.width | int | The width of the image
 details.image.height | int | The height of the image
 
+## Tags
+
+When we request tags, the tags will be responsed with wrapper, just like entries.
+
+<h3 id="tag-object">Tag</h3>
+
+Each Tag has the following schema
+Name | Type | Description
+--- | --- | ---
+sys | [Sys](#tag-sys-object) | Information of the tag
+name | string | name of the tag
+
 ## Miscellaneous objects
 
 <h3 id="link-object">Link object</h3>
 
-The schema of the [Link](#link-object) object is as followed:
 Name | Type | Description
 --- | --- | ---
 type | string | it should be "Link" 
-linkType | string | The object which it is linked to, such as 'Space', 'Environment', etc. 
+linkType | string | The object which it is linked to, such as "Space", "Environment", "Tag", "Entry" etc. 
 id | string | id of the linked object
 
-<h3 id="tag-object">Tag object</h3>
+<h3 id="metadata-object">Metadata </h3>
 
-The schema of the [Tag](#tag-object) object is just link with `linkType: "Tag"`:
 Name | Type | Description
 --- | --- | ---
-type | string | it should be "Link"
-linkType | string | it should be "Tag"
-id | string | id of the tag
+tags | [Link](#link-object)[] | Link to tag object
 
-**Note: the id of the tag will be the tag name, but it will always be in camelCase/snake_case. It will be better if you can convert it to Title Case or Sentence case.**
+<h3 id="sys-object">Sys</h3>
+
+Every Sys objects have the properties of Base schema
+
+<h4 id="base-sys-object">Base schema</h4>
+
+Name | Type | Description
+--- | --- | ---
+space |	[Link](#link-object) | 	Link to resource's space.
+environment | [Link](#link-object) | Link to a resource's environment.
+id | string | The id of the entry 
+type | string | The type of the data, usually "Entry", "Asset", "Tag", etc.
+createdAt | date | 	Date and time a resource was published for the first time.
+updatedAt | date | Date and time a resource was published after updating. 
+
+<h4 id="entry-asset-sys-object">For entry and asset</h4>
+
+The base schema is extended with following properties:
+Name | Type | Description
+--- | --- | ---
+revision | int | Published version of the resource
+locale | string | Locale of the resource, currently it'll be 'en-US'
+
+<h4 id="tag-sys-object">For Tag</h4>
+
+The base schema is extended with following properties: 
+Name | Type | Description
+--- | --- | ---
+createdBy | [Link](#link-object) | Link to User who created the tag
+updatedBy | [Link](#link-object) | Link to User who updated the tag last
+version | int | Published Version of the tag
+visibility | string | Should be "public"
