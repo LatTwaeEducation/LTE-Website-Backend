@@ -37,7 +37,7 @@ If not. You'll see the following error response.
 <h2 id=base-endpoint>Base Endpoint</h2>
 
 Every endpoints has the following url
-https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/entries
+https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/
 
 ## JavaScript CDN Client Library
 
