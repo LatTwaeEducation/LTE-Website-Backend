@@ -11,7 +11,7 @@ name | string | The name of the course
 slug | string | The slug name of the course
 thumbnail | [Link](../DataSchema#link-object) | Link to Thumbnail Asset
 featuredImage | [Link](../DataSchema#link-object) | Link to Feature Image Asset
-timelineHour | int | The number of teaching hours
+timelineHours | int | The number of teaching hours
 requirements | string[] | Required tools for learning
 learningPlatforms | string[] | Which platform the lessons will be taught
 languages | string[] | The language(s) used for the course (Burmese and/or English)
