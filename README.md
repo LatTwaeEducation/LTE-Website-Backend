@@ -34,22 +34,27 @@ If not. You'll see the following error response.
 }
 ```
 
-<h2 id=base-endpoint>Base Endpoint</h2>
+<h2 id=base-endpoint>Accessing Via REST Endpoints</h2>
 
-Every endpoints has the following url
+**Important! all the data schema described in the documentation are for direct access from Endpoints. There is a slight modification if JavaScript Client Library is used.**
+Every endpoints has the following url: 
 https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/
+
+If REST endpoints are used, it is not required to install `contentful` library, and you can refer to only Endpoint URL.
 
 ## JavaScript CDN Client Library
 
 We can access via API endpoints, but *Contentful* has already provided client library for easier access.
 
 ### Installation
+
 To install via npm
 ```sh
 npm install contentful
 ```
 
 ### Making a request
+
 To make a request, we need to create a client first. 
 P.S. It'll be better to use env files instead of hardcoding the Space ID and Access Token. 
 ```js
