@@ -37,6 +37,7 @@ If not. You'll see the following error response.
 <h2 id=base-endpoint>Accessing Via REST Endpoints</h2>
 
 **Important! all the data schema described in the documentation are for direct access from Endpoints. There is a slight modification if JavaScript Client Library is used.**
+
 Every endpoints has the following url: 
 https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/
 
