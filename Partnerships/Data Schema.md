@@ -9,5 +9,3 @@ Name | Type | Description
 --- | --- | ---
 company | string | The company name
 logo | [Link](../DataSchema#link-object) | Link object to company logo asset
-
-
