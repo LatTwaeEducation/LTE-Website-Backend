@@ -2,6 +2,74 @@
 title: Blog get
 author: Zaw Nay Lin
 ---
+# Get the newest 3 blogs (Home page)
+
+Get all the newest 3 blogs to show on the main page. 
+
+## Endpoint URL
+
+`https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/entries?content_type=blog&select=sys.id,fields.title,sys.updatedAt,fields.description&limit=3`
+
+## JavaScript Library
+
+```ts
+const getBlogsTags = async () => {
+	const response = await client.getEntries({
+		content_type: 'blog', 
+		select: 'sys.id,fields.title,sys.updatedAt,fields.description',
+		limit: 3
+	});
+
+	return response;
+}
+```
+
+## Response
+
+```json
+{
+  "sys": {
+    "type": "Array"
+  },
+  "total": 4,
+  "skip": 0,
+  "limit": 3,
+  "items": [
+    {
+      "fields": {
+        "title": "Lorem Lorem Loremn",
+        "description": "123123213asdadfa213123"
+      },
+      "sys": {
+        "id": "4yY1z7yNcyglqlVvHH6p8x",
+        "updatedAt": "2023-01-03T15:03:51.215Z"
+      }
+    },
+    {
+      "fields": {
+        "title": "Lorem Loresdasd",
+        "description": "12 v41ve1vdeqvca"
+      },
+      "sys": {
+        "id": "2ka2yxrbSIVTA29kYdykLi",
+        "updatedAt": "2023-01-03T13:43:59.146Z"
+      }
+    },
+    {
+      "fields": {
+        "title": "Lorem Ipsum",
+        "description": "cf adsfasvfavrfa"
+      },
+      "sys": {
+        "id": "3yHgmdqZq2EghGtVaa8Rn4",
+        "updatedAt": "2023-01-03T12:11:38.739Z"
+      }
+    }
+  ]
+}
+
+```
+
 # Get the tags 
 
 Get all the tags related to blogs. 
@@ -155,49 +223,211 @@ The example response without tag filtering is as followed
 
 ```json
 {
-    "sys": {
-        "type": "Array"
+  "sys": {
+    "type": "Array"
+  },
+  "total": 4,
+  "skip": 0,
+  "limit": 100,
+  "items": [
+    {
+      "fields": {
+        "title": "Lorem Lorem Loremn",
+        "slug": "lorem-lorem-loremn",
+        "description": "123123213asdadfa213123"
+      },
+      "metadata": {
+        "tags": [
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "html"
+            }
+          },
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "programming"
+            }
+          }
+        ]
+      },
+      "sys": {
+        "id": "4yY1z7yNcyglqlVvHH6p8x",
+        "updatedAt": "2023-01-03T15:03:51.215Z"
+      }
     },
-    "total": 2,
-    "skip": 0,
-    "limit": 100,
-    "items": [
-        {
-            "fields": {
-                "title": "Lorem Lorem",
-                "slug": "lorem-lorem",
-                "description": "123123213asdadfa",
-                "tags": [
-                    "Programming",
-                    "JavaScript"
-                ]
-            },
+    {
+      "fields": {
+        "title": "Lorem Loresdasd",
+        "slug": "lorem-loresdasd",
+        "description": "12 v41ve1vdeqvca"
+      },
+      "metadata": {
+        "tags": [
+          {
             "sys": {
-                "id": "3sPNr0AUfrSQuc3guuwexC",
-                "updatedAt": "2022-12-30T05:51:02.383Z"
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "codingForKids"
             }
-        },
-        {
-            "fields": {
-                "title": "Lorem Ipsum",
-                "slug": "lorem-ipsum",
-                "description": "cf adsfasvfavrfa",
-                "tags": [
-                    "Programming",
-                    "Python"
-                ]
-            },
+          },
+          {
             "sys": {
-                "id": "3yHgmdqZq2EghGtVaa8Rn4",
-                "updatedAt": "2022-12-30T05:50:41.064Z"
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "csharp"
             }
-        }
-    ]
+          },
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "css"
+            }
+          },
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "html"
+            }
+          },
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "programming"
+            }
+          }
+        ]
+      },
+      "sys": {
+        "id": "2ka2yxrbSIVTA29kYdykLi",
+        "updatedAt": "2023-01-03T13:43:59.146Z"
+      }
+    },
+    {
+      "fields": {
+        "title": "Lorem Ipsum",
+        "slug": "lorem-ipsum",
+        "description": "cf adsfasvfavrfa"
+      },
+      "metadata": {
+        "tags": [
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "programming"
+            }
+          },
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "python"
+            }
+          }
+        ]
+      },
+      "sys": {
+        "id": "3yHgmdqZq2EghGtVaa8Rn4",
+        "updatedAt": "2023-01-03T12:11:38.739Z"
+      }
+    },
+    {
+      "fields": {
+        "title": "Lorem Lorem",
+        "slug": "lorem-lorem",
+        "description": "123123213asdadfa"
+      },
+      "metadata": {
+        "tags": [
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "css"
+            }
+          },
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "html"
+            }
+          },
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "javascript"
+            }
+          },
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "programming"
+            }
+          }
+        ]
+      },
+      "sys": {
+        "id": "3sPNr0AUfrSQuc3guuwexC",
+        "updatedAt": "2023-01-03T12:11:27.776Z"
+      }
+    }
+  ]
 }
 ```
 
 And here is the example response with `python` tags
+```json
+{
+  "sys": {
+    "type": "Array"
+  },
+  "total": 1,
+  "skip": 0,
+  "limit": 100,
+  "items": [
+    {
+      "fields": {
+        "title": "Lorem Ipsum",
+        "slug": "lorem-ipsum",
+        "description": "cf adsfasvfavrfa"
+      },
+      "metadata": {
+        "tags": [
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "programming"
+            }
+          },
+          {
+            "sys": {
+              "type": "Link",
+              "linkType": "Tag",
+              "id": "python"
+            }
+          }
+        ]
+      },
+      "sys": {
+        "id": "3yHgmdqZq2EghGtVaa8Rn4",
+        "updatedAt": "2023-01-03T12:11:38.739Z"
+      }
+    }
+  ]
+}
 
+```
 
 # Get each blog detail
 Get details for each blog with ID or slug, whatever you prefer.
