@@ -37,6 +37,6 @@ npm install https://github.com/LatTwaeEducation/LTE-Website-Backend.git
 ## Endpoints
 
 The documentations for each endpoints are listed below: 
-1. [Home](./Home)
+1. [Home](./Home.md)
 <h2 id='rich-text'>Rich Text Format</h2>
 Rich Texts are already converted into direct HTML strings. There is no need to worry of conversion. 
