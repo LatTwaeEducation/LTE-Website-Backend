@@ -26,10 +26,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AboutUS = exports.Home = void 0;
+exports.JuniorYouth = exports.AboutUS = exports.Home = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 if (!process.env.CONTENTFUL_ACCESS_TOKEN) {
     dotenv_1.default.config();
 }
 exports.Home = __importStar(require("./apis/Home"));
 exports.AboutUS = __importStar(require("./apis/AboutUs"));
+exports.JuniorYouth = __importStar(require("./apis/JuniorYouth"));

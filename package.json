@@ -10,7 +10,7 @@
   "scripts": {
     "start:dev": "nodemon",
     "start:prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/index.js",
-    "build": "tsc -p tsconfig.prod.json",
+    "build": "npm run lint && tsc -p tsconfig.prod.json",
     "test": "jest",
     "test:watch": "jest --watchAll --verbose",
     "test:coverage": "jest --coverage",
