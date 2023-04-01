@@ -1,7 +1,7 @@
 import queryData from 'src/services/graphql';
 import type { BaseCourse } from 'src/types';
 
-export async function getCourses() {
+export default async () => {
   type Response = {
     JuniorCourses: {
       items: BaseCourse[];
@@ -53,4 +53,4 @@ export async function getCourses() {
     everyoneCourses: EveryoneCourses.items.map((item) => item.name),
     igcseCourses: IgcseCourses.items.map((item) => item.name),
   };
-}
+};

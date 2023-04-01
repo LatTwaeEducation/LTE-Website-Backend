@@ -12,11 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPartnerships = void 0;
 const graphql_1 = __importDefault(require("src/services/graphql"));
-function getPartnerships() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const queryString = `
+exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
+    const queryString = `
   query Partnerships {
     partnershipCollection {
       items {
@@ -29,8 +27,6 @@ function getPartnerships() {
     }
   }
   `;
-        const { partnershipCollection } = yield (0, graphql_1.default)(queryString);
-        return partnershipCollection.items;
-    });
-}
-exports.getPartnerships = getPartnerships;
+    const { partnershipCollection } = yield (0, graphql_1.default)(queryString);
+    return partnershipCollection.items;
+});

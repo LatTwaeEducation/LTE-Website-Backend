@@ -1,3 +1,4 @@
 import type { BlogCard } from 'src/types';
-export declare function getBlogs(): Promise<BlogCard[]>;
+declare const _default: () => Promise<BlogCard[]>;
+export default _default;
 //# sourceMappingURL=Blogs.d.ts.map

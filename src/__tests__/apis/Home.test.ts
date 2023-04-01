@@ -1,15 +1,8 @@
 import dotenv from 'dotenv';
 import * as Home from 'src/apis/Home';
+import { hasPropertiesAndTypes, isOfTypeAsset } from '../helpers';
 
 dotenv.config();
-
-const deepPropertiesCheck = (obj: object, props: string[]) => {
-  return props.every((prop) => Object.hasOwn(obj, prop));
-};
-
-const isOfTypeAsset = (obj: object) => {
-  return deepPropertiesCheck(obj, ['url', 'title']);
-};
 
 describe('Home API tests', () => {
   describe('Getting Courses', () => {
@@ -34,9 +27,12 @@ describe('Home API tests', () => {
   });
 
   describe('Getting Activity Events', () => {
-    const properties = ['thumbnail', 'id'];
+    const expected = {
+      thumbnails: 'object',
+      id: 'string',
+    };
 
-    test(`Should return an array of objects with properties ${properties.join(
+    test(`Should return an array of objects with properties ${Object.keys(expected).join(
       ', '
     )}, and the counts should be less than or equal to 3`, async () => {
       const data = await Home.getActivitiesEvents();
@@ -46,50 +42,59 @@ describe('Home API tests', () => {
 
       expect(
         data.every(
-          (activityEvent) => deepPropertiesCheck(activityEvent, properties) && isOfTypeAsset(activityEvent.thumbnail)
+          (activityEvent) => hasPropertiesAndTypes(activityEvent, expected) && isOfTypeAsset(activityEvent.thumbnail)
         )
       ).toBeTruthy();
     });
   });
 
   describe('Getting Testmonials', () => {
-    test('Should return array of objects with properties feedback, name, occupation', async () => {
+    const expected = {
+      feedback: 'string',
+      name: 'string',
+      occupation: 'string',
+    };
+
+    test(`Should return array of objects with properties ${Object.keys(expected).join(', ')}`, async () => {
       const data = await Home.getTestimonials();
 
       expect(Array.isArray(data)).toBeTruthy();
-      expect(
-        data.every(
-          (testmonial) =>
-            Object.hasOwn(testmonial, 'feedback') &&
-            Object.hasOwn(testmonial, 'name') &&
-            Object.hasOwn(testmonial, 'occupation')
-        )
-      ).toBeTruthy();
+      expect(data.every((testimonial) => hasPropertiesAndTypes(testimonial, expected))).toBeTruthy();
     });
   });
 
   describe('Getting Partnerships', () => {
-    const properties = ['logo', 'company'];
-    test(`Should return an array of objects with properties ${properties.join(', ')}`, async () => {
+    const expected = {
+      logo: 'object',
+      company: 'string',
+    };
+    test(`Should return an array of objects with properties ${Object.keys(expected).join(', ')} `, async () => {
       const data = await Home.getPartnerships();
 
       expect(Array.isArray(data)).toBeTruthy();
       expect(
-        data.every((partnership) => deepPropertiesCheck(partnership, properties) && isOfTypeAsset(partnership.logo))
+        data.every((partnership) => hasPropertiesAndTypes(partnership, expected) && isOfTypeAsset(partnership.logo))
       ).toBeTruthy();
     });
   });
 
   describe('Getting Blogs', () => {
-    const properties = ['id', 'thumbnail', 'title', 'published', 'description'];
-    test(`Should return an array of objects with properties ${properties.join(
+    const expected = {
+      id: 'string',
+      thumbnail: 'object',
+      title: 'string',
+      published: Date,
+      description: 'string',
+    };
+
+    test(`Should return an array of objects with properties ${Object.keys(expected).join(
       ', '
     )}, and counts of less than or equal to 3`, async () => {
       const data = await Home.getBlogs();
 
       expect(Array.isArray(data)).toBeTruthy();
       expect(data.length).toBeLessThanOrEqual(3);
-      expect(data.every((blog) => deepPropertiesCheck(blog, properties) && isOfTypeAsset(blog.thumbnail)));
+      expect(data.every((blog) => hasPropertiesAndTypes(blog, expected) && isOfTypeAsset(blog.thumbnail)));
     });
   });
 });

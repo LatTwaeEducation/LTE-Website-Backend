@@ -41,3 +41,9 @@ export interface BaseActivityEvent {
   id: string;
   thumbnail: Asset;
 }
+
+export interface InfographicTimeline {
+  startDate: Date;
+  endDate?: Date;
+  description: string;
+}

@@ -12,11 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getActivitiesEvents = void 0;
 const graphql_1 = __importDefault(require("src/services/graphql"));
-function getActivitiesEvents() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const queryString = `
+exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
+    const queryString = `
   query ActivitiesEvents_Home {
     activityEventCollection(limit: 3) {
       items {
@@ -31,13 +29,11 @@ function getActivitiesEvents() {
     }
   }  
   `;
-        const { activityEventCollection } = yield (0, graphql_1.default)(queryString);
-        return activityEventCollection.items.map((item) => {
-            return {
-                id: item.sys.id,
-                thumbnail: item.thumbnail,
-            };
-        });
+    const { activityEventCollection } = yield (0, graphql_1.default)(queryString);
+    return activityEventCollection.items.map((item) => {
+        return {
+            id: item.sys.id,
+            thumbnail: item.thumbnail,
+        };
     });
-}
-exports.getActivitiesEvents = getActivitiesEvents;
+});

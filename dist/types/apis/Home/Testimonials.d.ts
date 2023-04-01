@@ -1,3 +1,4 @@
 import type { Testimonial } from 'src/types';
-export declare function getTestimonials(): Promise<Testimonial[]>;
+declare const _default: () => Promise<Testimonial[]>;
+export default _default;
 //# sourceMappingURL=Testimonials.d.ts.map

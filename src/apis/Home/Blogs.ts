@@ -3,7 +3,7 @@ import { extractFirstParagraph } from 'src/services/CustomHtmlRenderers';
 import queryData from 'src/services/graphql';
 import type { BlogCard, Asset, Sys } from 'src/types';
 
-export async function getBlogs() {
+export default async () => {
   type Item = {
     sys: Sys;
     title: string;
@@ -52,4 +52,4 @@ export async function getBlogs() {
       description: extractFirstParagraph(item.body?.json),
     } as BlogCard;
   });
-}
+};

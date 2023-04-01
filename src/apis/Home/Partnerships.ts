@@ -1,7 +1,7 @@
 import queryData from 'src/services/graphql';
 import type { Partnership } from 'src/types';
 
-export async function getPartnerships() {
+export default async () => {
   type Response = {
     partnershipCollection: {
       items: Partnership[];
@@ -25,4 +25,4 @@ export async function getPartnerships() {
   const { partnershipCollection } = await queryData<Response>(queryString);
 
   return partnershipCollection.items;
-}
+};

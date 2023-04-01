@@ -1,3 +1,4 @@
 import type { Partnership } from 'src/types';
-export declare function getPartnerships(): Promise<Partnership[]>;
+declare const _default: () => Promise<Partnership[]>;
+export default _default;
 //# sourceMappingURL=Partnerships.d.ts.map

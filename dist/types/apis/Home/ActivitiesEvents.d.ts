@@ -1,3 +1,4 @@
 import type { BaseActivityEvent } from 'src/types';
-export declare function getActivitiesEvents(): Promise<BaseActivityEvent[]>;
+declare const _default: () => Promise<BaseActivityEvent[]>;
+export default _default;
 //# sourceMappingURL=ActivitiesEvents.d.ts.map

@@ -1,7 +1,7 @@
 import queryData from 'src/services/graphql';
 import type { Asset, BaseActivityEvent, Sys } from 'src/types';
 
-export async function getActivitiesEvents() {
+export default async () => {
   type Response = {
     activityEventCollection: {
       items: {
@@ -35,4 +35,4 @@ export async function getActivitiesEvents() {
       thumbnail: item.thumbnail,
     } as BaseActivityEvent;
   });
-}
+};

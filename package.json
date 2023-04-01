@@ -9,7 +9,7 @@
   "types": "dist/types/index.d.ts",
   "scripts": {
     "start:dev": "nodemon",
-    "start:prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/src/index.js",
+    "start:prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/index.js",
     "build": "tsc -p tsconfig.prod.json",
     "test": "jest",
     "test:watch": "jest --watchAll --verbose",

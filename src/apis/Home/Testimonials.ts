@@ -1,7 +1,7 @@
 import queryData from 'src/services/graphql';
 import type { Testimonial } from 'src/types';
 
-export async function getTestimonials() {
+export default async () => {
   type Response = {
     testimonialCollection: {
       items: Testimonial[];
@@ -23,4 +23,4 @@ export async function getTestimonials() {
   const { testimonialCollection } = await queryData<Response>(queryString);
 
   return testimonialCollection.items;
-}
+};

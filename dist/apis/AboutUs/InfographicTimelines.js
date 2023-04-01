@@ -12,39 +12,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const CustomHtmlRenderers_1 = require("src/services/CustomHtmlRenderers");
 const graphql_1 = __importDefault(require("src/services/graphql"));
 exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
-  query Blogs_Home {
-    blogCollection(limit: 3) {
-      items {
-        sys {
-          id
-          publishedAt
-        }
-        title
-        thumbnail {
-          title
-          url
-        }
-        body {
-          json
+  query InfographicTimeline {
+      infographicTimelineCollection(order: startDate_ASC) {
+        items {
+          startDate
+          endDate
+          description
         }
       }
-    }
-  }
-  
-  `;
-    const { blogCollection } = yield (0, graphql_1.default)(queryString);
-    return blogCollection.items.map((item) => {
-        var _a;
+    }      
+    `;
+    const { infographicTimelineCollection } = yield (0, graphql_1.default)(queryString);
+    return infographicTimelineCollection.items.map(({ startDate, endDate, description }) => {
         return {
-            id: item.sys.id,
-            thumbnail: item.thumbnail,
-            title: item.title,
-            publishedAt: item.sys.publishAt,
-            description: (0, CustomHtmlRenderers_1.extractFirstParagraph)((_a = item.body) === null || _a === void 0 ? void 0 : _a.json),
+            startDate,
+            endDate,
+            description,
         };
     });
 });

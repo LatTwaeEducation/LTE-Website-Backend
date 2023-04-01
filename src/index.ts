@@ -5,3 +5,4 @@ if (!process.env.CONTENTFUL_ACCESS_TOKEN) {
 }
 
 export * as Home from './apis/Home';
+export * as AboutUS from './apis/AboutUs';
