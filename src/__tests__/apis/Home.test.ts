@@ -4,7 +4,7 @@ import { hasPropertiesAndTypes, isOfTypeAsset } from '../helpers';
 
 dotenv.config();
 
-describe('Home API tests', () => {
+describe('Home Page API tests', () => {
   describe('Getting Courses', () => {
     test(`Should return an object with properties juniorCourses, youthCourses, everyoneCourses, igcseCourses, each with values of string array`, async () => {
       const data = await Home.getCourses();

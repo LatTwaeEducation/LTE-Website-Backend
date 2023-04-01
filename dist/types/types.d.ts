@@ -1,3 +1,4 @@
+export type ClassCategory = 'Junior' | 'Youth' | 'Everyone' | 'IGCSE';
 export interface Asset {
     title: string;
     url: string;
@@ -8,6 +9,12 @@ export interface Sys {
 }
 export interface BaseCourse {
     name: string;
+}
+export interface CourseCard extends BaseCourse {
+    id: string;
+    duration: number;
+    students: number;
+    classCategory: ClassCategory;
 }
 export interface Testimonial {
     feedback: string;
