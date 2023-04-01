@@ -3,7 +3,7 @@ title: Home
 author: Zaw Nay Lin
 ---
 
-# Home APIs
+# About Us APIs
 
 For About Us Page, these are available endpoint functions:
 
