@@ -1,5 +1,5 @@
 ---
-title: Home
+title: Junior & Youth
 author: Zaw Nay Lin
 ---
 
@@ -16,14 +16,12 @@ Get all the For Junior courses.
 ### Return Type
 
 ```ts
-type ClassCategory = 'Junior' | 'Youth' | 'Everyone' | 'IGCSE';
-
 interface CourseCard {
   id: string;
   name: string;
   duration: number;
   students: number;
-  classCategory: ClassCategory;
+  classCategory: 'Junior';
 }
 
 declare const getJuniorCourses: () => Promise<CourseCard[]>;
@@ -32,7 +30,7 @@ declare const getJuniorCourses: () => Promise<CourseCard[]>;
 ### Example
 
 ```ts
-import { Home } from 'lte-web-backend';
+import { JuniorYouth } from 'lte-web-backend';
 const { id, name, duration, students, classCategory } = await getJuniorCourses();
 ```
 
@@ -45,14 +43,12 @@ Get all the For Youth courses.
 ### Return Type
 
 ```ts
-type ClassCategory = 'Junior' | 'Youth' | 'Everyone' | 'IGCSE';
-
 interface CourseCard {
   id: string;
   name: string;
   duration: number;
   students: number;
-  classCategory: ClassCategory;
+  classCategory: 'Youth';
 }
 
 declare const getJuniorCourses: () => Promise<CourseCard[]>;
@@ -61,6 +57,6 @@ declare const getJuniorCourses: () => Promise<CourseCard[]>;
 ### Example
 
 ```ts
-import { Home } from 'lte-web-backend';
+import { JuniorYouth } from 'lte-web-backend';
 const { id, name, duration, students, classCategory } = await getYouthCourses();
 ```

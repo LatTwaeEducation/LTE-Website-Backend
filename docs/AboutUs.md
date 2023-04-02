@@ -1,5 +1,5 @@
 ---
-title: Home
+title: About Us
 author: Zaw Nay Lin
 ---
 
