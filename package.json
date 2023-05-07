@@ -7,6 +7,10 @@
     "dist"
   ],
   "types": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LatTwaeEducation/LTE-Website-Backend.git"
+  },
   "scripts": {
     "start:dev": "nodemon",
     "start:prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/index.js",
