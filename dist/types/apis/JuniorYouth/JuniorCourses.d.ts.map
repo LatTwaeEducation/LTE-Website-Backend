@@ -1,1 +1,1 @@
-{"version":3,"file":"JuniorCourses.d.ts","sourceRoot":"","sources":["../../../../src/apis/JuniorYouth/JuniorCourses.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAsB,UAAU,EAAE,MAAM,WAAW,CAAC;;AAEhE,wBAwCE"}
+{"version":3,"file":"JuniorCourses.d.ts","sourceRoot":"","sources":["../../../../src/apis/JuniorYouth/JuniorCourses.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAsB,UAAU,EAAS,MAAM,aAAa,CAAC;;AAEzE,wBA8CE"}

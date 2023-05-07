@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const graphql_1 = __importDefault(require("src/services/graphql"));
+const graphql_1 = __importDefault(require("../../services/graphql"));
 exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
   query Courses_Junior {
@@ -21,22 +21,27 @@ exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
         sys {
           id
         }
+        thumbnail {
+          url
+          title
+        }
         name
         duration
         students
         classCategory
       }
     }
-  }  
+  }
   `;
     const { courseCollection } = yield (0, graphql_1.default)(queryString);
-    return courseCollection.items.map(({ sys, name, duration, students, classCategory }) => {
+    return courseCollection.items.map(({ sys, name, duration, students, classCategory, thumbnail }) => {
         return {
             id: sys.id,
             name,
             duration,
             students,
             classCategory,
+            thumbnail,
         };
     });
 });

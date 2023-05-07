@@ -21,6 +21,10 @@ exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
         sys {
           id
         }
+        thumbnail {
+          url
+          title
+        }
         name
         duration
         students
@@ -30,13 +34,14 @@ exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
   }
   `;
     const { courseCollection } = yield (0, graphql_1.default)(queryString);
-    return courseCollection.items.map(({ sys, name, duration, students, classCategory }) => {
+    return courseCollection.items.map(({ sys, name, duration, students, classCategory, thumbnail }) => {
         return {
             id: sys.id,
             name,
             duration,
             students,
             classCategory,
+            thumbnail,
         };
     });
 });

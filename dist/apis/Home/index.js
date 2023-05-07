@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getBlogs = exports.getPartnerships = exports.getTestimonials = exports.getActivitiesEvents = exports.getCourses = exports.getAllCounts = void 0;
-var AllCounts_1 = require("src/services/AllCounts");
+var AllCounts_1 = require("../../services/AllCounts");
 Object.defineProperty(exports, "getAllCounts", { enumerable: true, get: function () { return __importDefault(AllCounts_1).default; } });
 var Courses_1 = require("./Courses");
 Object.defineProperty(exports, "getCourses", { enumerable: true, get: function () { return __importDefault(Courses_1).default; } });

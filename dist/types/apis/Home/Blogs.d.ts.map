@@ -1,1 +1,1 @@
-{"version":3,"file":"Blogs.d.ts","sourceRoot":"","sources":["../../../../src/apis/Home/Blogs.ts"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,QAAQ,EAAc,MAAM,WAAW,CAAC;;AAEtD,wBAiDE"}
+{"version":3,"file":"Blogs.d.ts","sourceRoot":"","sources":["../../../../src/apis/Home/Blogs.ts"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,QAAQ,EAAc,MAAM,aAAa,CAAC;;AAExD,wBAiDE"}
