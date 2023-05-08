@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,12 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const graphql_1 = __importDefault(require("./graphql"));
-exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
+import queryData from './graphql';
+export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
     query AllCounts{
       miscellaneous (id:"6wDI0CAaFAXWiESwED8F4A"){
@@ -27,7 +22,7 @@ exports.default = () => __awaiter(void 0, void 0, void 0, function* () {
       }
     }
     `;
-    const { miscellaneous, courseCollection } = yield (0, graphql_1.default)(queryString);
+    const { miscellaneous, courseCollection } = yield queryData(queryString);
     return {
         membersCount: miscellaneous.value,
         coursesCount: courseCollection.total,
