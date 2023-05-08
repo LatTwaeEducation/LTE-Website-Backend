@@ -1,3 +1,26 @@
+export interface ContactInfo {
+    phoneNumbers?: string[];
+    emailAddresses?: string[];
+    address?: string;
+    facebookLink?: string;
+    facebookGroupLink?: string;
+    instagramLink?: string;
+    youtubeLink?: string;
+    telegramLink?: string;
+    twitterLink?: string;
+    linkedinLink?: string;
+}
+export interface FooterContent extends Omit<ContactInfo, 'address'> {
+    aboutUs: string;
+}
+export interface MissionVision {
+    mission: string;
+    vision: string;
+}
+export interface CountCard {
+    count: number;
+    message: string;
+}
 export type ClassCategory = 'Junior' | 'Youth' | 'Everyone' | 'IGCSE';
 export interface Asset {
     title: string;
@@ -5,7 +28,9 @@ export interface Asset {
 }
 export interface Sys {
     id: string;
-    publishAt?: Date;
+}
+export interface SysWithTime extends Sys {
+    publishedAt: string;
 }
 export interface BaseCourse {
     name: string;
@@ -41,13 +66,8 @@ export interface BlogCard {
     thumbnail: Asset;
     title: string;
     publishedAt: Date;
-    description: string;
+    description?: string | null;
 }
-export type Links = {
-    assets: {
-        block: Asset & Sys;
-    };
-};
 export interface BaseActivityEvent {
     id: string;
     thumbnail: Asset;

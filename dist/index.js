@@ -6,3 +6,4 @@ import * as JuniorYouth_1 from './apis/JuniorYouth';
 export { JuniorYouth_1 as JuniorYouth };
 import * as Everyone_1 from './apis/Everyone';
 export { Everyone_1 as Everyone };
+export { default as getFooterContent } from './services/FooterContent';

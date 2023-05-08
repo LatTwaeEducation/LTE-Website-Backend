@@ -1,7 +1,7 @@
 import { BLOCKS } from '@contentful/rich-text-types';
 export function extractFirstParagraph(richTextDocument) {
     if (!richTextDocument) {
-        return '';
+        return null;
     }
     const paragraphOnlyNodes = richTextDocument.content.filter((node) => node.nodeType === BLOCKS.PARAGRAPH);
     let description = '';

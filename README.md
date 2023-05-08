@@ -7,7 +7,7 @@ npm install "https://github.com/LatTwaeEducation/LTE-Website-Backend.git"
 ```
 To run this, .env with the following value
 ```
-CONTENTFUL_ACCESS_TOKEN=
+REACT_APP_CONTENTFUL_ACCESS_TOKEN=
 ```
 should exist. 
 

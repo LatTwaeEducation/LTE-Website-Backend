@@ -7,39 +7,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { extractFirstParagraph } from '../../services/CustomHtmlRenderers';
 import queryData from '../../services/graphql';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
-  query Blogs_Home {
-    blogCollection(limit: 3) {
-      items {
-        sys {
-          id
-          publishedAt
-        }
-        title
-        thumbnail {
-          title
-          url
-        }
-        body {
-          json
-        }
-      }
+    query WhereYourJourneyBegins {
+      organisationInformation(id: "2ImII347rPAsMUUHNSwI5I") {
+        whereYourJourneyBegins
     }
-  }
-  
-  `;
-    const { blogCollection } = yield queryData(queryString);
-    return blogCollection.items.map((item) => {
-        var _a;
-        return {
-            id: item.sys.id,
-            thumbnail: item.thumbnail,
-            title: item.title,
-            publishedAt: new Date(item.sys.publishedAt),
-            description: extractFirstParagraph((_a = item.body) === null || _a === void 0 ? void 0 : _a.json),
-        };
-    });
+  }`;
+    return (yield queryData(queryString)).organisationInformation.whereYourJourneyBegins;
 });

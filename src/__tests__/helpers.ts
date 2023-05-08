@@ -1,54 +1,31 @@
-type TypeString =
-  | 'undefined'
-  | 'object'
-  | 'boolean'
-  | 'number'
-  | 'bigint'
-  | 'string'
-  | 'symbol'
-  | 'function'
-  | 'object';
+import { Asset } from '../types';
 
-const isTypeString = (type: string): type is TypeString =>
-  ['undefined', 'object', 'boolean', 'number', 'bigint', 'string', 'symbol', 'function', 'object'].includes(type);
+type TypeString = 'undefined' | 'object' | 'boolean' | 'number' | 'bigint' | 'string' | 'symbol' | 'function';
 
-const propertyHasType = <T extends object>(target: T, key: keyof T, type: unknown) => {
-  if (type === null && target[key] !== null) {
-    return false;
-  }
+export const testIsAsset = <T extends object>(taget: T) => {
+  expect(taget).toHaveProperty('title');
+  expect(taget).toHaveProperty('url');
 
-  // eslint-disable-next-line valid-typeof
-  if (isTypeString(type as string) && typeof target[key] !== (type as TypeString)) {
-    return false;
-  }
-  if (typeof type === 'function' && (target[key] as unknown) instanceof type) {
-    return false;
-  }
+  expect((taget as Asset).title).toBeDefined();
+  expect(typeof (taget as Asset).title).toBe('string');
 
-  return true;
+  expect((taget as Asset).url).toBeDefined();
+  expect(typeof (taget as Asset).url).toBe('string');
 };
 
-export const hasPropertiesAndTypes = <T extends object>(target: T, expected: { [K in keyof T]?: unknown }): boolean => {
-  return Object.entries(expected).every(([key, type]) => {
-    if (!Object.hasOwn(target, key)) {
-      return false;
-    }
+export const testHasPropertyAndType = <T extends object>(
+  target: T,
+  propertyPath: string,
+  expectedType: TypeString,
+  optional = false
+) => {
+  expect(target).toHaveProperty(propertyPath);
 
-    const k = key as keyof T;
-
-    if (Array.isArray(type) && !type.some((t) => propertyHasType(target, k, t))) {
-      return false;
-    }
-
-    return propertyHasType(target, k, type);
-  });
-};
-
-export const isOfTypeAsset = <T extends object>(property: T) => {
-  const assetType = {
-    url: 'string',
-    title: 'string',
-  };
-
-  return hasPropertiesAndTypes(property, assetType);
+  const k = propertyPath as keyof T;
+  if (!optional) {
+    expect(target[k]).toBeDefined();
+  }
+  if (target[k]) {
+    expect(typeof target[k]).toBe(expectedType);
+  }
 };

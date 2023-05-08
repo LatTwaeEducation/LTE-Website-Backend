@@ -1,9 +1,13 @@
 import queryData from './graphql';
+import type { CountCard } from '../types';
 
 export default async () => {
   type Data = {
-    miscellaneous: {
-      value: number;
+    organisationInformation: {
+      membersCount: number;
+      coursesCountMessage: string;
+      membersCountMessage: string;
+      studentsCountMessage: string;
     };
     courseCollection: {
       total: number;
@@ -15,8 +19,11 @@ export default async () => {
 
   const queryString = `
     query AllCounts{
-      miscellaneous (id:"6wDI0CAaFAXWiESwED8F4A"){
-        value
+      organisationInformation (id:"2ImII347rPAsMUUHNSwI5I"){
+        membersCount
+        coursesCountMessage
+        membersCountMessage
+        studentsCountMessage
       }, 
       courseCollection {
         total
@@ -27,11 +34,20 @@ export default async () => {
     }
     `;
 
-  const { miscellaneous, courseCollection } = await queryData<Data>(queryString);
+  const { organisationInformation, courseCollection } = await queryData<Data>(queryString);
 
   return {
-    membersCount: miscellaneous.value,
-    coursesCount: courseCollection.total,
-    studentsCount: courseCollection.items.reduce((totalStudents, item) => totalStudents + item.students, 0),
+    members: {
+      count: organisationInformation.membersCount,
+      message: organisationInformation.membersCountMessage,
+    } as CountCard,
+    courses: {
+      count: courseCollection.total,
+      message: organisationInformation.coursesCountMessage,
+    } as CountCard,
+    students: {
+      count: courseCollection.items.reduce((acc, item) => acc + item.students, 0),
+      message: organisationInformation.studentsCountMessage,
+    } as CountCard,
   };
 };

@@ -11,8 +11,11 @@ import queryData from './graphql';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
     query AllCounts{
-      miscellaneous (id:"6wDI0CAaFAXWiESwED8F4A"){
-        value
+      organisationInformation (id:"2ImII347rPAsMUUHNSwI5I"){
+        membersCount
+        coursesCountMessage
+        membersCountMessage
+        studentsCountMessage
       }, 
       courseCollection {
         total
@@ -22,10 +25,19 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
       }
     }
     `;
-    const { miscellaneous, courseCollection } = yield queryData(queryString);
+    const { organisationInformation, courseCollection } = yield queryData(queryString);
     return {
-        membersCount: miscellaneous.value,
-        coursesCount: courseCollection.total,
-        studentsCount: courseCollection.items.reduce((totalStudents, item) => totalStudents + item.students, 0),
+        members: {
+            count: organisationInformation.membersCount,
+            message: organisationInformation.membersCountMessage,
+        },
+        courses: {
+            count: courseCollection.total,
+            message: organisationInformation.coursesCountMessage,
+        },
+        students: {
+            count: courseCollection.items.reduce((acc, item) => acc + item.students, 0),
+            message: organisationInformation.studentsCountMessage,
+        },
     };
 });

@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import queryData from 'src/services/graphql';
+import { testHasPropertyAndType } from '../helpers';
 
 dotenv.config();
 
@@ -23,6 +24,14 @@ describe('GraphQL Query test', () => {
   });
 
   test('Should be able to use variable', async () => {
+    type Response = {
+      blog: {
+        sys: {
+          id: string;
+        };
+      };
+    };
+
     const queryString = `
     query Blog($id: String!) {
       blog(id: $id) {
@@ -41,9 +50,12 @@ describe('GraphQL Query test', () => {
       id: '2z1erxsIpc8hw0xe7vNYOi',
     };
 
-    const data: any = await queryData(queryString, queryVar);
+    const data = await queryData<Response>(queryString, queryVar);
     expect(data).toBeDefined();
-    expect(data).toHaveProperty('blog.sys.id');
+    testHasPropertyAndType(data, 'blog', 'object');
+    testHasPropertyAndType(data.blog, 'sys', 'object');
+    testHasPropertyAndType(data.blog.sys, 'id', 'string');
+
     expect(data.blog.sys.id).toBe(queryVar.id);
   });
 });

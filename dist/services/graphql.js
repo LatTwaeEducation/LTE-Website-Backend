@@ -12,7 +12,7 @@ export default function queryData(queryString, queryVariables) {
     return __awaiter(this, void 0, void 0, function* () {
         const { REACT_APP_CONTENTFUL_ACCESS_TOKEN } = process.env;
         if (!REACT_APP_CONTENTFUL_ACCESS_TOKEN) {
-            throw new Error(['No Access Token found.', 'Please save the access token as CONTENTFUL_ACCESS_TOKEN'].join('\n'));
+            throw new Error(['No Access Token found.', 'Please save the access token as REACT_APP_CONTENTFUL_ACCESS_TOKEN'].join('\n'));
         }
         const url = 'https://graphql.contentful.com/content/v1/spaces/gxxheul7hh8o/environments/master';
         const { data } = yield axios.post(url, {

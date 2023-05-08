@@ -1,4 +1,5 @@
 .obsidian
+.idea
 node_modules
 coverage
 .env

@@ -1,4 +1,6 @@
+export { default as getWhereYourJourneyBegins } from './WhereYourJourneyBegins';
 export { default as getAllCounts } from '../../services/AllCounts';
+export { default as getMissionVision } from '../../services/MissionVision';
 export { default as getCourses } from './Courses';
 export { default as getActivitiesEvents } from './ActivitiesEvents';
 export { default as getTestimonials } from './Testimonials';

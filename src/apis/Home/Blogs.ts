@@ -1,21 +1,19 @@
 import type { Document } from '@contentful/rich-text-types';
 import { extractFirstParagraph } from '../../services/CustomHtmlRenderers';
 import queryData from '../../services/graphql';
-import type { BlogCard, Asset, Sys } from '../../types';
+import type { BlogCard, Asset, SysWithTime } from '../../types';
 
 export default async () => {
-  type Item = {
-    sys: Sys;
-    title: string;
-    thumbnail: Asset;
-    body?: {
-      json: Document;
-    };
-  };
-
   type Response = {
     blogCollection: {
-      items: Item[];
+      items: {
+        sys: SysWithTime;
+        title: string;
+        thumbnail: Asset;
+        body?: {
+          json: Document;
+        };
+      }[];
     };
   };
 
@@ -48,7 +46,7 @@ export default async () => {
       id: item.sys.id,
       thumbnail: item.thumbnail,
       title: item.title,
-      publishedAt: item.sys.publishAt,
+      publishedAt: new Date(item.sys.publishedAt),
       description: extractFirstParagraph(item.body?.json),
     } as BlogCard;
   });
