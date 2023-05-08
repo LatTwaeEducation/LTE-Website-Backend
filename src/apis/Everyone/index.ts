@@ -1,1 +1,1 @@
-export { default as getEveryoneCourses } from 'src/apis/Everyone/EveryoneCourses';
+export { default as getEveryoneCourses } from './EveryoneCourses';

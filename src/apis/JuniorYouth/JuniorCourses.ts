@@ -1,5 +1,5 @@
-import queryData from 'src/services/graphql';
-import type { Sys, ClassCategory, CourseCard } from 'src/types';
+import queryData from '../../services/graphql';
+import type { Sys, ClassCategory, CourseCard, Asset } from '../../types';
 
 export default async () => {
   type Response = {
@@ -10,6 +10,7 @@ export default async () => {
         duration: number;
         students: number;
         classCategory: ClassCategory;
+        thumbnail: Asset;
       }[];
     };
   };
@@ -21,24 +22,29 @@ export default async () => {
         sys {
           id
         }
+        thumbnail {
+          url
+          title
+        }
         name
         duration
         students
         classCategory
       }
     }
-  }
+  }  
   `;
 
   const { courseCollection } = await queryData<Response>(queryString);
 
-  return courseCollection.items.map(({ sys, name, duration, students, classCategory }) => {
+  return courseCollection.items.map(({ sys, name, duration, students, classCategory, thumbnail }) => {
     return {
       id: sys.id,
       name,
       duration,
       students,
       classCategory,
+      thumbnail,
     } as CourseCard;
   });
 };

@@ -5,8 +5,8 @@ export default async function queryData<T>(queryString: string, queryVariables?:
     data: T;
   };
 
-  const { CONTENTFUL_ACCESS_TOKEN } = process.env;
-  if (!CONTENTFUL_ACCESS_TOKEN) {
+  const { REACT_APP_CONTENTFUL_ACCESS_TOKEN } = process.env;
+  if (!REACT_APP_CONTENTFUL_ACCESS_TOKEN) {
     throw new Error(['No Access Token found.', 'Please save the access token as CONTENTFUL_ACCESS_TOKEN'].join('\n'));
   }
 
@@ -20,7 +20,7 @@ export default async function queryData<T>(queryString: string, queryVariables?:
     },
     {
       headers: {
-        Authorization: `Bearer ${CONTENTFUL_ACCESS_TOKEN}`,
+        Authorization: `Bearer ${REACT_APP_CONTENTFUL_ACCESS_TOKEN}`,
       },
     }
   );

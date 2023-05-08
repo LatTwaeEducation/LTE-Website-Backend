@@ -1,5 +1,5 @@
-import queryData from 'src/services/graphql';
-import type { Asset, BaseActivityEvent, Sys } from 'src/types';
+import queryData from '../../services/graphql';
+import type { Asset, BaseActivityEvent, Sys } from '../../types';
 
 export default async () => {
   type Response = {

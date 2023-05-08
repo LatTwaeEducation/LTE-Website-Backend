@@ -1,7 +1,7 @@
 import type { Document } from '@contentful/rich-text-types';
-import { extractFirstParagraph } from 'src/services/CustomHtmlRenderers';
-import queryData from 'src/services/graphql';
-import type { BlogCard, Asset, Sys } from 'src/types';
+import { extractFirstParagraph } from '../../services/CustomHtmlRenderers';
+import queryData from '../../services/graphql';
+import type { BlogCard, Asset, Sys } from '../../types';
 
 export default async () => {
   type Item = {

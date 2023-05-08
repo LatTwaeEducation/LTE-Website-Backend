@@ -19,6 +19,18 @@ export interface CourseCard extends BaseCourse {
   duration: number;
   students: number;
   classCategory: ClassCategory;
+  thumbnail: Asset;
+}
+
+export interface Course extends Omit<CourseCard, 'thumbnail'> {
+  featureImage?: Asset;
+  price: number;
+  requirements?: string[];
+  learningPlatforms: string[];
+  skills: string[];
+  whatYouLearn: string;
+  whatWeTeach: string;
+  futherLearning: string;
 }
 
 export interface Testimonial {

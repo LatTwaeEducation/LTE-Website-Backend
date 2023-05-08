@@ -1,5 +1,5 @@
-import queryData from 'src/services/graphql';
-import type { Partnership } from 'src/types';
+import queryData from '../../services/graphql';
+import type { Partnership } from '../../types';
 
 export default async () => {
   type Response = {

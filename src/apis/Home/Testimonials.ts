@@ -1,5 +1,5 @@
-import queryData from 'src/services/graphql';
-import type { Testimonial } from 'src/types';
+import queryData from '../../services/graphql';
+import type { Testimonial } from '../../types';
 
 export default async () => {
   type Response = {
