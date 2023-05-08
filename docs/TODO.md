@@ -1,4 +1,4 @@
-- ~~Discuss the casing for the tags to use. ~~
+- ~~Discuss the casing for the tags to use.~~
 - ~~Discuss how to handle Assets and Rich Text Format~~
 - ~~Ask whether there will be separate thumbnail and feature image for **Activities And Events**~~
 - ~~Whether to limit the dimensions of thumbnails and featured images.~~

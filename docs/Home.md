@@ -7,27 +7,78 @@ author: Zaw Nay Lin
 
 For Home Page, these are available endpoint functions:
 
-## getAllCounts
+## getWhereYourJourneyBegins
 
 ### Description
 
-Get members count, courses count and students count.
+Get the main message of **Where your journey begins**.
 
 ### Return Type
 
 ```ts
+declare const getWhereYourJourneyBegins: () => Promise<string>;
+```
+
+### Example
+
+```ts
+import { getWhereYourJourneyBegins } from "lte-web-backend/Home";
+
+const whereYourJourneyBegins = await getWhereYourJourneyBegins();
+```
+
+## getAllCounts
+
+### Description
+
+Get the counts and its messages of courses, members, and students respectively.
+
+### Return Type
+
+```ts
+interface CountCard {
+  count: number;
+  message: string;
+}
+
 declare const getAllCounts: () => Promise<{
-  membersCount: number;
-  coursesCount: number;
-  studentsCount: number;
+  members: CountCard;
+  courses: CountCard;
+  students: CountCard;
 }>;
 ```
 
 ### Example
 
 ```ts
-import { Home } from 'lte-web-backend';
-const { membersCount, coursesCount, studentsCount } = await Home.getAllCounts();
+import { getAllCounts } from "lte-web-backend/Home";
+
+const { members, courses, students } = await getAllCounts();
+```
+
+## getMissionVision
+
+### Description
+
+Get the Mission and Vision of LTE
+
+### Return Type
+
+```ts
+interface MissionVision {
+  mission: string;
+  vision: string;
+}
+
+declare const getMissionVision: () => Promise<MissionVision>;
+```
+
+### Example
+
+```ts
+import { getMissionVision } from "lte-web-backend/Home";
+
+const { mission, vision } = await getMissionVision();
 ```
 
 ## getCourses
@@ -50,8 +101,9 @@ declare const getCourses: () => Promise<{
 ### Example
 
 ```ts
-import { Home } from 'lte-web-backend';
-const { juniorCourses, youthCourses, everyoneCourses, igcseCourses } = await Home.getCourses();
+import { getCourses } from 'lte-web-backend/Home';
+
+const { juniorCourses, youthCourses, everyoneCourses, igcseCourses } = await getCourses();
 ```
 
 ## getActivitiesEvents
@@ -75,6 +127,7 @@ declare const getActivitiesEvents: () => Promise<BaseActivityEvent[]>;
 
 ```ts
 import { Home } from 'lte-web-backend';
+
 const { thumbnail, id } = await Home.getActivitiesEvents();
 ```
 
@@ -100,6 +153,7 @@ declare const getTestimonials: () => Promise<Testimonial[]>;
 
 ```ts
 import { Home } from 'lte-web-backend';
+
 const { feedback, name, occupation } = await Home.getTestimonials();
 ```
 
@@ -113,17 +167,18 @@ Get the partnerships company and respective logos.
 
 ```ts
 interface Partnership {
-	logo: Asset;
-	company: string;
+  logo: Asset;
+  company: string;
 }
 
-declare const getPartnerships(): () => Promise<Partnership[]>
+declare const getPartnerships: () => Promise<Partnership[]>;
 ```
 
 ### Example
 
 ```ts
 import { Home } from 'lte-web-backend';
+
 const { logo, company } = await Home.getPartnerships();
 ```
 
@@ -137,12 +192,20 @@ Get the blog cards for Home page, limited to 3.
 
 ```ts
 interface BlogCard {
-	id: string;
-	thumbnail: Asset;
-	title: string;
-	publishedAt: Date;
-	description: string;
+  id: string;
+  thumbnail: Asset;
+  title: string;
+  publishedAt: Date;
+  description: string;
 }
 
-declare const getBlogs(): () => Promise<BlogCard[]>
+declare const getBlogs: () => Promise<BlogCard[]>;
+```
+
+### Example
+
+```ts
+import { getBlogs } from "lte-web-backend/Home";
+
+const blogs = await getBlogs();
 ```
