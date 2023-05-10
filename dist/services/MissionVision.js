@@ -8,14 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import queryData from './graphql';
+import { EntryId } from '../types';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
-    query MissionVision {
-      organisationInformation(id: "2ImII347rPAsMUUHNSwI5I"){
+    query MissionVision($id: String!) {
+      organisationInformation(id: $id) {
         mission
         vision
       }
     }`;
-    const { organisationInformation } = yield queryData(queryString);
+    const { organisationInformation } = yield queryData(queryString, { id: EntryId.OrganisationInformation });
     return organisationInformation;
 });

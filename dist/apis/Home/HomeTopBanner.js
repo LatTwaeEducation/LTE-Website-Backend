@@ -8,12 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import queryData from '../../services/graphql';
+import { EntryId } from '../../types';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
-    query HomeTopBanner {
-      organisationInformation(id: "2ImII347rPAsMUUHNSwI5I") {
-        whereYourJourneyBegins
+  query HomeTopBanner($id: String!) {
+    homeTopBanner(id: $id) {
+      title
+      body
+      learnMoreLink
     }
   }`;
-    return (yield queryData(queryString)).organisationInformation.whereYourJourneyBegins;
+    const { homeTopBanner } = yield queryData(queryString, { id: EntryId.HomeTopBanner });
+    return homeTopBanner;
 });

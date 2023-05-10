@@ -11,6 +11,7 @@
     "type": "git",
     "url": "https://github.com/LatTwaeEducation/LTE-Website-Backend.git"
   },
+
   "scripts": {
     "start:dev": "nodemon",
     "start:prod": "TS_NODE_BASEURL=./dist node -r ts-node/register/transpile-only -r tsconfig-paths/register index.js",

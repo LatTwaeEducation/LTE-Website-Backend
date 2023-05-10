@@ -5,11 +5,15 @@ import { testHasPropertyAndType, testIsAsset } from '../helpers';
 dotenv.config();
 
 describe('Home Page API tests', () => {
-  describe('Getting Where your journey begins', () => {
-    test('Should return a string of Where Your Journey begins.', async () => {
-      const data = await Home.getWhereYourJourneyBegins();
+  describe('Getting Home Top Banner', () => {
+    test('Should return a object with properties `title`, `body`, `learnMoreLink`, with types `string`, `string`, `string`.', async () => {
+      const data = await Home.getHomeTopBanner();
       expect(data).toBeDefined();
-      expect(typeof data).toBe('string');
+      expect(typeof data).toBe('object');
+
+      testHasPropertyAndType(data, 'title', 'string');
+      testHasPropertyAndType(data, 'body', 'string');
+      testHasPropertyAndType(data, 'learnMoreLink', 'string');
     });
   });
 

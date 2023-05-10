@@ -1,5 +1,6 @@
 import queryData from './graphql';
 import type { CountCard } from '../types';
+import { EntryId } from '../types';
 
 export default async () => {
   type Data = {
@@ -18,8 +19,8 @@ export default async () => {
   };
 
   const queryString = `
-    query AllCounts{
-      organisationInformation (id:"2ImII347rPAsMUUHNSwI5I"){
+    query AllCounts($id: String!) {
+      organisationInformation(id: $id) {
         membersCount
         coursesCountMessage
         membersCountMessage
@@ -34,7 +35,9 @@ export default async () => {
     }
     `;
 
-  const { organisationInformation, courseCollection } = await queryData<Data>(queryString);
+  const { organisationInformation, courseCollection } = await queryData<Data>(queryString, {
+    id: EntryId.OrganisationInformation,
+  });
   return [
     {
       name: 'Classes',

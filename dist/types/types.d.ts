@@ -10,6 +10,11 @@ export interface ContactInfo {
     twitterLink?: string;
     linkedinLink?: string;
 }
+export interface HomeTopBanner {
+    title: string;
+    body: string;
+    learnMoreLink: string;
+}
 export interface FooterContent extends Omit<ContactInfo, 'address'> {
     aboutUs: string;
 }
@@ -77,5 +82,10 @@ export interface InfographicTimeline {
     startDate: Date;
     endDate?: Date;
     description: string;
+}
+export declare enum EntryId {
+    OrganisationInformation = "2ImII347rPAsMUUHNSwI5I",
+    HomeTopBanner = "1xZieuqvmgBKHYAS2ybbFT",
+    LteLogo = "2K04oXuq2Kef4qmDuehDrD"
 }
 //# sourceMappingURL=types.d.ts.map

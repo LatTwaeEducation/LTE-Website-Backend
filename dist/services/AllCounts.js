@@ -8,10 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import queryData from './graphql';
+import { EntryId } from '../types';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
-    query AllCounts{
-      organisationInformation (id:"2ImII347rPAsMUUHNSwI5I"){
+    query AllCounts($id: String!) {
+      organisationInformation(id: $id) {
         membersCount
         coursesCountMessage
         membersCountMessage
@@ -25,7 +26,9 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
       }
     }
     `;
-    const { organisationInformation, courseCollection } = yield queryData(queryString);
+    const { organisationInformation, courseCollection } = yield queryData(queryString, {
+        id: EntryId.OrganisationInformation,
+    });
     return [
         {
             name: 'Classes',

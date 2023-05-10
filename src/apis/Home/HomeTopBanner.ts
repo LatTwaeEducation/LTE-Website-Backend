@@ -1,18 +1,22 @@
 import queryData from '../../services/graphql';
+import { EntryId } from '../../types';
+import type { HomeTopBanner } from '../../types';
 
 export default async () => {
   type Response = {
-    organisationInformation: {
-      whereYourJourneyBegins: string;
-    };
+    homeTopBanner: HomeTopBanner;
   };
 
   const queryString = `
-    query WhereYourJourneyBegins {
-      organisationInformation(id: "2ImII347rPAsMUUHNSwI5I") {
-        whereYourJourneyBegins
+  query HomeTopBanner($id: String!) {
+    homeTopBanner(id: $id) {
+      title
+      body
+      learnMoreLink
     }
   }`;
 
-  return (await queryData<Response>(queryString)).organisationInformation.whereYourJourneyBegins;
+  const { homeTopBanner } = await queryData<Response>(queryString, { id: EntryId.HomeTopBanner });
+
+  return homeTopBanner;
 };

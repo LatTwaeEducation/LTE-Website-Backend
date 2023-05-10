@@ -1,5 +1,6 @@
 import queryData from './graphql';
 import type { MissionVision } from '../types';
+import { EntryId } from '../types';
 
 export default async (): Promise<MissionVision> => {
   type Response = {
@@ -7,14 +8,14 @@ export default async (): Promise<MissionVision> => {
   };
 
   const queryString = `
-    query MissionVision {
-      organisationInformation(id: "2ImII347rPAsMUUHNSwI5I"){
+    query MissionVision($id: String!) {
+      organisationInformation(id: $id) {
         mission
         vision
       }
     }`;
 
-  const { organisationInformation } = await queryData<Response>(queryString);
+  const { organisationInformation } = await queryData<Response>(queryString, { id: EntryId.OrganisationInformation });
 
   return organisationInformation;
 };

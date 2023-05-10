@@ -8,14 +8,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import queryData from './graphql';
+import { EntryId } from '../types';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
-    query {
-      asset(id: "2K04oXuq2Kef4qmDuehDrD") {
+    query LteLogo($id: String!) {
+      asset(id: $id) {
         title
         url
       }
     }`;
-    const { asset } = yield queryData(queryString);
+    const { asset } = yield queryData(queryString, { id: EntryId.LteLogo });
     return asset;
 });
