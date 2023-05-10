@@ -4,3 +4,4 @@ export * as JuniorYouth from './apis/JuniorYouth';
 export * as Everyone from './apis/Everyone';
 
 export { default as getFooterContent } from './services/FooterContent';
+export { default as getLteLogo } from './services/LteLogo';
