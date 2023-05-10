@@ -53,28 +53,3 @@ The documentations for each endpoint are listed below:
 ## Rich Text Format
 
 Rich Texts are already converted into direct HTML strings. There is no need to worry of conversion.
-
-## Footer Content
-
-For the data to display in Footer of a page, you can use this endpoint.
-
-### getFooterContent
-
-Get the footer contents for the footer of every page.
-
-```ts
-export interface FooterContent {
-  aboutUs: string;
-  phoneNumbers?: string[];
-  emailAddresses?: string[];
-  facebookLink?: string;
-  facebookGroupLink?: string;
-  instagramLink?: string;
-  youtubeLink?: string;
-  telegramLink?: string;
-  twitterLink?: string;
-  linkedinLink?: string;
-}
-
-declare const getFooterContent: () => Promise<FooterContent>;
-```

@@ -7,53 +7,58 @@ author: Zaw Nay Lin
 
 For Home Page, these are available endpoint functions:
 
-## getWhereYourJourneyBegins
+## getHomeTopBanner
 
 ### Description
 
-Get the main message of **Where your journey begins**.
+Get the structure for home top banner.
 
 ### Return Type
 
 ```ts
-declare const getWhereYourJourneyBegins: () => Promise<string>;
-```
-
-### Example
-
-```ts
-import { getWhereYourJourneyBegins } from "lte-web-backend/Home";
-
-const whereYourJourneyBegins = await getWhereYourJourneyBegins();
-```
-
-## getAllCounts
-
-### Description
-
-Get the counts and its messages of courses, members, and students respectively.
-
-### Return Type
-
-```ts
-interface CountCard {
-  count: number;
-  message: string;
-}
-
-declare const getAllCounts: () => Promise<{
-  members: CountCard;
-  courses: CountCard;
-  students: CountCard;
+declare const getHomeTopBanner: () => Promise<{
+  title: string;
+  body: string;
+  learnMoreLink: string;
 }>;
 ```
 
 ### Example
 
 ```ts
-import { getAllCounts } from "lte-web-backend/Home";
+import { Home as HomeBackend } from "lte-web-backend";
 
-const { members, courses, students } = await getAllCounts();
+const { title, body, learnMoreLink } = await HomeBackend.getHomeTopBanner();
+```
+
+## getAllCounts
+
+### Description
+
+Get the counts and its messages of courses, members, and students in an array.
+
+### Return Type
+
+```ts
+interface CountCard {
+  name: string;
+  count: number;
+  message: string;
+}
+
+declare const getAllCounts: () => Promise<CountCard[]>;
+```
+
+### Example
+
+```ts
+import { Home as HomeBackend } from "lte-web-backend";
+
+(await HomeBackend.getAllCounts()).forEach(({ name, count, message }) => {
+  console.log(name);
+  console.log(count);
+  console.log(message);
+});
 ```
 
 ## getMissionVision
@@ -76,9 +81,9 @@ declare const getMissionVision: () => Promise<MissionVision>;
 ### Example
 
 ```ts
-import { getMissionVision } from "lte-web-backend/Home";
+import { Home as HomeBackend } from "lte-web-backend";
 
-const { mission, vision } = await getMissionVision();
+const { mission, vision } = await HomeBackend.getMissionVision();
 ```
 
 ## getCourses
@@ -101,9 +106,9 @@ declare const getCourses: () => Promise<{
 ### Example
 
 ```ts
-import { getCourses } from 'lte-web-backend/Home';
+import { Home as HomeBackend } from 'lte-web-backend';
 
-const { juniorCourses, youthCourses, everyoneCourses, igcseCourses } = await getCourses();
+const { juniorCourses, youthCourses, everyoneCourses, igcseCourses } = await HomeBackend.getCourses();
 ```
 
 ## getActivitiesEvents
@@ -126,9 +131,9 @@ declare const getActivitiesEvents: () => Promise<BaseActivityEvent[]>;
 ### Example
 
 ```ts
-import { Home } from 'lte-web-backend';
+import { Home as HomeBackend } from 'lte-web-backend';
 
-const { thumbnail, id } = await Home.getActivitiesEvents();
+const { thumbnail, id } = await HomeBackend.getActivitiesEvents();
 ```
 
 ## getTestimonials
@@ -152,9 +157,9 @@ declare const getTestimonials: () => Promise<Testimonial[]>;
 ### Example
 
 ```ts
-import { Home } from 'lte-web-backend';
+import { Home as HomeBackend } from 'lte-web-backend';
 
-const { feedback, name, occupation } = await Home.getTestimonials();
+const { feedback, name, occupation } = await HomeBackend.getTestimonials();
 ```
 
 ## getPartnerships
@@ -177,9 +182,9 @@ declare const getPartnerships: () => Promise<Partnership[]>;
 ### Example
 
 ```ts
-import { Home } from 'lte-web-backend';
+import { Home as HomeBackend } from 'lte-web-backend';
 
-const { logo, company } = await Home.getPartnerships();
+const { logo, company } = await HomeBackend.getPartnerships();
 ```
 
 ## getBlogs
@@ -205,7 +210,67 @@ declare const getBlogs: () => Promise<BlogCard[]>;
 ### Example
 
 ```ts
-import { getBlogs } from "lte-web-backend/Home";
+import { Home as HomeBackend } from "lte-web-backend";
 
-const blogs = await getBlogs();
+const blogs = await HomeBackend.getBlogs();
+```
+
+# Other endpoints
+
+The following are the endpoints for logo, footer, etc.
+
+## getFooterContent
+
+Get the footer contents for the footer of every page.
+
+## Return Type
+
+```ts
+export interface FooterContent {
+  aboutUs: string;
+  phoneNumbers?: string[];
+  emailAddresses?: string[];
+  facebookLink?: string;
+  facebookGroupLink?: string;
+  instagramLink?: string;
+  youtubeLink?: string;
+  telegramLink?: string;
+  twitterLink?: string;
+  linkedinLink?: string;
+}
+
+declare const getFooterContent: () => Promise<FooterContent>;
+```
+
+## Example
+
+```ts
+import { getFooterContent } from "lte-web-backend";
+
+const footerContent = await getFooterContent();
+```
+
+## getLteLogo
+
+Get the logo of LTE.
+
+## Return Type
+
+```ts
+declare const getLteLogo: () => Promise<{
+  title: string;
+  url: string;
+}>
+```
+
+## Example
+
+```tsx
+import { getLteLogo } from "lte-web-backend";
+
+const { title, url } = await getLteLogo();
+
+return (
+  <img src={url} alt={title} />
+);
 ```
