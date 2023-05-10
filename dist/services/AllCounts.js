@@ -26,18 +26,21 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
     }
     `;
     const { organisationInformation, courseCollection } = yield queryData(queryString);
-    return {
-        members: {
-            count: organisationInformation.membersCount,
-            message: organisationInformation.membersCountMessage,
-        },
-        courses: {
+    return [
+        {
+            name: 'Classes',
             count: courseCollection.total,
             message: organisationInformation.coursesCountMessage,
         },
-        students: {
+        {
+            name: 'Members',
+            count: organisationInformation.membersCount,
+            message: organisationInformation.membersCountMessage,
+        },
+        {
+            name: 'Students',
             count: courseCollection.items.reduce((acc, item) => acc + item.students, 0),
             message: organisationInformation.studentsCountMessage,
         },
-    };
+    ];
 });

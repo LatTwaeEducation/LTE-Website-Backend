@@ -18,6 +18,7 @@ export interface MissionVision {
     vision: string;
 }
 export interface CountCard {
+    name: string;
     count: number;
     message: string;
 }

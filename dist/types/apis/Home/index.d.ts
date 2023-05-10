@@ -1,4 +1,4 @@
-export { default as getWhereYourJourneyBegins } from './WhereYourJourneyBegins';
+export { default as getHomeTopBanner } from './HomeTopBanner';
 export { default as getAllCounts } from '../../services/AllCounts';
 export { default as getMissionVision } from '../../services/MissionVision';
 export { default as getCourses } from './Courses';

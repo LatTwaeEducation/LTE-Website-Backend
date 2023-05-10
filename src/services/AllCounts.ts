@@ -35,19 +35,21 @@ export default async () => {
     `;
 
   const { organisationInformation, courseCollection } = await queryData<Data>(queryString);
-
-  return {
-    members: {
-      count: organisationInformation.membersCount,
-      message: organisationInformation.membersCountMessage,
-    } as CountCard,
-    courses: {
+  return [
+    {
+      name: 'Classes',
       count: courseCollection.total,
       message: organisationInformation.coursesCountMessage,
-    } as CountCard,
-    students: {
+    },
+    {
+      name: 'Members',
+      count: organisationInformation.membersCount,
+      message: organisationInformation.membersCountMessage,
+    },
+    {
+      name: 'Students',
       count: courseCollection.items.reduce((acc, item) => acc + item.students, 0),
       message: organisationInformation.studentsCountMessage,
-    } as CountCard,
-  };
+    },
+  ] as CountCard[];
 };
