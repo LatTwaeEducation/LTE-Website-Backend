@@ -1,7 +1,7 @@
 import queryData from '../../services/graphql';
 import type { Asset, BaseActivityEvent, Sys } from '../../types';
 
-export default async () => {
+export default async (): Promise<BaseActivityEvent[]> => {
   type Response = {
     activityEventCollection: {
       items: {

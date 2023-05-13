@@ -187,6 +187,47 @@ import { Home as HomeBackend } from 'lte-web-backend';
 const { logo, company } = await HomeBackend.getPartnerships();
 ```
 
+## getAppAdvertisement
+
+### Description
+
+Get the mobile applications advertisement.
+
+### Return Type
+
+```ts
+interface AppAdvertisement {
+  featureImage: Asset;
+  title: string;
+  body: string;
+  googlePlayLink?: string;
+  appStoreLink?: string;
+}
+
+declare const getAppAdvertisement: () => Promise<AppAdvertisement>;
+```
+
+### Example
+
+```tsx
+import { Home } from "lte-web-backend";
+import { useQuery } from "react-query";
+
+export const AppAdvertisementBanner = () => {
+  const { data } = useQuery("AppAdvertisement", Home.getAppAdvertisement);
+
+  return (
+    <div>
+      <img src={data.featureImage.url} alt={data.featureImage.title} />
+      <h6>{data.title}</h6>
+      <p>{data.body}</p>
+      <a href={data.googlePlayLink}>Google Playstore</a>
+      <a href={data.appStoreLink}>Apple Appstore</a>
+    </div>
+  );
+};
+```
+
 ## getBlogs
 
 ### Description
@@ -237,6 +278,8 @@ export interface FooterContent {
   telegramLink?: string;
   twitterLink?: string;
   linkedinLink?: string;
+  googlePlayLink?: string;
+  appStoreLink?: string;
 }
 
 declare const getFooterContent: () => Promise<FooterContent>;

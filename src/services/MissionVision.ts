@@ -1,10 +1,10 @@
 import queryData from './graphql';
-import type { MissionVision } from '../types';
+import type { Mission, Vision } from '../types';
 import { EntryId } from '../types';
 
-export default async (): Promise<MissionVision> => {
+export default async (): Promise<Mission & Vision> => {
   type Response = {
-    organisationInformation: MissionVision;
+    organisationInformation: Mission & Vision;
   };
 
   const queryString = `

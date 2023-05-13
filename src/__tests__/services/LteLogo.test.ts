@@ -10,7 +10,6 @@ describe('LTE Logo Service Test', () => {
 
     expect(data).toBeDefined();
     expect(typeof data).toBe('object');
-
     testIsAsset(data);
   });
 });

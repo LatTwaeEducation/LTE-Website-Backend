@@ -8,22 +8,41 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import queryData from './graphql';
+import { EntryId } from '../types';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
-    query FooterContent {
-      organisationInformation(id: "2ImII347rPAsMUUHNSwI5I") {
-        aboutUs
-        phoneNumbers
-        emailAddresses
-        facebookLink
-        facebookGroupLink
-        linkedinLink
-        instagramLink
-        youtubeLink
-        telegramLink
-        twitterLink
+  query FooterContent(
+    $organisationInformationId: String!
+    $contactInfoId: String!
+    $socialMediaLinksId: String!
+    $applicationAdvertisementId: String!
+  ) {
+    organisationInformation(id: $organisationInformationId) {
+      aboutUs
+    }
+    contactInfo(id: $contactInfoId) {
+      phoneNumbers
+      emailAddresses
+    }
+    socialMediaLinks(id: $socialMediaLinksId) {
+      facebookLink
+      facebookGroupLink
+      instagramLink
+      youtubeLink
+      telegramLink
+      twitterLink
+      linkedinLink
+    }
+    applicationAdvertisement(id: $applicationAdvertisementId) {
+      googlePlayLink
+      appStoreLink
     }
   }`;
-    const { organisationInformation } = yield queryData(queryString);
-    return organisationInformation;
+    const { organisationInformation, contactInfo, socialMediaLinks, applicationAdvertisement } = yield queryData(queryString, {
+        organisationInformationId: EntryId.OrganisationInformation,
+        contactInfoId: EntryId.ContactInfo,
+        socialMediaLinksId: EntryId.SocialMedia,
+        applicationAdvertisementId: EntryId.AppAdvertisement,
+    });
+    return Object.assign(Object.assign(Object.assign(Object.assign({}, organisationInformation), contactInfo), socialMediaLinks), applicationAdvertisement);
 });

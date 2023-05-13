@@ -5,7 +5,7 @@ import { getInfographicTimelines } from 'src/apis/AboutUs';
 dotenv.config();
 
 describe('About Us Page tests', () => {
-  describe('Infographic Timeline tests', () => {
+  escribe('Infographic Timeline tests', () => {
     const expectedShouldInclude = {
       startDate: Date,
       endDate: [Date, null],

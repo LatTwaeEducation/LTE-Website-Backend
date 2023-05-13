@@ -1,30 +1,33 @@
 import dotenv from 'dotenv';
 import * as Home from 'src/apis/Home';
 import { testHasPropertyAndType, testIsAsset } from '../helpers';
+import type { AppAdvertisement, HomeTopBanner } from '../../types';
 
 dotenv.config();
 
 describe('Home Page API tests', () => {
   describe('Getting Home Top Banner', () => {
-    test('Should return a object with properties `title`, `body`, `learnMoreLink`, with types `string`, `string`, `string`.', async () => {
-      const data = await Home.getHomeTopBanner();
-      expect(data).toBeDefined();
-      expect(typeof data).toBe('object');
+    let data: Awaited<Promise<HomeTopBanner>>;
 
-      testHasPropertyAndType(data, 'title', 'string');
-      testHasPropertyAndType(data, 'body', 'string');
-      testHasPropertyAndType(data, 'learnMoreLink', 'string');
+    beforeEach(async () => {
+      data = await Home.getHomeTopBanner();
     });
-  });
 
-  describe('Getting Mission and Vision', () => {
-    test('Should return an object with properties `mission` and `vision`, with type `string`.', async () => {
-      const data = await Home.getMissionVision();
+    test('Should return an object', () => {
       expect(data).toBeDefined();
       expect(typeof data).toBe('object');
+    });
 
-      testHasPropertyAndType(data, 'mission', 'string');
-      testHasPropertyAndType(data, 'vision', 'string');
+    test('Should have property `title` with type `string`', () => {
+      testHasPropertyAndType(data, 'title', 'string');
+    });
+
+    test('Should have property `body` with type `string`', () => {
+      testHasPropertyAndType(data, 'body', 'string');
+    });
+
+    test('Should have property `learnMoreLink` with type `string`', () => {
+      testHasPropertyAndType(data, 'learnMoreLink', 'string');
     });
   });
 
@@ -104,6 +107,38 @@ describe('Home Page API tests', () => {
 
         testHasPropertyAndType(partnership, 'company', 'string');
       });
+    });
+  });
+
+  describe('Getting App Advertisement', () => {
+    let data: Awaited<Promise<AppAdvertisement>>;
+
+    beforeEach(async () => {
+      data = await Home.getAppAdvertisement();
+    });
+
+    test('Should return an object', () => {
+      expect(data).toBeDefined();
+    });
+
+    test('Should have property `featureImage` as type `Asset`', () => {
+      testHasPropertyAndType(data, 'featureImage', 'asset', true);
+    });
+
+    test('Should have property `title` as type `string`', () => {
+      testHasPropertyAndType(data, 'title', 'string');
+    });
+
+    test('Should have property `body` as type `string`', () => {
+      testHasPropertyAndType(data, 'body', 'string');
+    });
+
+    test('Should have property `googlePlayLink` as type `string?`', () => {
+      testHasPropertyAndType(data, 'googlePlayLink', 'string', true);
+    });
+
+    test('Should have property `appStoreLink` as type `string?', () => {
+      testHasPropertyAndType(data, 'appStoreLink', 'string', true);
     });
   });
 

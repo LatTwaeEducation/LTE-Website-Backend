@@ -1,19 +1,31 @@
 import queryData from '../../services/graphql';
-import type { BaseCourse } from '../../types';
 
-export default async () => {
+export default async (): Promise<{
+  juniorCourses: string[];
+  youthCourses: string[];
+  everyoneCourses: string[];
+  igcseCourses: string[];
+}> => {
   type Response = {
     JuniorCourses: {
-      items: BaseCourse[];
+      items: {
+        name: string;
+      }[];
     };
     YouthCourses: {
-      items: BaseCourse[];
+      items: {
+        name: string;
+      }[];
     };
     EveryoneCourses: {
-      items: BaseCourse[];
+      items: {
+        name: string;
+      }[];
     };
     IgcseCourses: {
-      items: BaseCourse[];
+      items: {
+        name: string;
+      }[];
     };
   };
 

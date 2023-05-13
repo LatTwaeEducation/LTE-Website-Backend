@@ -1,28 +1,56 @@
-import type { FooterContent } from '../types';
 import queryData from './graphql';
+import { EntryId } from '../types';
+import type { AboutUs, ContactInfo, FooterContent, SocialMediaLinks, MobileApps } from '../types';
 
-export default async () => {
+export default async (): Promise<FooterContent> => {
   type Response = {
-    organisationInformation: FooterContent;
+    organisationInformation: AboutUs;
+    contactInfo: Omit<ContactInfo, 'address'>;
+    socialMediaLinks: SocialMediaLinks;
+    applicationAdvertisement: MobileApps;
   };
 
   const queryString = `
-    query FooterContent {
-      organisationInformation(id: "2ImII347rPAsMUUHNSwI5I") {
-        aboutUs
-        phoneNumbers
-        emailAddresses
-        facebookLink
-        facebookGroupLink
-        linkedinLink
-        instagramLink
-        youtubeLink
-        telegramLink
-        twitterLink
+  query FooterContent(
+    $organisationInformationId: String!
+    $contactInfoId: String!
+    $socialMediaLinksId: String!
+    $applicationAdvertisementId: String!
+  ) {
+    organisationInformation(id: $organisationInformationId) {
+      aboutUs
+    }
+    contactInfo(id: $contactInfoId) {
+      phoneNumbers
+      emailAddresses
+    }
+    socialMediaLinks(id: $socialMediaLinksId) {
+      facebookLink
+      facebookGroupLink
+      instagramLink
+      youtubeLink
+      telegramLink
+      twitterLink
+      linkedinLink
+    }
+    applicationAdvertisement(id: $applicationAdvertisementId) {
+      googlePlayLink
+      appStoreLink
     }
   }`;
 
-  const { organisationInformation } = await queryData<Response>(queryString);
+  const { organisationInformation, contactInfo, socialMediaLinks, applicationAdvertisement } =
+    await queryData<Response>(queryString, {
+      organisationInformationId: EntryId.OrganisationInformation,
+      contactInfoId: EntryId.ContactInfo,
+      socialMediaLinksId: EntryId.SocialMedia,
+      applicationAdvertisementId: EntryId.AppAdvertisement,
+    });
 
-  return organisationInformation;
+  return {
+    ...organisationInformation,
+    ...contactInfo,
+    ...socialMediaLinks,
+    ...applicationAdvertisement,
+  } as FooterContent;
 };

@@ -3,7 +3,7 @@ import { extractFirstParagraph } from '../../services/CustomHtmlRenderers';
 import queryData from '../../services/graphql';
 import type { BlogCard, Asset, SysWithTime } from '../../types';
 
-export default async () => {
+export default async (): Promise<BlogCard[]> => {
   type Response = {
     blogCollection: {
       items: {
