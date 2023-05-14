@@ -7,16 +7,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import queryData from './graphql';
+import queryData from '../../services/graphql';
+import { EntryId } from '../../types';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
-    query ContactInfo {
-      organisationInformation(id: "2ImII347rPAsMUUHNSwI5I") {
-        phoneNumbers
-        emailAddresses
-        address
+  query ContactInfo($id: String!) {
+    contactInfo(id: $id) {
+      phoneNumbers
+      emailAddresses
+      address
     }
   }`;
-    const { organisationInformation } = yield queryData(queryString);
-    return organisationInformation;
+    const { contactInfo } = yield queryData(queryString, { id: EntryId.ContactInfo });
+    return contactInfo;
 });
