@@ -151,15 +151,33 @@ interface Testimonial {
   occupation: string;
 }
 
-declare const getTestimonials: () => Promise<Testimonial[]>;
+declare const getTestimonials: () => Promise<{ 
+  testimonials: Testimonial[];
+  recruitmentFormLink: string;
+}>;
 ```
 
 ### Example
 
-```ts
-import { Home as HomeBackend } from 'lte-web-backend';
+```tsx
+import { useQuery } from "react-query";
+import { Home as HomeBackend } from "lte-web-backend";
 
-const { feedback, name, occupation } = await HomeBackend.getTestimonials();
+const Testimonials = () => {
+  const { data } = useQuery("Testimonials", HomeBackend.getTestimonials);
+  return (
+    <div>
+      {data?.testimonials.map((testimonial, i) => (
+        <div>
+          <p>{testimonial.feedback}</p>
+          <p>{testimonial.name}</p>
+          <p>{testimonial.occupation}</p>
+        </div>
+      ))}
+      <a href={data?.recruitmentFormLink}>Learn More</a>
+    </div>
+  );
+};
 ```
 
 ## getPartnerships
@@ -176,15 +194,29 @@ interface Partnership {
   company: string;
 }
 
-declare const getPartnerships: () => Promise<Partnership[]>;
+declare const getPartnerships: () => Promise<{
+  partnerships: Partnership[]; 
+  partnershipFormLink: string;
+}>;
 ```
 
 ### Example
 
-```ts
-import { Home as HomeBackend } from 'lte-web-backend';
+```tsx
+import { useQuery } from "react-query";
+import { Home as HomeBackend } from "lte-web-backend";
 
-const { logo, company } = await HomeBackend.getPartnerships();
+const Partnerships = () => {
+  const { data } = useQuery("Partnerships", HomeBackend.getPartnerships);
+  return (
+    <div>
+      {data?.partnerships.map((partnership) => (
+        <img src={partnership.logo.url} alt={partnership.logo.company} />
+      ))}
+      <a href={data?.partnershipFormLink}>Learn More</a>
+    </div>
+  );
+};
 ```
 
 ## getAppAdvertisement

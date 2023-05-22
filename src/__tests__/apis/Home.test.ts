@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import * as Home from 'src/apis/Home';
 import { testHasPropertyAndType, testIsAsset } from '../helpers';
-import type { AppAdvertisement, HomeTopBanner } from '../../types';
+import type { AppAdvertisement, HomeTopBanner, Partnership, Testimonial } from '../../types';
 
 dotenv.config();
 
@@ -75,36 +75,82 @@ describe('Home Page API tests', () => {
   });
 
   describe('Getting Testimonials', () => {
-    test('Should return array of objects wth properties `feedback`, `name` and `occupation`, with type `string`, `string`, and `string`. ', async () => {
-      const data = await Home.getTestimonials();
+    let data: Awaited<
+      Promise<{
+        testimonials: Testimonial[];
+        recruitmentFormLink: string;
+      }>
+    >;
 
+    beforeEach(async () => {
+      data = await Home.getTestimonials();
+    });
+
+    test('Should return an object', () => {
       expect(data).toBeDefined();
-      expect(Array.isArray(data)).toBeTruthy();
+      expect(typeof data).toBe('object');
+    });
 
-      data.forEach((testimonial) => {
-        expect(testimonial).toBeDefined();
-        expect(typeof testimonial).toBe('object');
+    test('Should have property `recruitmentFormLink` with type `string`', () => {
+      testHasPropertyAndType(data, 'recruitmentFormLink', 'string');
+    });
 
+    test('Should have property `testimonials` with type `array`', () => {
+      testHasPropertyAndType(data, 'testimonials', 'array');
+    });
+
+    test('Each testimonial should have property `feedback` with type `string`', () => {
+      data.testimonials.forEach((testimonial) => {
         testHasPropertyAndType(testimonial, 'feedback', 'string');
+      });
+    });
+
+    test('Each testimonial should have property `name` with type `string`', () => {
+      data.testimonials.forEach((testimonial) => {
         testHasPropertyAndType(testimonial, 'name', 'string');
+      });
+    });
+
+    test('Each testimonial should have property `occupation` with type `string`', () => {
+      data.testimonials.forEach((testimonial) => {
         testHasPropertyAndType(testimonial, 'occupation', 'string');
       });
     });
   });
 
   describe('Getting Partnerships', () => {
-    test('Should return an array of objects with properties `logo` and `company`, with type `Asset` and `string`.', async () => {
-      const data = await Home.getPartnerships();
+    let data: Awaited<
+      Promise<{
+        partnerships: Partnership[];
+        partnershipFormLink: string;
+      }>
+    >;
+
+    beforeEach(async () => {
+      data = await Home.getPartnerships();
+    });
+
+    test('Should return an object', () => {
       expect(data).toBeDefined();
-      expect(Array.isArray(data)).toBeTruthy();
+      expect(typeof data).toBe('object');
+    });
 
-      data.forEach((partnership) => {
-        expect(partnership).toBeDefined();
-        expect(typeof partnership).toBe('object');
+    test('Should have property `partnershipFormLink` with type `string`', () => {
+      testHasPropertyAndType(data, 'partnershipFormLink', 'string');
+    });
 
-        testHasPropertyAndType(partnership, 'logo', 'object');
-        testIsAsset(partnership.logo);
+    test('Should have property `partnerships` with type `array`', () => {
+      testHasPropertyAndType(data, 'partnerships', 'array');
+    });
 
+    test('Each partnership should have property `logo` with type `Asset`', () => {
+      data.partnerships.forEach((partnership) => {
+        testHasPropertyAndType(partnership, 'logo', 'asset');
+      });
+    });
+
+    test('Each testimonial should have property `company` with type `string`', () => {
+      data.partnerships.forEach((partnership) => {
         testHasPropertyAndType(partnership, 'company', 'string');
       });
     });

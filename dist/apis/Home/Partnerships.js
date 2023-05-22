@@ -8,9 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import queryData from '../../services/graphql';
+import { EntryId } from '../../types';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
-  query Partnerships {
+  query Partnerships($organisationId: String!) {
     partnershipCollection {
       items {
         logo {
@@ -20,8 +21,16 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
         company
       }
     }
+    organisationInformation(id: $organisationId) {
+      partnershipFormLink
+    }
   }
   `;
-    const { partnershipCollection } = yield queryData(queryString);
-    return partnershipCollection.items;
+    const { partnershipCollection, organisationInformation } = yield queryData(queryString, {
+        organisationId: EntryId.OrganisationInformation,
+    });
+    return {
+        partnerships: partnershipCollection.items,
+        partnershipFormLink: organisationInformation.partnershipFormLink,
+    };
 });

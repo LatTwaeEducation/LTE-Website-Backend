@@ -83,7 +83,7 @@ export interface Course extends Omit<CourseCard, 'thumbnail'> {
   skills: string[];
   whatYouLearn: string;
   whatWeTeach: string;
-  futherLearning: string;
+  furtherLearning: string;
 }
 
 export interface Testimonial {
@@ -102,7 +102,11 @@ export interface BlogCard {
   thumbnail: Asset;
   title: string;
   publishedAt: Date;
-  description?: string | null;
+  description: string;
+}
+
+export interface Blog extends Omit<BlogCard, 'description'> {
+  body: string;
 }
 
 export interface BaseActivityEvent {

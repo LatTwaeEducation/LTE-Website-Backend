@@ -1,15 +1,22 @@
 import queryData from '../../services/graphql';
 import type { Testimonial } from '../../types';
+import { EntryId } from '../../types';
 
-export default async () => {
+export default async (): Promise<{
+  testimonials: Testimonial[];
+  recruitmentFormLink: string;
+}> => {
   type Response = {
     testimonialCollection: {
       items: Testimonial[];
     };
+    organisationInformation: {
+      recruitmentFormLink: string;
+    };
   };
 
   const queryString = `
-  query Testmonials {
+  query Testimonials($organisationId: String!) {
     testimonialCollection {
       items {
         feedback
@@ -17,10 +24,18 @@ export default async () => {
         occupation
       }
     }
+    organisationInformation(id: $organisationId) {
+      recruitmentFormLink
+    }
   }  
   `;
 
-  const { testimonialCollection } = await queryData<Response>(queryString);
+  const { testimonialCollection, organisationInformation } = await queryData<Response>(queryString, {
+    organisationId: EntryId.OrganisationInformation,
+  });
 
-  return testimonialCollection.items;
+  return {
+    testimonials: testimonialCollection.items,
+    recruitmentFormLink: organisationInformation.recruitmentFormLink,
+  };
 };

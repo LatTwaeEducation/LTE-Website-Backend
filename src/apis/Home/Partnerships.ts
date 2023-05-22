@@ -1,15 +1,22 @@
 import queryData from '../../services/graphql';
 import type { Partnership } from '../../types';
+import { EntryId } from '../../types';
 
-export default async () => {
+export default async (): Promise<{
+  partnerships: Partnership[];
+  partnershipFormLink: string;
+}> => {
   type Response = {
     partnershipCollection: {
       items: Partnership[];
     };
+    organisationInformation: {
+      partnershipFormLink: string;
+    };
   };
 
   const queryString = `
-  query Partnerships {
+  query Partnerships($organisationId: String!) {
     partnershipCollection {
       items {
         logo {
@@ -19,10 +26,18 @@ export default async () => {
         company
       }
     }
+    organisationInformation(id: $organisationId) {
+      partnershipFormLink
+    }
   }
   `;
 
-  const { partnershipCollection } = await queryData<Response>(queryString);
+  const { partnershipCollection, organisationInformation } = await queryData<Response>(queryString, {
+    organisationId: EntryId.OrganisationInformation,
+  });
 
-  return partnershipCollection.items;
+  return {
+    partnerships: partnershipCollection.items,
+    partnershipFormLink: organisationInformation.partnershipFormLink,
+  };
 };

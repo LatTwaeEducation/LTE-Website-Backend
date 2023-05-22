@@ -8,9 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import queryData from '../../services/graphql';
+import { EntryId } from '../../types';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
-  query Testmonials {
+  query Testimonials($organisationId: String!) {
     testimonialCollection {
       items {
         feedback
@@ -18,8 +19,16 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
         occupation
       }
     }
+    organisationInformation(id: $organisationId) {
+      recruitmentFormLink
+    }
   }  
   `;
-    const { testimonialCollection } = yield queryData(queryString);
-    return testimonialCollection.items;
+    const { testimonialCollection, organisationInformation } = yield queryData(queryString, {
+        organisationId: EntryId.OrganisationInformation,
+    });
+    return {
+        testimonials: testimonialCollection.items,
+        recruitmentFormLink: organisationInformation.recruitmentFormLink,
+    };
 });
