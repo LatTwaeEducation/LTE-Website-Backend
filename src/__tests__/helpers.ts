@@ -48,3 +48,5 @@ export const testHasPropertyAndType = <T extends object>(
     }
   }
 };
+
+export const dateStringRegex = /^(0[1-9]|[12][0-9]|3[01])\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{4}$/;

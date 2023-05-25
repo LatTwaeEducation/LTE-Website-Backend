@@ -7,6 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { format } from 'date-fns';
 import { extractFirstParagraph } from '../../services/CustomHtmlRenderers';
 import queryData from '../../services/graphql';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
@@ -38,7 +39,7 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
             id: item.sys.id,
             thumbnail: item.thumbnail,
             title: item.title,
-            publishedAt: new Date(item.sys.publishedAt),
+            createdAt: format(new Date(item.sys.publishedAt), 'dd LLL yyyy'),
             description: extractFirstParagraph((_a = item.body) === null || _a === void 0 ? void 0 : _a.json),
         };
     });

@@ -13,9 +13,12 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
   query ContactInfo($id: String!) {
     contactInfo(id: $id) {
+      name
+      content
       phoneNumbers
       emailAddresses
       address
+      btnContent
     }
   }`;
     const { contactInfo } = yield queryData(queryString, { id: EntryId.ContactInfo });

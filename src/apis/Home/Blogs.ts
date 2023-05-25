@@ -1,4 +1,5 @@
 import type { Document } from '@contentful/rich-text-types';
+import { format } from 'date-fns';
 import { extractFirstParagraph } from '../../services/CustomHtmlRenderers';
 import queryData from '../../services/graphql';
 import type { BlogCard, Asset, SysWithTime } from '../../types';
@@ -46,7 +47,7 @@ export default async (): Promise<BlogCard[]> => {
       id: item.sys.id,
       thumbnail: item.thumbnail,
       title: item.title,
-      publishedAt: new Date(item.sys.publishedAt),
+      createdAt: format(new Date(item.sys.publishedAt), 'dd LLL yyyy'),
       description: extractFirstParagraph(item.body?.json),
     } as BlogCard;
   });

@@ -35,9 +35,12 @@ export interface AppAdvertisement extends MobileApps {
 }
 
 export interface ContactInfo {
+  name: string;
+  content: string;
   phoneNumbers?: string[];
   emailAddresses?: string[];
   address?: string;
+  btnContent?: string;
 }
 
 export interface HomeTopBanner {
@@ -101,7 +104,7 @@ export interface BlogCard {
   id: string;
   thumbnail: Asset;
   title: string;
-  publishedAt: Date;
+  createdAt: string;
   description: string;
 }
 
