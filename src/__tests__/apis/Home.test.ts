@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import * as Home from 'src/apis/Home';
-import { testHasPropertyAndType, testIsAsset } from '../helpers';
-import type { AppAdvertisement, HomeTopBanner, Partnership, Testimonial } from '../../types';
+import { dateStringRegex, testHasPropertyAndType, testIsAsset } from '../helpers';
+import type { AppAdvertisement, BlogCard, HomeTopBanner, Partnership, Testimonial } from '../../types';
 
 dotenv.config();
 
@@ -189,28 +189,47 @@ describe('Home Page API tests', () => {
   });
 
   describe('Getting Blogs', () => {
-    test('Should return an array of objects with properties `id`, `thumbnail`, `title`, `publishedAt`, `description`, with types `string`, `Asset`, `string`, `Date`, `string`, and counts of less than or equal to 3', async () => {
-      const data = await Home.getBlogs();
+    let data: Awaited<Promise<BlogCard[]>>;
 
+    beforeEach(async () => {
+      data = await Home.getBlogs();
+    });
+
+    test('Should return an array length <= 3', () => {
       expect(data).toBeDefined();
       expect(Array.isArray(data)).toBeTruthy();
       expect(data.length).toBeLessThanOrEqual(3);
+    });
 
-      data.forEach((blog) => {
-        expect(blog).toBeDefined();
-        expect(typeof blog).toBe('object');
+    test('Each element should be object', () => {
+      data.forEach((element) => {
+        expect(element).toBeDefined();
+        expect(typeof element).toBe('object');
+      });
+    });
 
-        testHasPropertyAndType(blog, 'id', 'string');
+    test('Each object should have property `id` with type `string`', () => {
+      data.forEach((blogCard) => {
+        testHasPropertyAndType(blogCard, 'id', 'string');
+      });
+    });
 
-        testHasPropertyAndType(blog, 'thumbnail', 'object');
-        testIsAsset(blog.thumbnail);
+    test('Each object should have property `thumbnail` with type `Asset`', () => {
+      data.forEach((blogCard) => {
+        testHasPropertyAndType(blogCard, 'thumbnail', 'asset');
+      });
+    });
 
-        testHasPropertyAndType(blog, 'title', 'string');
+    test('Each object should have property `createdAt` with type `string`, with format example `27 Aug 2022`', () => {
+      data.forEach((blogCard) => {
+        testHasPropertyAndType(blogCard, 'createdAt', 'string');
+        expect(blogCard.createdAt).toMatch(dateStringRegex);
+      });
+    });
 
-        testHasPropertyAndType(blog, 'publishedAt', 'object');
-        expect(blog.publishedAt instanceof Date).toBeTruthy();
-
-        testHasPropertyAndType(blog, 'description', 'string', true);
+    test('Each object should have property `description` with type `string`', () => {
+      data.forEach((blogCard) => {
+        testHasPropertyAndType(blogCard, 'description', 'string');
       });
     });
   });

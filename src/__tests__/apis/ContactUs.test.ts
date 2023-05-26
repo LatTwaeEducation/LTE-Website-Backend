@@ -18,6 +18,18 @@ describe('Contact Us Page API tests', () => {
       expect(typeof data).toBe('object');
     });
 
+    test('Should have property `name` with type `string`', () => {
+      testHasPropertyAndType(data, 'name', 'string');
+    });
+
+    test('Should have property `content` with type string', () => {
+      testHasPropertyAndType(data, 'content', 'string');
+    });
+
+    test('Should have property `btnContent` as `string?`', () => {
+      testHasPropertyAndType(data, 'btnContent', 'string', true);
+    });
+
     test('Should have property `phoneNumbers` with type `string[]?`', () => {
       testHasPropertyAndType(data, 'phoneNumbers', 'array', true);
       data.phoneNumbers?.forEach((phone) => {

@@ -28,9 +28,12 @@ export interface AppAdvertisement extends MobileApps {
     body: string;
 }
 export interface ContactInfo {
+    name: string;
+    content: string;
     phoneNumbers?: string[];
     emailAddresses?: string[];
     address?: string;
+    btnContent?: string;
 }
 export interface HomeTopBanner {
     title: string;
@@ -84,7 +87,7 @@ export interface BlogCard {
     id: string;
     thumbnail: Asset;
     title: string;
-    publishedAt: Date;
+    createdAt: string;
     description: string;
 }
 export interface Blog extends Omit<BlogCard, 'description'> {
