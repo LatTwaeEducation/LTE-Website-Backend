@@ -1,12 +1,12 @@
-import * as Home_1 from './apis/Home/index';
+import * as Home_1 from './apis/Home';
 export { Home_1 as Home };
-import * as AboutUS_1 from './apis/AboutUs/index';
+import * as AboutUS_1 from './apis/AboutUs';
 export { AboutUS_1 as AboutUS };
-import * as JuniorYouth_1 from './apis/JuniorYouth/index';
+import * as JuniorYouth_1 from './apis/JuniorYouth';
 export { JuniorYouth_1 as JuniorYouth };
-import * as Everyone_1 from './apis/Everyone/index';
+import * as Everyone_1 from './apis/Everyone';
 export { Everyone_1 as Everyone };
-import * as ContactUs_1 from './apis/ContactUs/index';
+import * as ContactUs_1 from './apis/ContactUs';
 export { ContactUs_1 as ContactUs };
 export { default as getFooterContent } from './services/FooterContent';
 export { default as getLteLogo } from './services/LteLogo';
