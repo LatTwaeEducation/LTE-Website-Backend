@@ -7,7 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import queryData from '../../services/graphql';
+import { format } from 'date-fns';
+import { queryData } from '../../services/ContentfulServices';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
   query InfographicTimeline {
@@ -23,8 +24,8 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
     const { infographicTimelineCollection } = yield queryData(queryString);
     return infographicTimelineCollection.items.map(({ startDate, endDate, description }) => {
         return {
-            startDate,
-            endDate,
+            startDate: format(new Date(startDate), 'dd LLL yyyy'),
+            endDate: endDate ? format(new Date(endDate), 'dd LLL yyyy') : undefined,
             description,
         };
     });

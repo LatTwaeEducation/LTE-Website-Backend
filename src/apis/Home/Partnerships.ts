@@ -1,4 +1,4 @@
-import queryData from '../../services/graphql';
+import { queryData } from '../../services/ContentfulServices';
 import type { Partnership } from '../../types';
 import { EntryId } from '../../types';
 

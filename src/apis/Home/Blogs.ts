@@ -1,7 +1,7 @@
 import type { Document } from '@contentful/rich-text-types';
 import { format } from 'date-fns';
 import { extractFirstParagraph } from '../../services/CustomHtmlRenderers';
-import queryData from '../../services/graphql';
+import { queryData } from '../../services/ContentfulServices';
 import type { BlogCard, Asset, SysWithTime } from '../../types';
 
 export default async (): Promise<BlogCard[]> => {

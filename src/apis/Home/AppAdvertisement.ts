@@ -1,5 +1,5 @@
 import { EntryId } from '../../types';
-import queryData from '../../services/graphql';
+import { queryData } from '../../services/ContentfulServices';
 import type { AppAdvertisement } from '../../types';
 
 export default async (): Promise<AppAdvertisement> => {

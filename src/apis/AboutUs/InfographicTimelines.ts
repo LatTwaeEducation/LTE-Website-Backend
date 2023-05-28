@@ -1,7 +1,8 @@
-import queryData from '../../services/graphql';
+import { format } from 'date-fns';
+import { queryData } from '../../services/ContentfulServices';
 import type { InfographicTimeline } from '../../types';
 
-export default async () => {
+export default async (): Promise<InfographicTimeline[]> => {
   type Response = {
     infographicTimelineCollection: {
       items: InfographicTimeline[];
@@ -24,8 +25,8 @@ export default async () => {
 
   return infographicTimelineCollection.items.map(({ startDate, endDate, description }) => {
     return {
-      startDate,
-      endDate,
+      startDate: format(new Date(startDate), 'dd LLL yyyy'),
+      endDate: endDate ? format(new Date(endDate), 'dd LLL yyyy') : undefined,
       description,
     } as InfographicTimeline;
   });

@@ -1,4 +1,4 @@
-import queryData from './graphql';
+import { queryData } from './ContentfulServices';
 import type { CountCard } from '../types';
 import { EntryId } from '../types';
 

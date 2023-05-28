@@ -1,4 +1,4 @@
-import queryData from './graphql';
+import { queryData } from './ContentfulServices';
 import type { Mission, Vision } from '../types';
 import { EntryId } from '../types';
 

@@ -1,4 +1,4 @@
-import queryData from '../../services/graphql';
+import { queryData } from '../../services/ContentfulServices';
 import type { Sys, ClassCategory, CourseCard, Asset } from '../../types';
 
 export default async () => {

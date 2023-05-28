@@ -1,4 +1,4 @@
-import queryData from '../../services/graphql';
+import { queryData } from '../../services/ContentfulServices';
 
 export default async (): Promise<{
   juniorCourses: string[];

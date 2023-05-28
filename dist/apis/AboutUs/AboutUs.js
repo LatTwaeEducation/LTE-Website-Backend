@@ -7,16 +7,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { queryData } from './ContentfulServices';
-import { EntryId } from '../types';
+import { queryData } from '../../services/ContentfulServices';
+import { EntryId } from '../../types';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
-    query LteLogo($id: String!) {
-      asset(id: $id) {
-        title
-        url
-      }
-    }`;
-    const { asset } = yield queryData(queryString, { id: EntryId.LteLogo });
-    return asset;
+  query AboutUs($organisationInformationId: String!) {
+    organisationInformation(id: $organisationInformationId) {
+      aboutUs
+    }
+  }`;
+    const { organisationInformation } = yield queryData(queryString, {
+        organisationInformationId: EntryId.OrganisationInformation,
+    });
+    return {
+        aboutUs: organisationInformation.aboutUs,
+    };
 });

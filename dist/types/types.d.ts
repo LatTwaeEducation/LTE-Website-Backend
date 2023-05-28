@@ -98,9 +98,15 @@ export interface BaseActivityEvent {
     thumbnail: Asset;
 }
 export interface InfographicTimeline {
-    startDate: Date;
-    endDate?: Date;
+    startDate: string;
+    endDate?: string;
     description: string;
+}
+export interface ContactMessage {
+    fullName: string;
+    email: string;
+    phone?: string;
+    message: string;
 }
 export declare enum EntryId {
     OrganisationInformation = "2ImII347rPAsMUUHNSwI5I",
@@ -109,5 +115,8 @@ export declare enum EntryId {
     AppAdvertisement = "3oTRGQsj725PiMneMQ9sdE",
     ContactInfo = "6MPF8dS07lOoQ3uGLlLveF",
     SocialMedia = "2tYVPMEDeWxZi8ND7oCCo8"
+}
+export declare enum ContentTypeId {
+    ContactFormSubmission = "contactFormSubmission"
 }
 //# sourceMappingURL=types.d.ts.map

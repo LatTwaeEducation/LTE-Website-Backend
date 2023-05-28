@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { format } from 'date-fns';
 import { extractFirstParagraph } from '../../services/CustomHtmlRenderers';
-import queryData from '../../services/graphql';
+import { queryData } from '../../services/ContentfulServices';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
   query Blogs_Home {

@@ -118,9 +118,16 @@ export interface BaseActivityEvent {
 }
 
 export interface InfographicTimeline {
-  startDate: Date;
-  endDate?: Date;
+  startDate: string;
+  endDate?: string;
   description: string;
+}
+
+export interface ContactMessage {
+  fullName: string;
+  email: string;
+  phone?: string;
+  message: string;
 }
 
 export enum EntryId {
@@ -130,4 +137,8 @@ export enum EntryId {
   AppAdvertisement = '3oTRGQsj725PiMneMQ9sdE',
   ContactInfo = '6MPF8dS07lOoQ3uGLlLveF',
   SocialMedia = '2tYVPMEDeWxZi8ND7oCCo8',
+}
+
+export enum ContentTypeId {
+  ContactFormSubmission = 'contactFormSubmission',
 }

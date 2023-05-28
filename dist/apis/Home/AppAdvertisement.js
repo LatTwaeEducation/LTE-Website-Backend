@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { EntryId } from '../../types';
-import queryData from '../../services/graphql';
+import { queryData } from '../../services/ContentfulServices';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
   query ApplicationAdvertisement($id: String!) {

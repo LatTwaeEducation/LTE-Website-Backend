@@ -7,3 +7,7 @@ export var EntryId;
     EntryId["ContactInfo"] = "6MPF8dS07lOoQ3uGLlLveF";
     EntryId["SocialMedia"] = "2tYVPMEDeWxZi8ND7oCCo8";
 })(EntryId || (EntryId = {}));
+export var ContentTypeId;
+(function (ContentTypeId) {
+    ContentTypeId["ContactFormSubmission"] = "contactFormSubmission";
+})(ContentTypeId || (ContentTypeId = {}));

@@ -1,4 +1,4 @@
-import queryData from './graphql';
+import { queryData } from './ContentfulServices';
 import { EntryId } from '../types';
 import type { AboutUs, ContactInfo, FooterContent, SocialMediaLinks, MobileApps } from '../types';
 
