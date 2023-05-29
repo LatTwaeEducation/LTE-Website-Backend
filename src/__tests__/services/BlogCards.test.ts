@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import type { BlogCard } from '../../types';
-import { getBlogs } from '../../apis/Blogs';
+import * as BlogCards from '../../services/BlogCards';
 import { dateStringRegex, testHasPropertyAndType } from '../helpers';
 
 dotenv.config();
@@ -9,7 +9,7 @@ describe('BlogCards Test', () => {
     let data: Awaited<Promise<BlogCard[]>>;
 
     beforeAll(async () => {
-      data = await getBlogs();
+      data = await BlogCards.default();
     });
 
     test('Should return an array', () => {
@@ -65,7 +65,7 @@ describe('BlogCards Test', () => {
     const limit = 3;
 
     beforeEach(async () => {
-      data = await getBlogs({ limit });
+      data = await BlogCards.default({ limit });
     });
 
     test(`Should return an array of length less than or equal to ${limit}`, () => {
@@ -79,7 +79,7 @@ describe('BlogCards Test', () => {
       const tagIds = ['chatGpt'];
 
       beforeEach(async () => {
-        data = await getBlogs({ tagIds });
+        data = await BlogCards.default({ tagIds });
       });
 
       test(`All elements should have the tag ${tagIds[0]}.`, () => {
@@ -91,7 +91,7 @@ describe('BlogCards Test', () => {
       const tagIds = ['chatGpt', 'uiux'];
 
       beforeEach(async () => {
-        data = await getBlogs({ tagIds });
+        data = await BlogCards.default({ tagIds });
       });
 
       test(`Elements should have one of the tags, ${tagIds.join(',')}`, () => {

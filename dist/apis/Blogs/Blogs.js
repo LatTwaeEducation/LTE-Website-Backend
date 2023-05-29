@@ -8,5 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import * as BlogCards from '../../services/BlogCards';
-const LIMIT_COUNT = 3;
-export default () => __awaiter(void 0, void 0, void 0, function* () { return BlogCards.default({ limit: LIMIT_COUNT }); });
+export default (tags) => __awaiter(void 0, void 0, void 0, function* () {
+    return BlogCards.default({
+        tagIds: tags,
+    });
+});
