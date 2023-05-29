@@ -7,6 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { getBlogs } from '../Blogs';
-const LIMIT_COUNT = 3;
-export default () => __awaiter(void 0, void 0, void 0, function* () { return getBlogs({ limit: LIMIT_COUNT }); });
+import { getAllTags } from '../../services/ContentfulServices';
+export default () => __awaiter(void 0, void 0, void 0, function* () {
+    return (yield getAllTags()).map((tag) => ({
+        name: tag.name,
+        id: tag.sys.id,
+    }));
+});

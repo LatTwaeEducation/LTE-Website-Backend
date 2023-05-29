@@ -100,7 +100,18 @@ export interface Partnership {
   company: string;
 }
 
+export type BlogsQueryOptions = {
+  limit?: number;
+  tagIds?: string[];
+};
+
+export interface BlogTag {
+  id: string;
+  name: string;
+}
+
 export interface BlogCard {
+  tags?: BlogTag[];
   id: string;
   thumbnail: Asset;
   title: string;

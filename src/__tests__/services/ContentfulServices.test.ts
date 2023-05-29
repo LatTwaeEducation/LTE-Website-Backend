@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { queryData } from 'src/services/ContentfulServices';
+import { queryData, getAllTags } from 'src/services/ContentfulServices';
 import { testHasPropertyAndType } from '../helpers';
 
 dotenv.config();
@@ -58,6 +58,15 @@ describe('Contentful Services Test', () => {
       testHasPropertyAndType(data.blog.sys, 'id', 'string');
 
       expect(data.blog.sys.id).toBe(queryVar.id);
+    });
+  });
+
+  describe('Get All Tags Test', () => {
+    test('Should return an object', async () => {
+      const data = await getAllTags();
+
+      expect(data).toBeDefined();
+      expect(Array.isArray(data)).toBeTruthy();
     });
   });
 });

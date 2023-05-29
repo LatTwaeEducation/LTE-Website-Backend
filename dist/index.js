@@ -8,5 +8,7 @@ import * as Everyone_1 from './apis/Everyone';
 export { Everyone_1 as Everyone };
 import * as ContactUs_1 from './apis/ContactUs';
 export { ContactUs_1 as ContactUs };
+import * as Blogs_1 from './apis/Blogs';
+export { Blogs_1 as Blogs };
 export { default as getFooterContent } from './services/FooterContent';
 export { default as getLteLogo } from './services/LteLogo';
