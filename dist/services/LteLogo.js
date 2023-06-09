@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { queryData } from './ContentfulServices';
-import { EntryId } from '../types';
+import { EntryId } from '../Types/CommonTypes';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
     query LteLogo($id: String!) {

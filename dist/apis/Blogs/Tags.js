@@ -7,10 +7,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { getAllTags } from '../../services/ContentfulServices';
-export default () => __awaiter(void 0, void 0, void 0, function* () {
-    return (yield getAllTags()).map((tag) => ({
-        name: tag.name,
-        id: tag.sys.id,
-    }));
-});
+import { getAllTags } from '../../Services/ContentfulServices';
+import { convertToBlogTag } from '../../Mappers/ContentfulRESTTagAndBlogTag';
+export default () => __awaiter(void 0, void 0, void 0, function* () { return (yield getAllTags()).map(convertToBlogTag); });

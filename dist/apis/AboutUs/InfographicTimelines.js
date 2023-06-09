@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { format } from 'date-fns';
-import { queryData } from '../../services/ContentfulServices';
+import { queryData } from '../../Services/ContentfulServices';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
   query InfographicTimeline {

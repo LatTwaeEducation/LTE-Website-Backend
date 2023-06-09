@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { queryData } from '../../services/ContentfulServices';
+import { queryData } from '../../Services/ContentfulServices';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
   query ActivitiesEvents_Home {

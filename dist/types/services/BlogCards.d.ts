@@ -1,4 +1,7 @@
-import type { BlogCard, BlogsQueryOptions } from '../types';
-declare const _default: (options?: BlogsQueryOptions | undefined) => Promise<BlogCard[]>;
+import type { BlogCard } from '../Types/Blogs/Blog';
+declare const _default: (options?: {
+    limit?: number;
+    tagIds?: string[];
+}) => Promise<BlogCard[]>;
 export default _default;
 //# sourceMappingURL=BlogCards.d.ts.map

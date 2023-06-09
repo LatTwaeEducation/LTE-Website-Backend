@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { format } from 'date-fns';
 import { extractFirstParagraph } from './CustomHtmlRenderers';
 import { queryData } from './ContentfulServices';
-const generateQueryVariable = (limit = undefined, tags = undefined) => {
+const generateQueryVariable = (limit, tags) => {
     const queryVariable = {};
     if (limit) {
         queryVariable.limit = limit;
@@ -26,7 +26,7 @@ const generateQueryVariable = (limit = undefined, tags = undefined) => {
     }
     return queryVariable;
 };
-export default (options = undefined) => __awaiter(void 0, void 0, void 0, function* () {
+export default (options) => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
   query BlogCards($limit: Int, $filter: BlogFilter) {
     blogCollection(limit: $limit, where: $filter) {

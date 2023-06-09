@@ -1,4 +1,5 @@
-import { Asset } from '../types';
+import { Asset } from '../Types/CommonTypes';
+import { ContentfulContactMessageRequest } from '../Types/ContactMessages/ContentfulContactMessage';
 
 type TypeString =
   | 'undefined'
@@ -50,3 +51,61 @@ export const testHasPropertyAndType = <T extends object>(
 };
 
 export const dateStringRegex = /^(0[1-9]|[12][0-9]|3[01])\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{4}$/;
+
+export const expectAssetObject = expect.objectContaining({
+  url: expect.any(String),
+  title: expect.any(String),
+});
+
+export const wrapContentfulPostResponse = (src: ContentfulContactMessageRequest) => {
+  return {
+    metadata: {
+      tags: [],
+    },
+    sys: {
+      space: {
+        sys: {
+          type: 'Link',
+          linkType: 'Space',
+          id: 'gxxheul7hh8o',
+        },
+      },
+      id: '2njJdACPuumKjae2b825Ko',
+      type: 'Entry',
+      createdAt: '2023-06-06T08:16:23.867Z',
+      updatedAt: '2023-06-06T08:16:23.867Z',
+      environment: {
+        sys: {
+          id: 'master',
+          type: 'Link',
+          linkType: 'Environment',
+        },
+      },
+      createdBy: {
+        sys: {
+          type: 'Link',
+          linkType: 'User',
+          id: '0XzjJ8kLQzI5HFamo5kuEA',
+        },
+      },
+      updatedBy: {
+        sys: {
+          type: 'Link',
+          linkType: 'User',
+          id: '0XzjJ8kLQzI5HFamo5kuEA',
+        },
+      },
+      publishedCounter: 0,
+      version: 1,
+      automationTags: [],
+      contentType: {
+        sys: {
+          type: 'Link',
+          linkType: 'ContentType',
+          id: 'contactFormSubmission',
+        },
+      },
+    },
+    ...src,
+  };
+};

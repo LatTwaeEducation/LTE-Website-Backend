@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../src/apis/Blogs/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,IAAI,UAAU,EAAE,MAAM,QAAQ,CAAC;AAC/C,OAAO,EAAE,OAAO,IAAI,QAAQ,EAAE,MAAM,SAAS,CAAC"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Blogs/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,IAAI,UAAU,EAAE,MAAM,QAAQ,CAAC;AAC/C,OAAO,EAAE,OAAO,IAAI,QAAQ,EAAE,MAAM,SAAS,CAAC"}

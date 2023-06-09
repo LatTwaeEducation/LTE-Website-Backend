@@ -1,0 +1,37 @@
+### Post the message to the Contentful
+POST https://api.contentful.com/spaces/gxxheul7hh8o/environments/master/entries
+Authorization: Bearer CFPAT-rYduPyfumeDKXCVmeCYaWZbjhWt3O4kGtItAiaPReo4
+Content-Type: application/vnd.contentful.management.v1+json
+X-Contentful-Content-Type: contactFormSubmission
+
+{
+  "fields": {
+    "fullName": {
+      "en-US": "Zaw Nay Lin"
+    },
+    "email": {
+      "en-US": "zawnaylin@example.com"
+    },
+    "phone": {
+      "en-US": "09795841501"
+    },
+    "message": {
+      "en-US": "Hello World!!!"
+    }
+  }
+}
+
+> {%
+
+  client.global.set("response_id", response.body.sys.id);
+
+%}
+
+### Get the message back
+GET https://preview.contentful.com/spaces/gxxheul7hh8o/environments/master/entries/{{response_id}}
+Authorization: Bearer yd0gG8h9eGCoY5Xmo5etjlr29TmJK4DBt2c6YgtI3F4
+
+### Delete the message
+DELETE https://api.contentful.com/spaces/gxxheul7hh8o/environments/master/entries/{{response_id}}
+Authorization: Bearer CFPAT-rYduPyfumeDKXCVmeCYaWZbjhWt3O4kGtItAiaPReo4
+X-Contentful-Version: 4

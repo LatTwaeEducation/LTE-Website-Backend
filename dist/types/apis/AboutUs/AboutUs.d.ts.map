@@ -1,1 +1,1 @@
-{"version":3,"file":"AboutUs.d.ts","sourceRoot":"","sources":["../../../../src/apis/AboutUs/AboutUs.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,OAAO,EAAE,MAAM,aAAa,CAAC;8BAElB,QAAQ,OAAO,CAAC;AAAzC,wBAqBE"}
+{"version":3,"file":"AboutUs.d.ts","sourceRoot":"","sources":["../../../../src/Apis/AboutUs/AboutUs.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,OAAO,EAAE,MAAM,yBAAyB,CAAC;AAEvD,QAAA,MAAM,UAAU,QAAa,QAAQ,OAAO,CAqB3C,CAAC;AAEF,eAAe,UAAU,CAAC"}

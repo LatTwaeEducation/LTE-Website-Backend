@@ -7,7 +7,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import * as BlogCards from '../../services/BlogCards';
+import * as BlogCards from '../../Services/BlogCards';
 export default (tags) => __awaiter(void 0, void 0, void 0, function* () {
     return BlogCards.default({
         tagIds: tags,

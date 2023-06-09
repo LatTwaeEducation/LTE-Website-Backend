@@ -20,6 +20,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'prettier', 'import'],
   rules: {
+    'no-underscore-dangle': ['error', { allowAfterThis: true }],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'error',
     'no-shadow': 'off',
@@ -47,7 +48,7 @@ module.exports = {
     },
     'import/resolver': {
       typescript: {
-        alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
+        alwaysTryTypes: true, // always try to resolve Types under `<root>@Types` directory even it doesn't contain any source code, like `@Types/unist`
 
         // Choose from one of the "project" configs below or omit to use <root>/tsconfig.json by default
 

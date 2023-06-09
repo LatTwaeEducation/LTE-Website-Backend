@@ -1,4 +1,4 @@
-/** @type {import("ts-jest").JestConfigWithTsJest} */
+/** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
@@ -18,4 +18,5 @@ module.exports = {
   },
   moduleDirectories: ['node_modules', 'src'],
   testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/'],
+  setupFilesAfterEnv: ['<rootDir>/src/__tests__/setup.ts'],
 };

@@ -1,1 +1,1 @@
-{"version":3,"file":"FooterContent.d.ts","sourceRoot":"","sources":["../../../src/services/FooterContent.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAwB,aAAa,EAAgC,MAAM,UAAU,CAAC;8BAEzE,QAAQ,aAAa,CAAC;AAA/C,wBAmDE"}
+{"version":3,"file":"FooterContent.d.ts","sourceRoot":"","sources":["../../../src/Services/FooterContent.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAwB,aAAa,EAAgC,MAAM,sBAAsB,CAAC;8BAErF,QAAQ,aAAa,CAAC;AAA/C,wBAmDE"}

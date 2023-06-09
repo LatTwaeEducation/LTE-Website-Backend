@@ -1,9 +1,9 @@
-export * as Home from './apis/Home';
-export * as AboutUS from './apis/AboutUs';
-export * as JuniorYouth from './apis/JuniorYouth';
-export * as Everyone from './apis/Everyone';
-export * as ContactUs from './apis/ContactUs';
-export * as Blogs from './apis/Blogs';
-export { default as getFooterContent } from './services/FooterContent';
-export { default as getLteLogo } from './services/LteLogo';
+export * as Home from './Apis/Home';
+export * as AboutUS from './Apis/AboutUs';
+export * as JuniorYouth from './Apis/JuniorYouth';
+export * as Everyone from './Apis/Everyone';
+export * as ContactUs from './Apis/ContactUs';
+export * as Blogs from './Apis/Blogs';
+export { default as getFooterContent } from './Services/FooterContent';
+export { default as getLteLogo } from './Services/LteLogo';
 //# sourceMappingURL=index.d.ts.map

@@ -1,4 +1,4 @@
-import type { Partnership } from '../../types';
+import type { Partnership } from '../../Types/CommonTypes';
 declare const _default: () => Promise<{
     partnerships: Partnership[];
     partnershipFormLink: string;
