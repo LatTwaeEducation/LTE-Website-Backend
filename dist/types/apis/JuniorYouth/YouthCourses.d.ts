@@ -1,4 +1,3 @@
-import type { CourseCard } from '../../Types/CommonTypes';
-declare const _default: () => Promise<CourseCard[]>;
-export default _default;
+declare const getYouthCourses: () => Promise<import("../../Types/CommonTypes").CourseCard[]>;
+export default getYouthCourses;
 //# sourceMappingURL=YouthCourses.d.ts.map

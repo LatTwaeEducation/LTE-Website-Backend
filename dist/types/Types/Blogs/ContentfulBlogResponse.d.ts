@@ -13,7 +13,7 @@ export interface ContentfulBlogBase {
         json: Document;
     };
 }
-export interface ContentfulGraphQLCollectionResponse<T extends ContentfulBlogBase> {
+export interface ContentfulGraphQLBlogCollectionResponse<T extends ContentfulBlogBase> {
     blogCollection: ContentfulBaseGraphQLCollectionResponse<T>;
 }
 //# sourceMappingURL=ContentfulBlogResponse.d.ts.map

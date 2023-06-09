@@ -15,6 +15,6 @@ export interface ContentfulBlogBase {
   };
 }
 
-export interface ContentfulGraphQLCollectionResponse<T extends ContentfulBlogBase> {
+export interface ContentfulGraphQLBlogCollectionResponse<T extends ContentfulBlogBase> {
   blogCollection: ContentfulBaseGraphQLCollectionResponse<T>;
 }

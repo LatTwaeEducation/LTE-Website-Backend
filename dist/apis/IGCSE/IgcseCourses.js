@@ -8,5 +8,5 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import getCourseCards from '../../Services/CourseCards';
-const getYouthCourses = () => __awaiter(void 0, void 0, void 0, function* () { return getCourseCards('Youth'); });
-export default getYouthCourses;
+const getIgcseCourses = () => __awaiter(void 0, void 0, void 0, function* () { return getCourseCards('IGCSE'); });
+export default getIgcseCourses;

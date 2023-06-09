@@ -7,36 +7,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { queryData } from '../../Services/ContentfulServices';
-export default () => __awaiter(void 0, void 0, void 0, function* () {
-    const queryString = `
-  query Courses_Junior {
-    courseCollection(where: { classCategory: "Junior" }) {
-      items {
-        sys {
-          id
-        }
-        thumbnail {
-          url
-          title
-        }
-        name
-        duration
-        students
-        classCategory
-      }
-    }
-  }  
-  `;
-    const { courseCollection } = yield queryData(queryString);
-    return courseCollection.items.map(({ sys, name, duration, students, classCategory, thumbnail }) => {
-        return {
-            id: sys.id,
-            name,
-            duration,
-            students,
-            classCategory,
-            thumbnail,
-        };
-    });
-});
+import getCourseCards from '../../Services/CourseCards';
+const getJuniorCourses = () => __awaiter(void 0, void 0, void 0, function* () { return getCourseCards('Junior'); });
+export default getJuniorCourses;

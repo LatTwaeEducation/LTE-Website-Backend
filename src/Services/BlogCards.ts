@@ -2,7 +2,7 @@ import { format } from 'date-fns';
 import { extractFirstParagraph } from './CustomHtmlRenderers';
 import { queryData } from './ContentfulServices';
 import type { BlogCard } from '../Types/Blogs/Blog';
-import { ContentfulBlogBase, ContentfulGraphQLCollectionResponse } from '../Types/Blogs/ContentfulBlogResponse';
+import { ContentfulBlogBase, ContentfulGraphQLBlogCollectionResponse } from '../Types/Blogs/ContentfulBlogResponse';
 
 interface ContentfulMetadataTagsFilter {
   id_contains_some?: string[];
@@ -70,7 +70,7 @@ export default async (options?: { limit?: number; tagIds?: string[] }): Promise<
     }
   }`;
 
-  const { blogCollection } = await queryData<ContentfulGraphQLCollectionResponse<ContentfulBlogBase>>(
+  const { blogCollection } = await queryData<ContentfulGraphQLBlogCollectionResponse<ContentfulBlogBase>>(
     queryString,
     generateQueryVariable(options?.limit, options?.tagIds)
   );

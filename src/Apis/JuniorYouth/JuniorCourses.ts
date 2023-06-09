@@ -1,51 +1,5 @@
-import { queryData } from '../../Services/ContentfulServices';
-import type { ClassCategory, CourseCard, Asset } from '../../Types/CommonTypes';
-import type { BaseSys } from '../../Types/Contentful/CommonTypes';
+import getCourseCards from '../../Services/CourseCards';
 
-export default async () => {
-  type Response = {
-    courseCollection: {
-      items: {
-        sys: BaseSys;
-        name: string;
-        duration: number;
-        students: number;
-        classCategory: ClassCategory;
-        thumbnail: Asset;
-      }[];
-    };
-  };
+const getJuniorCourses = async () => getCourseCards('Junior');
 
-  const queryString = `
-  query Courses_Junior {
-    courseCollection(where: { classCategory: "Junior" }) {
-      items {
-        sys {
-          id
-        }
-        thumbnail {
-          url
-          title
-        }
-        name
-        duration
-        students
-        classCategory
-      }
-    }
-  }  
-  `;
-
-  const { courseCollection } = await queryData<Response>(queryString);
-
-  return courseCollection.items.map(({ sys, name, duration, students, classCategory, thumbnail }) => {
-    return {
-      id: sys.id,
-      name,
-      duration,
-      students,
-      classCategory,
-      thumbnail,
-    } as CourseCard;
-  });
-};
+export default getJuniorCourses;

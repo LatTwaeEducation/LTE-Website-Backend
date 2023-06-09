@@ -67,7 +67,7 @@ export interface CourseCard {
   duration: number;
   students: number;
   classCategory: ClassCategory;
-  thumbnail: Asset;
+  thumbnail: Asset | null;
 }
 
 export interface Course extends Omit<CourseCard, 'thumbnail'> {
