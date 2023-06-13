@@ -1,10 +1,10 @@
-import { convertToCourseCard } from '../Mappers/ContentfulCourseAndCourse';
 import { queryData } from './ContentfulServices';
 import type { ClassCategory } from '../Types/CommonTypes';
 import type {
   ContentfulCourseCardResponse,
-  ContentfulGraphQLCourseCollectionResponse,
-} from '../Types/Courses/ContentfulCourseResponse';
+  ContentfulCoursesPageResponse,
+} from '../Types/Courses/ContentfulCourseResponses';
+import { convertToCourseCards } from '../Mappers/ContentfulCourseAndCourse';
 
 type CourseFilter = {
   classCategory: ClassCategory;
@@ -22,7 +22,7 @@ const generateQueryVariables = (course: ClassCategory): QueryVariables => ({
 
 const getCourseCards = async (course: ClassCategory) => {
   const queryString = `
-  query Courses_Junior($filter: CourseFilter) {
+  query ($filter: CourseFilter) {
     courseCollection(where: $filter) {
       items {
         sys {
@@ -34,6 +34,9 @@ const getCourseCards = async (course: ClassCategory) => {
         }
         name
         duration
+        hoursPerWeek
+        fromAge
+        toAge
         students
         classCategory
       }
@@ -41,12 +44,12 @@ const getCourseCards = async (course: ClassCategory) => {
   }  
   `;
 
-  const { courseCollection } = await queryData<ContentfulGraphQLCourseCollectionResponse<ContentfulCourseCardResponse>>(
+  const response = await queryData<ContentfulCoursesPageResponse<ContentfulCourseCardResponse>>(
     queryString,
     generateQueryVariables(course)
   );
 
-  return courseCollection.items.map(convertToCourseCard);
+  return convertToCourseCards(response);
 };
 
 export default getCourseCards;

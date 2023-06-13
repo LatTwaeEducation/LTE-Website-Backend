@@ -61,26 +61,6 @@ export interface CountCard {
   message: string;
 }
 
-export interface CourseCard {
-  id: string;
-  name: string;
-  duration: number;
-  students: number;
-  classCategory: ClassCategory;
-  thumbnail: Asset | null;
-}
-
-export interface Course extends Omit<CourseCard, 'thumbnail'> {
-  featureImage?: Asset;
-  price: number;
-  requirements?: string[];
-  learningPlatforms: string[];
-  skills: string[];
-  whatYouLearn: string;
-  whatWeTeach: string;
-  furtherLearning: string;
-}
-
 export interface Testimonial {
   feedback: string;
   name: string;
@@ -110,6 +90,7 @@ export enum EntryId {
   AppAdvertisement = '3oTRGQsj725PiMneMQ9sdE',
   ContactInfo = '6MPF8dS07lOoQ3uGLlLveF',
   SocialMedia = '2tYVPMEDeWxZi8ND7oCCo8',
+  CoursesPageSettings = '6rJCqJaB8nqKywavmxgEc9',
 }
 
 export enum ContentTypeId {

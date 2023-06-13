@@ -12,5 +12,7 @@ import * as Everyone_1 from './Apis/Everyone';
 export { Everyone_1 as Everyone };
 import * as Igcse_1 from './Apis/Igcse';
 export { Igcse_1 as Igcse };
+import * as CourseDetails_1 from './Apis/CourseDetails';
+export { CourseDetails_1 as CourseDetails };
 export { default as getFooterContent } from './Services/FooterContent';
 export { default as getLteLogo } from './Services/LteLogo';

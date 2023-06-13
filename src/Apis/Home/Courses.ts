@@ -1,68 +1,50 @@
 import { queryData } from '../../Services/ContentfulServices';
+import { ContentfulAllCategoriesCoursesNamesResponse } from '../../Types/Courses/ContentfulCourseResponses';
+import { EntryId } from '../../Types/CommonTypes';
+import { AllCoursesAndSettings } from '../../Types/Courses/AllCoursesAndSettings';
+import { ContentfulAllCoursesColourSettings } from '../../Types/CoursesPageSettings/ContentfulCoursesPageSettingsResponse';
 
-export default async (): Promise<{
-  juniorCourses: string[];
-  youthCourses: string[];
-  everyoneCourses: string[];
-  igcseCourses: string[];
-}> => {
-  type Response = {
-    JuniorCourses: {
-      items: {
-        name: string;
-      }[];
-    };
-    YouthCourses: {
-      items: {
-        name: string;
-      }[];
-    };
-    EveryoneCourses: {
-      items: {
-        name: string;
-      }[];
-    };
-    IgcseCourses: {
-      items: {
-        name: string;
-      }[];
-    };
-  };
-
+export default async (): Promise<AllCoursesAndSettings> => {
   const queryString = `
-  query Course_Home {
-    JuniorCourses: courseCollection(where: { classCategory: "Junior" }) {
+  query Course_Home($coursesPageSettingsId: String!) {
+    juniorCourses: courseCollection(where: { classCategory: "Junior" }) {
       items {
         name
       }
     }
 
-    YouthCourses: courseCollection(where: { classCategory: "Youth" }) {
+    youthCourses: courseCollection(where: { classCategory: "Youth" }) {
       items {
         name
       }
     }
 
-    EveryoneCourses: courseCollection(where: { classCategory: "Everyone" }) {
+    everyoneCourses: courseCollection(where: { classCategory: "Everyone" }) {
       items {
         name
       }
     }
 
-    IgcseCourses: courseCollection(where: { classCategory: "IGCSE" }) {
+    igcseCourses: courseCollection(where: { classCategory: "IGCSE" }) {
       items {
         name
       }
+    }
+    
+    coursePageSettings(id: $coursesPageSettingsId) {
+      forIgcseCoursesColour
+      forYouthCoursesColour
+      forJuniorCoursesColour
+      forEveryoneCoursesColour
     }
   }
   `;
 
-  const { JuniorCourses, YouthCourses, EveryoneCourses, IgcseCourses } = await queryData<Response>(queryString);
-
-  return {
-    juniorCourses: JuniorCourses.items.map((item) => item.name),
-    youthCourses: YouthCourses.items.map((item) => item.name),
-    everyoneCourses: EveryoneCourses.items.map((item) => item.name),
-    igcseCourses: IgcseCourses.items.map((item) => item.name),
-  };
+  const response = await queryData<ContentfulAllCategoriesCoursesNamesResponse & ContentfulAllCoursesColourSettings>(
+    queryString,
+    {
+      coursesPageSettingsId: EntryId.CoursesPageSettings,
+    }
+  );
+  return new AllCoursesAndSettings(response);
 };

@@ -1,8 +1,4 @@
-export const convertToCourseCard = ({ classCategory, duration, name, students, sys, thumbnail, }) => ({
-    id: sys.id,
-    name,
-    duration,
-    classCategory,
-    students,
-    thumbnail,
-});
+import { CourseCard } from '../Types/Courses/CourseCard';
+export function convertToCourseCards(src) {
+    return src.courseCollection.items.map((course) => new CourseCard(course));
+}

@@ -1,9 +1,9 @@
 import { ContentfulRESTTag } from './CommonTypes';
 
-export interface ContentfulBaseCollectionResponse {
-  total: number;
-  skip: number;
-  limit: number;
+interface ContentfulBaseCollectionResponse {
+  total?: number;
+  skip?: number;
+  limit?: number;
 }
 
 export interface ContentfulRESTArrayResponse<T> extends ContentfulBaseCollectionResponse {

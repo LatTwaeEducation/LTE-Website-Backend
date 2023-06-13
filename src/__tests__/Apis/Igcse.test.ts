@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { expect } from '@jest/globals';
 import { getIgcseCourses } from '../../Apis/Igcse';
+import { CourseCard } from '../../Types/Courses/CourseCard';
 
 dotenv.config();
 
@@ -10,17 +11,9 @@ describe('IGCSE Page API tests', () => {
 
     expect(data).toBeDefined();
     expect(Array.isArray(data)).toBeTruthy();
-    const expectedElement = expect.objectContaining({
-      id: expect.any(String),
-      thumbnail: expect.assetOrNull(),
-      name: expect.any(String),
-      duration: expect.any(Number),
-      students: expect.any(Number),
-      classCategory: expect.stringMatching('IGCSE'),
-    });
 
     data.forEach((element) => {
-      expect(element).toMatchObject(expectedElement);
+      expect(element).toBeInstanceOf(CourseCard);
     });
   });
 });

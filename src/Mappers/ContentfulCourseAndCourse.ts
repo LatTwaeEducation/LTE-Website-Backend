@@ -1,18 +1,9 @@
-import { ContentfulCourseCardResponse } from '../Types/Courses/ContentfulCourseResponse';
-import { CourseCard } from '../Types/CommonTypes';
+import {
+  ContentfulCourseCardResponse,
+  ContentfulCoursesPageResponse,
+} from '../Types/Courses/ContentfulCourseResponses';
+import { CourseCard } from '../Types/Courses/CourseCard';
 
-export const convertToCourseCard = ({
-  classCategory,
-  duration,
-  name,
-  students,
-  sys,
-  thumbnail,
-}: ContentfulCourseCardResponse): CourseCard => ({
-  id: sys.id,
-  name,
-  duration,
-  classCategory,
-  students,
-  thumbnail,
-});
+export function convertToCourseCards(src: ContentfulCoursesPageResponse<ContentfulCourseCardResponse>) {
+  return src.courseCollection.items.map((course) => new CourseCard(course));
+}
