@@ -30,15 +30,15 @@ export interface ContentfulCourseCardResponse extends ContentfulBaseCourseRespon
 
 export interface ContentfulCourseDetailsResponse extends ContentfulBaseCourseResponse {
   featuredImage: Asset | null;
-  learningPlatforms: string[];
+  learningPlatforms: string[] | null;
   price: number;
-  requirements: string;
-  languages: string[];
-  classDescription: string;
-  skillsYouWillGain: string[];
-  whatWillYouLearn: string;
-  courseDescription: string;
-  continuousLearning: string;
+  requirements: string | null;
+  languages: string[] | null;
+  classDescription: string | null;
+  skillsYouWillGain: string[] | null;
+  whatWillYouLearn: string | null;
+  courseDescription: string | null;
+  continuousLearning: string | null;
 }
 
 export interface ContentfulGraphQLCourseEntryResponse<T extends ContentfulBaseCourseResponse> {

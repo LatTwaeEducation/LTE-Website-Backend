@@ -26,15 +26,15 @@ export class CourseDetails extends BaseCourse {
   constructor(src: ContentfulCourseDetailsResponse) {
     super(src);
     this._featuredImage = src.featuredImage;
-    this._learningPlatforms = src.learningPlatforms.join(', ');
+    this._learningPlatforms = src.learningPlatforms?.join(', ') ?? '';
     this._price = src.price;
-    this._requirements = src.requirements;
-    this._languages = src.languages.join(', ');
-    this._classDescription = src.classDescription;
-    this._skillsYouWillGain = src.skillsYouWillGain;
-    this._whatWillYouLearn = src.whatWillYouLearn.trim().split('\n');
-    this._courseDescription = src.courseDescription.trim().split('\n');
-    this._continuousLearning = src.continuousLearning.trim().split('\n');
+    this._requirements = src.requirements ?? '';
+    this._languages = src.languages?.join(', ') ?? '';
+    this._classDescription = src.classDescription ?? '';
+    this._skillsYouWillGain = src.skillsYouWillGain ?? [];
+    this._whatWillYouLearn = src.whatWillYouLearn?.trim().split('\n') ?? [];
+    this._courseDescription = src.courseDescription?.trim().split('\n') ?? [];
+    this._continuousLearning = src.continuousLearning?.trim().split('\n') ?? [];
   }
 
   public get featuredImage(): Asset | null {

@@ -1,0 +1,4 @@
+### Get all the id and name of courses
+
+GET https://cdn.contentful.com/spaces/gxxheul7hh8o/environments/master/entries?content_type=course&select=fields.name,sys.id
+Authorization: Bearer S0z9Q7cdEMI0zvKzqWz0UNEbjhu70ahTlh6q_tuMZg8
