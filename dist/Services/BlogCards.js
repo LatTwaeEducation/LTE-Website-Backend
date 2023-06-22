@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 import { format } from 'date-fns';
 import { extractFirstParagraph } from './CustomHtmlRenderers';
 import { queryData } from './ContentfulServices';
+import { DatePattern } from '../Types/CommonTypes';
 const generateQueryVariable = (limit, tags) => {
     const queryVariable = {};
     if (limit) {
@@ -60,7 +61,7 @@ export default (options) => __awaiter(void 0, void 0, void 0, function* () {
             id: item.sys.id,
             thumbnail: item.thumbnail,
             title: item.title,
-            createdAt: format(new Date(item.sys.publishedAt), 'dd LLL yyyy'),
+            createdAt: format(new Date(item.sys.publishedAt), DatePattern),
             description: extractFirstParagraph((_b = item.body) === null || _b === void 0 ? void 0 : _b.json),
         };
     });

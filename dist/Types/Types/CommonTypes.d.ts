@@ -80,4 +80,6 @@ export declare enum EntryId {
 export declare enum ContentTypeId {
     ContactFormSubmission = "contactFormSubmission"
 }
+export declare const DatePattern = "dd LLL yyyy";
+export declare const TimePattern = "pppp (z) ";
 //# sourceMappingURL=CommonTypes.d.ts.map

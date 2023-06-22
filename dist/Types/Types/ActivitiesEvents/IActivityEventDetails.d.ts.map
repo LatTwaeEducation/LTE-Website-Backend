@@ -1,0 +1,1 @@
+{"version":3,"file":"IActivityEventDetails.d.ts","sourceRoot":"","sources":["../../../../src/Types/ActivitiesEvents/IActivityEventDetails.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,kBAAkB,EAAE,MAAM,sBAAsB,CAAC;AAE1D,MAAM,WAAW,qBAAsB,SAAQ,kBAAkB;IAC/D,IAAI,OAAO,IAAI,MAAM,CAAC;IAEtB,IAAI,KAAK,IAAI,MAAM,CAAC;IAEpB,IAAI,MAAM,IAAI,MAAM,EAAE,CAAC;CACxB"}

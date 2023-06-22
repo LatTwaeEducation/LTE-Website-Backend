@@ -3,6 +3,7 @@ import { extractFirstParagraph } from './CustomHtmlRenderers';
 import { queryData } from './ContentfulServices';
 import type { BlogCard } from '../Types/Blogs/Blog';
 import { ContentfulBlogBase, ContentfulGraphQLBlogCollectionResponse } from '../Types/Blogs/ContentfulBlogResponse';
+import { DatePattern } from '../Types/CommonTypes';
 
 interface ContentfulMetadataTagsFilter {
   id_contains_some?: string[];
@@ -81,7 +82,7 @@ export default async (options?: { limit?: number; tagIds?: string[] }): Promise<
       id: item.sys.id,
       thumbnail: item.thumbnail,
       title: item.title,
-      createdAt: format(new Date(item.sys.publishedAt), 'dd LLL yyyy'),
+      createdAt: format(new Date(item.sys.publishedAt), DatePattern),
       description: extractFirstParagraph(item.body?.json),
     } as BlogCard;
   });

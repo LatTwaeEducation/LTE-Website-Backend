@@ -96,3 +96,6 @@ export enum EntryId {
 export enum ContentTypeId {
   ContactFormSubmission = 'contactFormSubmission',
 }
+
+export const DatePattern = 'dd LLL yyyy';
+export const TimePattern = 'pppp (z) ';

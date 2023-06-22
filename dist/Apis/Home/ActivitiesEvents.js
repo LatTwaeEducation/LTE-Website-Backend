@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { queryData } from '../../Services/ContentfulServices';
+import { ActivityEventBanner } from '../../Types/ActivitiesEvents/ActivityEventBanner';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
   query ActivitiesEvents_Home {
@@ -25,10 +26,5 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
   }  
   `;
     const { activityEventCollection } = yield queryData(queryString);
-    return activityEventCollection.items.map((item) => {
-        return {
-            id: item.sys.id,
-            thumbnail: item.thumbnail,
-        };
-    });
+    return activityEventCollection.items.map((item) => new ActivityEventBanner(item));
 });

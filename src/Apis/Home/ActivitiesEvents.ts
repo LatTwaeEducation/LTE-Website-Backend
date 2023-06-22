@@ -1,17 +1,11 @@
 import { queryData } from '../../Services/ContentfulServices';
-import type { Asset, BaseActivityEvent } from '../../Types/CommonTypes';
-import type { BaseSys } from '../../Types/Contentful/CommonTypes';
+import {
+  ContentfulActivityEventBannerResponse,
+  ContentfulGraphQLActivityEventCollectionResponse,
+} from '../../Types/ActivitiesEvents/ContentfulActivityEventResponses';
+import { ActivityEventBanner } from '../../Types/ActivitiesEvents/ActivityEventBanner';
 
-export default async (): Promise<BaseActivityEvent[]> => {
-  type Response = {
-    activityEventCollection: {
-      items: {
-        sys: BaseSys;
-        thumbnail: Asset;
-      }[];
-    };
-  };
-
+export default async (): Promise<ActivityEventBanner[]> => {
   const queryString = `
   query ActivitiesEvents_Home {
     activityEventCollection(limit: 3) {
@@ -28,12 +22,9 @@ export default async (): Promise<BaseActivityEvent[]> => {
   }  
   `;
 
-  const { activityEventCollection } = await queryData<Response>(queryString);
+  const { activityEventCollection } = await queryData<
+    ContentfulGraphQLActivityEventCollectionResponse<ContentfulActivityEventBannerResponse>
+  >(queryString);
 
-  return activityEventCollection.items.map((item) => {
-    return {
-      id: item.sys.id,
-      thumbnail: item.thumbnail,
-    } as BaseActivityEvent;
-  });
+  return activityEventCollection.items.map((item) => new ActivityEventBanner(item));
 };

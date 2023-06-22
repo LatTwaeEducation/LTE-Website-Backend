@@ -12,3 +12,5 @@ export var ContentTypeId;
 (function (ContentTypeId) {
     ContentTypeId["ContactFormSubmission"] = "contactFormSubmission";
 })(ContentTypeId || (ContentTypeId = {}));
+export const DatePattern = 'dd LLL yyyy';
+export const TimePattern = 'pppp (z) ';

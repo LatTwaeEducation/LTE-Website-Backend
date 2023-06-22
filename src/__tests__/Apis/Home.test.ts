@@ -1,10 +1,12 @@
 import dotenv from 'dotenv';
-import { expect } from '@jest/globals';
+import { beforeAll, expect } from '@jest/globals';
 import * as Home from 'src/Apis/Home';
-import { dateStringRegex, expectAssetObject, testHasPropertyAndType, testIsAsset } from '../helpers';
+import { dateStringRegex, expectAssetObject } from '../helpers';
 import type { AppAdvertisement, HomeTopBanner, Partnership, Testimonial } from '../../Types/CommonTypes';
 import type { BlogCard } from '../../Types/Blogs/Blog';
 import { AllCoursesAndSettings } from '../../Types/Courses/AllCoursesAndSettings';
+import { getActivitiesEvents } from 'src/Apis/Home';
+import { ActivityEventBanner } from '../../Types/ActivitiesEvents/ActivityEventBanner';
 
 dotenv.config();
 
@@ -43,22 +45,23 @@ describe('Home Page API tests', () => {
   });
 
   describe('Getting Activity Events', () => {
-    test('Should return an array of objects with properties `id` and `thumbnail`, with type `string` and `Asset`, and the counts should be less than or equal to 3', async () => {
-      const data = await Home.getActivitiesEvents();
+    let data: Awaited<ReturnType<typeof getActivitiesEvents>>;
 
+    beforeAll(async () => {
+      data = await getActivitiesEvents();
+    });
+
+    test('Should return an array of ActivityEventBanner instances', () => {
       expect(data).toBeDefined();
       expect(Array.isArray(data)).toBeTruthy();
-      expect(data.length).toBeLessThanOrEqual(3);
 
-      data.forEach((activityEvent) => {
-        expect(activityEvent).toBeDefined();
-        expect(typeof activityEvent).toBe('object');
-
-        testHasPropertyAndType(activityEvent, 'id', 'string');
-        testIsAsset(activityEvent.thumbnail);
-
-        testHasPropertyAndType(activityEvent, 'thumbnail', 'object');
+      data.forEach((item) => {
+        expect(item).toBeInstanceOf(ActivityEventBanner);
       });
+    });
+
+    test('Should have length less than or equal to 3', () => {
+      expect(data.length).toBeLessThanOrEqual(3);
     });
   });
 
