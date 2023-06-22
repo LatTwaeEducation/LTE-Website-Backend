@@ -11,7 +11,7 @@ import { queryData } from '../../Services/ContentfulServices';
 import { PreviousActivityEventCard } from '../../Types/ActivitiesEvents/PreviousActivityEventCard';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
-  query UpcomingEvents($currentTime: DateTime!) {
+  query Previous($currentTime: DateTime!) {
     activityEventCollection(where: { eventDateTime_lte: $currentTime }) {
       items {
         sys {

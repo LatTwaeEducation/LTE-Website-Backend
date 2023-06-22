@@ -2,8 +2,8 @@ import { ContentfulUpcomingActivityEventCardResponse } from './ContentfulActivit
 import { IUpcomingActivityEventCard } from './IUpcomingActivityEventCard';
 import { BaseActivityEventCard } from './BaseActivityEventCard';
 export declare class UpcomingActivityEventCard extends BaseActivityEventCard implements IUpcomingActivityEventCard {
-    private readonly _registerLink;
+    private readonly _registrationLink;
     constructor(src: ContentfulUpcomingActivityEventCardResponse);
-    get registerLink(): string;
+    get registrationLink(): string;
 }
 //# sourceMappingURL=UpcomingActivityEventCard.d.ts.map

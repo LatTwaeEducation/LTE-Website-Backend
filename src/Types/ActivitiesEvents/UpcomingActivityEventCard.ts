@@ -3,14 +3,14 @@ import { IUpcomingActivityEventCard } from './IUpcomingActivityEventCard';
 import { BaseActivityEventCard } from './BaseActivityEventCard';
 
 export class UpcomingActivityEventCard extends BaseActivityEventCard implements IUpcomingActivityEventCard {
-  private readonly _registerLink: string;
+  private readonly _registrationLink: string;
 
   constructor(src: ContentfulUpcomingActivityEventCardResponse) {
     super(src);
-    this._registerLink = src.registerLink ?? '';
+    this._registrationLink = src.registrationLink ?? '';
   }
 
-  get registerLink(): string {
-    return this._registerLink;
+  get registrationLink(): string {
+    return this._registrationLink;
   }
 }

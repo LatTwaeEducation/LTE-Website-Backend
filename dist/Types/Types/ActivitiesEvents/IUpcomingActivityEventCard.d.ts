@@ -1,4 +1,4 @@
 export interface IUpcomingActivityEventCard {
-    get registerLink(): string;
+    get registrationLink(): string;
 }
 //# sourceMappingURL=IUpcomingActivityEventCard.d.ts.map

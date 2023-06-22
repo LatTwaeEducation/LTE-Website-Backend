@@ -7,7 +7,7 @@ interface ContentfulPreviousActivityEvent {
 }
 
 interface ContentfulUpcomingActivityEvent {
-  registerLink: string | null;
+  registrationLink: string | null;
 }
 
 export interface ContentfulActivityEventBannerResponse {

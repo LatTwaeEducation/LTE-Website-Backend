@@ -2,9 +2,9 @@ import { BaseActivityEventDetails } from './BaseActivityEventDetails';
 import { IUpcomingActivityEventDetails } from './IUpcomingActivityEventDetails';
 import { ContentfulActivityEventResponse } from './ContentfulActivityEventResponses';
 export declare class UpcomingActivityEventDetails extends BaseActivityEventDetails implements IUpcomingActivityEventDetails {
-    private readonly _registerLink;
+    private readonly _registrationLink;
     constructor(src: ContentfulActivityEventResponse);
-    get registerLink(): string;
+    get registrationLink(): string;
     get time(): string;
 }
 //# sourceMappingURL=UpcomingActivityEventDetails.d.ts.map

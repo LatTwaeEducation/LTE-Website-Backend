@@ -5,7 +5,7 @@ interface ContentfulPreviousActivityEvent {
     replayLink: string | null;
 }
 interface ContentfulUpcomingActivityEvent {
-    registerLink: string | null;
+    registrationLink: string | null;
 }
 export interface ContentfulActivityEventBannerResponse {
     sys: BaseSys;

@@ -5,16 +5,16 @@ import { ContentfulActivityEventResponse } from './ContentfulActivityEventRespon
 import { TimePattern } from '../CommonTypes';
 
 export class UpcomingActivityEventDetails extends BaseActivityEventDetails implements IUpcomingActivityEventDetails {
-  private readonly _registerLink: string;
+  private readonly _registrationLink: string;
 
   constructor(src: ContentfulActivityEventResponse) {
     super(src);
 
-    this._registerLink = src.registerLink ?? '';
+    this._registrationLink = src.registrationLink ?? '';
   }
 
-  get registerLink(): string {
-    return this._registerLink;
+  get registrationLink(): string {
+    return this._registrationLink;
   }
 
   get time(): string {

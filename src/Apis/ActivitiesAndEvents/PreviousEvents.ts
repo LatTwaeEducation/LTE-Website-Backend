@@ -7,7 +7,7 @@ import { PreviousActivityEventCard } from '../../Types/ActivitiesEvents/Previous
 
 export default async () => {
   const queryString = `
-  query UpcomingEvents($currentTime: DateTime!) {
+  query Previous($currentTime: DateTime!) {
     activityEventCollection(where: { eventDateTime_lte: $currentTime }) {
       items {
         sys {

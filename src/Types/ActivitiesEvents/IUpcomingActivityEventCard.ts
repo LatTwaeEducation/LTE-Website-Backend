@@ -1,3 +1,3 @@
 export interface IUpcomingActivityEventCard {
-  get registerLink(): string;
+  get registrationLink(): string;
 }
