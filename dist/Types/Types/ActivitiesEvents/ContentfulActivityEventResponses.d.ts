@@ -1,33 +1,27 @@
 import { BaseSys } from '../Contentful/CommonTypes';
 import { Asset } from '../CommonTypes';
 import { ContentfulBaseGraphQLCollectionResponse } from '../Contentful/ResponseTypes';
-interface ContentfulPreviousActivityEvent {
-    replayLink: string | null;
-}
-interface ContentfulUpcomingActivityEvent {
-    registrationLink: string | null;
-}
 export interface ContentfulActivityEventBannerResponse {
     sys: BaseSys;
     thumbnail: Asset | null;
 }
-export interface ContentfulBaseActivityEventCardResponse extends ContentfulActivityEventBannerResponse {
+export interface ContentfulActivityEventCardResponse extends ContentfulActivityEventBannerResponse {
     name: string;
     eventDateTime: string;
+    replayLink: string | null;
+    registrationLink: string | null;
 }
-export interface ContentfulPreviousActivityEventCardResponse extends ContentfulActivityEventBannerResponse, ContentfulBaseActivityEventCardResponse, ContentfulPreviousActivityEvent {
-}
-export interface ContentfulUpcomingActivityEventCardResponse extends ContentfulActivityEventBannerResponse, ContentfulBaseActivityEventCardResponse, ContentfulUpcomingActivityEvent {
-}
-export interface ContentfulActivityEventResponse extends ContentfulBaseActivityEventCardResponse, ContentfulUpcomingActivityEvent, ContentfulPreviousActivityEvent {
+export interface ContentfulActivityEventResponse extends ContentfulActivityEventCardResponse {
     speaker: string;
     topics: string[] | null;
     shareLink: string | null;
     about: string | null;
-    eventImages: Asset[] | null;
+    eventImagesCollection: ContentfulBaseGraphQLCollectionResponse<Asset>;
 }
 export interface ContentfulGraphQLActivityEventCollectionResponse<T extends ContentfulActivityEventBannerResponse> {
     activityEventCollection: ContentfulBaseGraphQLCollectionResponse<T>;
 }
-export {};
+export interface ContentfulGraphQLActivityEventEntryResponse<T extends ContentfulActivityEventBannerResponse> {
+    activityEvent: T;
+}
 //# sourceMappingURL=ContentfulActivityEventResponses.d.ts.map

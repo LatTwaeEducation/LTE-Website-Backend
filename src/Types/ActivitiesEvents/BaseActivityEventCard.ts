@@ -1,7 +1,7 @@
 import { format } from 'date-fns-tz';
 import { ActivityEventBanner } from './ActivityEventBanner';
 import { IActivityEventCard } from './IActivityEventCard';
-import { ContentfulBaseActivityEventCardResponse } from './ContentfulActivityEventResponses';
+import { ContentfulActivityEventCardResponse } from './ContentfulActivityEventResponses';
 import { DatePattern } from '../CommonTypes';
 
 export abstract class BaseActivityEventCard extends ActivityEventBanner implements IActivityEventCard {
@@ -11,7 +11,7 @@ export abstract class BaseActivityEventCard extends ActivityEventBanner implemen
 
   protected readonly _timezone: string;
 
-  protected constructor(src: ContentfulBaseActivityEventCardResponse) {
+  protected constructor(src: ContentfulActivityEventCardResponse) {
     super(src);
 
     this._timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;

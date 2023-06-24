@@ -1,11 +1,11 @@
 import { IPreviousActivityEventCard } from './IPreviousActivityEventCard';
-import { ContentfulPreviousActivityEventCardResponse } from './ContentfulActivityEventResponses';
 import { BaseActivityEventCard } from './BaseActivityEventCard';
+import { ContentfulActivityEventCardResponse } from './ContentfulActivityEventResponses';
 
 export class PreviousActivityEventCard extends BaseActivityEventCard implements IPreviousActivityEventCard {
   private readonly _replayLink: string;
 
-  constructor(src: ContentfulPreviousActivityEventCardResponse) {
+  constructor(src: ContentfulActivityEventCardResponse) {
     super(src);
     this._replayLink = src.replayLink ?? '';
   }

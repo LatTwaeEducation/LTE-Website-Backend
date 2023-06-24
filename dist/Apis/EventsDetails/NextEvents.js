@@ -8,4 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import EventCards from '../../Services/EventCards';
-export default () => __awaiter(void 0, void 0, void 0, function* () { return (yield EventCards({ upcomingOrPrevious: 'upcoming' })); });
+const DEFAULT_SKIP = 0;
+const DEFAULT_LIMIT = 2;
+export default (skip = DEFAULT_SKIP, limit = DEFAULT_LIMIT) => __awaiter(void 0, void 0, void 0, function* () { return EventCards({ skip, limit }); });

@@ -1,1 +1,1 @@
-{"version":3,"file":"PreviousEvents.d.ts","sourceRoot":"","sources":["../../../../src/Apis/ActivitiesAndEvents/PreviousEvents.ts"],"names":[],"mappings":"AAKA,OAAO,EAAE,yBAAyB,EAAE,MAAM,wDAAwD,CAAC;;AAEnG,wBA4BE"}
+{"version":3,"file":"PreviousEvents.d.ts","sourceRoot":"","sources":["../../../../src/Apis/ActivitiesAndEvents/PreviousEvents.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,yBAAyB,EAAE,MAAM,wDAAwD,CAAC;8BAE1E,QAAQ,yBAAyB,EAAE,CAAC;AAA7D,wBACwF"}

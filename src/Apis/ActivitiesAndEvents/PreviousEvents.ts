@@ -1,36 +1,5 @@
-import { queryData } from '../../Services/ContentfulServices';
-import {
-  ContentfulGraphQLActivityEventCollectionResponse,
-  ContentfulPreviousActivityEventCardResponse,
-} from '../../Types/ActivitiesEvents/ContentfulActivityEventResponses';
+import EventCards from '../../Services/EventCards';
 import { PreviousActivityEventCard } from '../../Types/ActivitiesEvents/PreviousActivityEventCard';
 
-export default async () => {
-  const queryString = `
-  query Previous($currentTime: DateTime!) {
-    activityEventCollection(where: { eventDateTime_lte: $currentTime }) {
-      items {
-        sys {
-          id
-        }
-        name
-        thumbnail {
-          url
-          title
-        }
-        eventDateTime
-        replayLink
-      }
-    }
-  }`;
-
-  const queryVariables = {
-    currentTime: new Date().toISOString(),
-  };
-
-  const { activityEventCollection } = await queryData<
-    ContentfulGraphQLActivityEventCollectionResponse<ContentfulPreviousActivityEventCardResponse>
-  >(queryString, queryVariables);
-
-  return activityEventCollection.items.map((item) => new PreviousActivityEventCard(item));
-};
+export default async (): Promise<PreviousActivityEventCard[]> =>
+  (await EventCards({ upcomingOrPrevious: 'previous' })) as PreviousActivityEventCard[];
