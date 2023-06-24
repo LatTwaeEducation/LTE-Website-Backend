@@ -7,6 +7,7 @@ export * as Everyone from './Apis/Everyone';
 export * as Igcse from './Apis/Igcse';
 export * as CourseDetails from './Apis/CourseDetails';
 export * as ActivitiesAndEvents from './Apis/ActivitiesAndEvents';
+export * as EventDetails from './Apis/EventsDetails';
 
 export { default as getFooterContent } from './Services/FooterContent';
 export { default as getLteLogo } from './Services/LteLogo';

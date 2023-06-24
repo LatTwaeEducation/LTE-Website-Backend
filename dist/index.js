@@ -16,5 +16,7 @@ import * as CourseDetails_1 from './Apis/CourseDetails';
 export { CourseDetails_1 as CourseDetails };
 import * as ActivitiesAndEvents_1 from './Apis/ActivitiesAndEvents';
 export { ActivitiesAndEvents_1 as ActivitiesAndEvents };
+import * as EventDetails_1 from './Apis/EventsDetails';
+export { EventDetails_1 as EventDetails };
 export { default as getFooterContent } from './Services/FooterContent';
 export { default as getLteLogo } from './Services/LteLogo';
