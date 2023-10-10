@@ -13,6 +13,8 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
   query ContactInfo($id: String!) {
     contactInfo(id: $id) {
+      heading
+      description
       name
       content
       phoneNumbers

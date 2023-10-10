@@ -10,6 +10,8 @@ export default async (): Promise<ContactInfo> => {
   const queryString = `
   query ContactInfo($id: String!) {
     contactInfo(id: $id) {
+      heading
+      description
       name
       content
       phoneNumbers
