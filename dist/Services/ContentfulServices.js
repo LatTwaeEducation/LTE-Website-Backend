@@ -8,7 +8,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import axios from 'axios';
-import * as process from 'process';
 import { TokenType } from '../Types/CustomErrors/ValidationError';
 import { NoTokenError } from '../Types/CustomErrors/NoTokenError';
 import { generateUrl, URL } from './UrlGenerator';

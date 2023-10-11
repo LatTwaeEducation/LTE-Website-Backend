@@ -1,5 +1,4 @@
 import axios from 'axios';
-import * as process from 'process';
 import { TokenType } from '../Types/CustomErrors/ValidationError';
 import type { ContentfulRESTArrayResponse } from '../Types/Contentful/ResponseTypes';
 import { ContentfulRESTTag } from '../Types/Contentful/CommonTypes';

@@ -22,9 +22,10 @@ export default async (): Promise<ActivityEventBanner[]> => {
   }  
   `;
 
-  const { activityEventCollection } = await queryData<
-    ContentfulGraphQLActivityEventCollectionResponse<ContentfulActivityEventBannerResponse>
-  >(queryString);
+  const { activityEventCollection } =
+    await queryData<ContentfulGraphQLActivityEventCollectionResponse<ContentfulActivityEventBannerResponse>>(
+      queryString
+    );
 
   return activityEventCollection.items.map((item) => new ActivityEventBanner(item));
 };
