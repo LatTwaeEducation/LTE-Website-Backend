@@ -10,12 +10,20 @@ export default async (): Promise<Mission & Vision> => {
   const queryString = `
     query MissionVision($id: String!) {
       organisationInformation(id: $id) {
+        description
         mission
-        vision
+        missionImage {
+          url
+          title
+        }
+        vision 
+        visionImage{
+          url 
+          title
+        }
       }
     }`;
 
   const { organisationInformation } = await queryData<Response>(queryString, { id: EntryId.OrganisationInformation });
-
   return organisationInformation;
 };

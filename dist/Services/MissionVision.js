@@ -13,8 +13,17 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
     query MissionVision($id: String!) {
       organisationInformation(id: $id) {
+        description
         mission
-        vision
+        missionImage {
+          url
+          title
+        }
+        vision 
+        visionImage{
+          url 
+          title
+        }
       }
     }`;
     const { organisationInformation } = yield queryData(queryString, { id: EntryId.OrganisationInformation });

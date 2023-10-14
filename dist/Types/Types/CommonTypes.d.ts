@@ -39,9 +39,11 @@ export interface AboutUs {
 }
 export interface Mission {
     mission: string;
+    missionImage: Asset;
 }
 export interface Vision {
     vision: string;
+    visionImage: Asset;
 }
 export interface FooterContent extends AboutUs, Omit<ContactInfo, 'address'>, SocialMediaLinks, MobileApps {
 }
