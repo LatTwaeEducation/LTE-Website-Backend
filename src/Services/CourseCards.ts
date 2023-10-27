@@ -41,8 +41,7 @@ const getCourseCards = async (course: ClassCategory) => {
         classCategory
       }
     }
-  }  
-  `;
+  }`;
 
   const response = await queryData<ContentfulCoursesPageResponse<ContentfulCourseCardResponse>>(
     queryString,

@@ -35,8 +35,7 @@ const getCourseCards = (course) => __awaiter(void 0, void 0, void 0, function* (
         classCategory
       }
     }
-  }  
-  `;
+  }`;
     const response = yield queryData(queryString, generateQueryVariables(course));
     return convertToCourseCards(response);
 });
