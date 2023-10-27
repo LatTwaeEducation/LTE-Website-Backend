@@ -7,6 +7,45 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import getCourseCards from '../../Services/CourseCards';
-const getYouthCourses = () => __awaiter(void 0, void 0, void 0, function* () { return getCourseCards('Youth'); });
+import { queryData } from '../../Services/ContentfulServices';
+import { EntryId } from '../../Types/CommonTypes';
+import { CourseCard } from '../../Types/Courses/CourseCard';
+import { getCourseGroupTitle } from '../../Services/GetCourseGroupTitle';
+const getYouthCourses = () => __awaiter(void 0, void 0, void 0, function* () {
+    const queryString = `
+  query($filter: CourseFilter, $coursePageSettingsId: String!) {
+    coursePageSettings(id: $coursePageSettingsId) {
+      forYouthCoursesColour
+    }
+    courseCollection(where: $filter) {
+      items {
+        sys {
+          id
+        }
+        thumbnail {
+          url
+          title
+        }
+        name
+        duration
+        hoursPerWeek
+        fromAge
+        toAge
+        students
+        classCategory
+      }
+    }
+  }`;
+    const { coursePageSettings, courseCollection } = yield queryData(queryString, {
+        filter: {
+            classCategory: 'Youth',
+        },
+        coursePageSettingsId: EntryId.CoursesPageSettings,
+    });
+    return {
+        courseCardColor: coursePageSettings.forYouthCoursesColour,
+        courseGroupTitle: getCourseGroupTitle(courseCollection),
+        courses: courseCollection.items.map((c) => new CourseCard(c)),
+    };
+});
 export default getYouthCourses;

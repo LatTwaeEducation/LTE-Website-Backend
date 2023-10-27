@@ -1,3 +1,4 @@
-declare const getJuniorCourses: () => Promise<import("../../Types/Courses/CourseCard").CourseCard[]>;
+import { CourseCardGroup } from '../../Types/Courses/CourseCardGroup';
+declare const getJuniorCourses: () => Promise<CourseCardGroup>;
 export default getJuniorCourses;
 //# sourceMappingURL=JuniorCourses.d.ts.map

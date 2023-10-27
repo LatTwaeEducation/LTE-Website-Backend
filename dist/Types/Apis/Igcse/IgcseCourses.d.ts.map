@@ -1,1 +1,1 @@
-{"version":3,"file":"IgcseCourses.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Igcse/IgcseCourses.ts"],"names":[],"mappings":"AAEA,QAAA,MAAM,eAAe,sEAAsC,CAAC;AAE5D,eAAe,eAAe,CAAC"}
+{"version":3,"file":"IgcseCourses.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Igcse/IgcseCourses.ts"],"names":[],"mappings":"AAAA,OAAO,EAAgC,eAAe,EAAE,MAAM,qCAAqC,CAAC;AAWpG,QAAA,MAAM,gBAAgB,QAAa,QAAQ,eAAe,CAyCzD,CAAC;AACF,eAAe,gBAAgB,CAAC"}

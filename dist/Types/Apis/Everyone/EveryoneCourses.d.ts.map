@@ -1,1 +1,1 @@
-{"version":3,"file":"EveryoneCourses.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Everyone/EveryoneCourses.ts"],"names":[],"mappings":"AAEA,QAAA,MAAM,kBAAkB,sEAAyC,CAAC;AAElE,eAAe,kBAAkB,CAAC"}
+{"version":3,"file":"EveryoneCourses.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Everyone/EveryoneCourses.ts"],"names":[],"mappings":"AAAA,OAAO,EAAgC,eAAe,EAAE,MAAM,qCAAqC,CAAC;AAWpG,QAAA,MAAM,gBAAgB,QAAa,QAAQ,eAAe,CAyCzD,CAAC;AACF,eAAe,gBAAgB,CAAC"}

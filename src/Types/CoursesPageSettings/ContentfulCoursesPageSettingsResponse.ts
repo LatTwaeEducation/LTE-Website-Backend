@@ -21,18 +21,16 @@ export type ContentfulAllCoursesColourSettings = ContentfulForJuniorCoursesColou
   ContentfulForYouthCoursesColourSetting &
   ContentfulForIgcseCoursesColourSetting;
 
-export interface ContentfulJuniorYouthCoursesPageSettings
-  extends ContentfulForJuniorCoursesColourSetting,
-    ContentfulForYouthCoursesColourSetting {
+export interface ContentfulJuniorYouthCoursesPageSettings {
   forJuniorYouthCoursesPageTitle: string | null;
   forJuniorYouthCoursesPageRoadmap: Asset | null;
 }
 
-export interface ContentfulEveryoneCoursesPageSetting extends ContentfulForEveryoneCoursesColourSetting {
+export interface ContentfulEveryoneCoursesPageSetting {
   forEveryoneCoursesPageTitle: string | null;
 }
 
-export interface ContentfulIgcseCoursesPageSetting extends ContentfulForIgcseCoursesColourSetting {
+export interface ContentfulIgcseCoursesPageSetting {
   forIgcseCoursesPageTitle: string | null;
   forIgcseCoursesPageBody: string | null;
 }

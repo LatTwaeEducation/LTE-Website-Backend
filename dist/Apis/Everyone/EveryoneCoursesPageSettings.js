@@ -14,7 +14,6 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
   query($coursesPageSettingsId: String!) {
     coursePageSettings(id: $coursesPageSettingsId) {
-      forEveryoneCoursesColour
       forEveryoneCoursesPageTitle
     }
   }`;

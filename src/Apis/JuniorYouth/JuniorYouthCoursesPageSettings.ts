@@ -7,8 +7,6 @@ export default async (): Promise<JuniorYouthCoursesPageSettings> => {
   const queryString = `
   query($coursesPageSettingsId: String!) {
     coursePageSettings(id: $coursesPageSettingsId) {
-      forJuniorCoursesColour
-      forYouthCoursesColour
       forJuniorYouthCoursesPageTitle
       forJuniorYouthCoursesPageRoadmap {
         url

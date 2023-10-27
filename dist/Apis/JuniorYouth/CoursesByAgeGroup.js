@@ -36,29 +36,26 @@ const getCourseCardsByAgeGroup = () => __awaiter(void 0, void 0, void 0, functio
       }
     }
   }`;
-    const response = yield queryData(queryString, {
+    const { courseCollection, coursePageSettings } = yield queryData(queryString, {
         filter: {
             classCategory_in: ['Junior', 'Youth'],
         },
         coursePageSettingsId: EntryId.CoursesPageSettings,
     });
-    const result = [];
-    response.courseCollection.items.forEach((c) => {
-        const groupIndex = result.findIndex((r) => r.courseAgeGroup[0] === c.fromAge && r.courseAgeGroup[1] === c.toAge);
-        if (groupIndex !== -1) {
-            result[groupIndex].courses.push(new CourseCard(c));
-        }
-        else {
-            const newGroup = {
-                courseAgeGroup: [c.fromAge, c.toAge],
-                courseCardColor: c.classCategory === 'Junior'
-                    ? response.coursePageSettings.forJuniorCoursesColour
-                    : response.coursePageSettings.forYouthCoursesColour,
-                courses: [new CourseCard(c)],
-            };
-            result.push(newGroup);
-        }
+    const uniqueAgeGroups = courseCollection.items
+        .map((c) => [c.fromAge, c.toAge])
+        .filter(([from, to], i, arr) => arr.findIndex(([f, t]) => from === f && to === t) === i);
+    return uniqueAgeGroups.map(([from, to]) => {
+        var _a;
+        const courses = courseCollection.items
+            .filter((c) => c.fromAge === from && c.toAge === to)
+            .map((c) => new CourseCard(c));
+        const category = (_a = courses.at(0)) === null || _a === void 0 ? void 0 : _a.classCategory;
+        return {
+            courseGroupTitle: `Courses For (Age ${from} - ${to})`,
+            courseCardColor: category === 'Junior' ? coursePageSettings.forJuniorCoursesColour : coursePageSettings.forYouthCoursesColour,
+            courses,
+        };
     });
-    return result;
 });
 export default getCourseCardsByAgeGroup;

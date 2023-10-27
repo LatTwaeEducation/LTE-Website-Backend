@@ -7,7 +7,6 @@ export default async (): Promise<IgcseCoursesPageSettings> => {
   const queryString = `
   query($coursesPageSettingsId: String!) {
     coursePageSettings(id: $coursesPageSettingsId) {
-      forIgcseCoursesColour
       forIgcseCoursesPageTitle
       forIgcseCoursesPageBody
     }

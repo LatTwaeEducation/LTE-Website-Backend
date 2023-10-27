@@ -4,10 +4,14 @@ import {
 } from '../../Types/Courses/ContentfulCourseResponses';
 import { queryData } from '../../Services/ContentfulServices';
 import { EntryId } from '../../Types/CommonTypes';
-import { AgeGroupCourses, JuniorAndYouthCoursesColorOnly } from '../../Types/Courses/AgeGroupCourses';
+import { ContentfulCoursePageSettings, CourseCardGroup } from '../../Types/Courses/CourseCardGroup';
 import { CourseCard } from '../../Types/Courses/CourseCard';
+import {
+  ContentfulForJuniorCoursesColourSetting,
+  ContentfulForYouthCoursesColourSetting,
+} from '../../Types/CoursesPageSettings/ContentfulCoursesPageSettingsResponse';
 
-const getCourseCardsByAgeGroup = async (): Promise<AgeGroupCourses[]> => {
+const getCourseCardsByAgeGroup = async (): Promise<CourseCardGroup[]> => {
   const queryString = `
     query($filter: CourseFilter, $coursePageSettingsId: String!) {
     coursePageSettings(id: $coursePageSettingsId) {
@@ -34,8 +38,9 @@ const getCourseCardsByAgeGroup = async (): Promise<AgeGroupCourses[]> => {
     }
   }`;
 
-  const response = await queryData<
-    ContentfulCoursesPageResponse<ContentfulCourseCardResponse> & JuniorAndYouthCoursesColorOnly
+  const { courseCollection, coursePageSettings } = await queryData<
+    ContentfulCoursesPageResponse<ContentfulCourseCardResponse> &
+      ContentfulCoursePageSettings<ContentfulForJuniorCoursesColourSetting & ContentfulForYouthCoursesColourSetting>
   >(queryString, {
     filter: {
       classCategory_in: ['Junior', 'Youth'],
@@ -43,25 +48,22 @@ const getCourseCardsByAgeGroup = async (): Promise<AgeGroupCourses[]> => {
     coursePageSettingsId: EntryId.CoursesPageSettings,
   });
 
-  const result: AgeGroupCourses[] = [];
+  const uniqueAgeGroups = courseCollection.items
+    .map((c) => [c.fromAge, c.toAge])
+    .filter(([from, to], i, arr) => arr.findIndex(([f, t]) => from === f && to === t) === i);
 
-  response.courseCollection.items.forEach((c) => {
-    const groupIndex = result.findIndex((r) => r.courseAgeGroup[0] === c.fromAge && r.courseAgeGroup[1] === c.toAge);
-    if (groupIndex !== -1) {
-      result[groupIndex].courses.push(new CourseCard(c));
-    } else {
-      const newGroup: AgeGroupCourses = {
-        courseAgeGroup: [c.fromAge, c.toAge],
-        courseCardColor:
-          c.classCategory === 'Junior'
-            ? response.coursePageSettings.forJuniorCoursesColour
-            : response.coursePageSettings.forYouthCoursesColour,
-        courses: [new CourseCard(c)],
-      };
-      result.push(newGroup);
-    }
+  return uniqueAgeGroups.map(([from, to]) => {
+    const courses = courseCollection.items
+      .filter((c) => c.fromAge === from && c.toAge === to)
+      .map((c) => new CourseCard(c));
+    const category = courses.at(0)?.classCategory;
+    return {
+      courseGroupTitle: `Courses For (Age ${from} - ${to})`,
+      courseCardColor:
+        category === 'Junior' ? coursePageSettings.forJuniorCoursesColour : coursePageSettings.forYouthCoursesColour,
+      courses,
+    };
   });
-  return result;
 };
 
 export default getCourseCardsByAgeGroup;
