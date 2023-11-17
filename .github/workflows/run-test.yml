@@ -3,7 +3,9 @@ run-name: Integration Test
 on:
   push:
     branches:
+      - "main"
       - "dev"
+  pull_request:
 
 jobs:
   build:
