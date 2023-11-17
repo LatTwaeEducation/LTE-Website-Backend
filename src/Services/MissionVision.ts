@@ -17,7 +17,7 @@ export default async (): Promise<Mission & Vision> => {
           title
         }
         vision 
-        visionImage{
+        visionImage {
           url 
           title
         }
