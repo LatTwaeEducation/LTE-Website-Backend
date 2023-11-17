@@ -1,0 +1,33 @@
+name: run-test
+run-name: Integration Test
+on:
+  push:
+    branches:
+      - "main"
+      - "dev"
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 16.x, 18.x, 21.x ]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install
+        run: npm install
+
+      - name: Test
+        run: npm test
+        env:
+          REACT_APP_CONTENTFUL_ACCESS_TOKEN: S0z9Q7cdEMI0zvKzqWz0UNEbjhu70ahTlh6q_tuMZg8
+          REACT_APP_CONTENTFUL_MANAGEMENT_TOKEN: CFPAT-rYduPyfumeDKXCVmeCYaWZbjhWt3O4kGtItAiaPReo4
