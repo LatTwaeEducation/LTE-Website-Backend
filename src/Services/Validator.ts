@@ -29,7 +29,7 @@ const MIN_WORD_COUNT = 1;
 
 const findMissingProperty = (target: ContactMessage) => {
   const expectedProps = ['fullName', 'email', 'message'];
-  return expectedProps.filter((prop) => !Object.hasOwn(target, prop));
+  return expectedProps.filter(prop => !Object.hasOwn(target, prop));
 };
 
 const isValidEmail = (targetEmail: string) => emailRegex.test(targetEmail);

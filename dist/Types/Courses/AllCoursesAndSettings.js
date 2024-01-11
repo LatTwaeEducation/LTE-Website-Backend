@@ -1,9 +1,9 @@
 export class AllCoursesAndSettings {
     constructor(coursesAndSettings) {
-        this._igcseCourses = coursesAndSettings.igcseCourses.items.map((course) => course.name);
-        this._everyoneCourses = coursesAndSettings.everyoneCourses.items.map((course) => course.name);
-        this._juniorCourses = coursesAndSettings.juniorCourses.items.map((course) => course.name);
-        this._youthCourses = coursesAndSettings.youthCourses.items.map((course) => course.name);
+        this._igcseCourses = coursesAndSettings.igcseCourses.items.map(course => course.name);
+        this._everyoneCourses = coursesAndSettings.everyoneCourses.items.map(course => course.name);
+        this._juniorCourses = coursesAndSettings.juniorCourses.items.map(course => course.name);
+        this._youthCourses = coursesAndSettings.youthCourses.items.map(course => course.name);
         this._igcseColour = coursesAndSettings.forIgcseCoursesColour;
         this._everyoneColour = coursesAndSettings.forEveryoneCoursesColour;
         this._juniorColour = coursesAndSettings.forJuniorCoursesColour;

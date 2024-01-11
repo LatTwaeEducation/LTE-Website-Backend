@@ -45,7 +45,7 @@ const getJuniorCourses = () => __awaiter(void 0, void 0, void 0, function* () {
     return {
         courseCardColor: coursePageSettings.forJuniorCoursesColour,
         courseGroupTitle: getCourseGroupTitle(courseCollection),
-        courses: courseCollection.items.map((c) => new CourseCard(c)),
+        courses: courseCollection.items.map(c => new CourseCard(c)),
     };
 });
 export default getJuniorCourses;

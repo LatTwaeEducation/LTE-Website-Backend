@@ -1,6 +1,6 @@
 import { ContentfulBaseGraphQLCollectionResponse } from '../Contentful/ResponseTypes';
-import { BaseSys } from '../Contentful/CommonTypes';
-import { Asset, ClassCategory } from '../CommonTypes';
+import { BaseSys, ContentfulAsset } from '../Contentful/CommonTypes';
+import { ClassCategory } from '../CommonTypes';
 
 interface ContentfulCourseNameOnly {
   name: string;
@@ -25,11 +25,11 @@ export interface ContentfulBaseCourseResponse {
 }
 
 export interface ContentfulCourseCardResponse extends ContentfulBaseCourseResponse {
-  thumbnail: Asset | null;
+  thumbnail: ContentfulAsset | null;
 }
 
 export interface ContentfulCourseDetailsResponse extends ContentfulBaseCourseResponse {
-  featuredImage: Asset | null;
+  featuredImage: ContentfulAsset | null;
   learningPlatforms: string[] | null;
   price: number;
   requirements: string | null;

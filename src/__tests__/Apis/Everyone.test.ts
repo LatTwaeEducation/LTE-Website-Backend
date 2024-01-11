@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import { expect } from '@jest/globals';
 import { getEveryoneCourses, getEveryoneCoursesPageSettings } from '../../Apis/Everyone';
 import { CourseCard } from '../../Types/Courses/CourseCard';
 import { EveryoneCoursesPageSettings } from '../../Types/CoursesPageSettings/EveryoneCoursesPageSettings';
@@ -15,11 +16,9 @@ describe('Everyone Page API tests', () => {
 
   test('Should return an array of CourseCard, and has "Everyone" class category', async () => {
     const data = await getEveryoneCourses();
-
     expect(data).toBeDefined();
-    expect(Array.isArray(data)).toBeTruthy();
-
-    data.forEach((element) => {
+    expect(Array.isArray(data.courses)).toBeTruthy();
+    data.courses.forEach(element => {
       expect(element).toBeInstanceOf(CourseCard);
     });
   });

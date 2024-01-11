@@ -17,13 +17,13 @@ describe('Activities and Events Page Test', () => {
       expect(data).toBeDefined();
       expect(Array.isArray(data)).toBeTruthy();
 
-      data.forEach((item) => {
+      data.forEach(item => {
         expect(item).toBeInstanceOf(PreviousActivityEventCard);
       });
     });
     test('All PreviousActivityEventCard instances should have date less than or equal to current date', () => {
       const currentDate = new Date();
-      data.forEach((item) => {
+      data.forEach(item => {
         expect(new Date(item.date) <= currentDate).toBeTruthy();
       });
     });
@@ -39,13 +39,13 @@ describe('Activities and Events Page Test', () => {
       expect(data).toBeDefined();
       expect(Array.isArray(data)).toBeTruthy();
 
-      data.forEach((item) => {
+      data.forEach(item => {
         expect(item).toBeInstanceOf(UpcomingActivityEventCard);
       });
     });
     test('All PreviousActivityEventCard instances should have date greater than current date', () => {
       const currentDate = new Date();
-      data.forEach((item) => {
+      data.forEach(item => {
         expect(new Date(item.date) > currentDate).toBeTruthy();
       });
     });

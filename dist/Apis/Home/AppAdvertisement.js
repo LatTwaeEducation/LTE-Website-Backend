@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { EntryId } from '../../Types/CommonTypes';
 import { queryData } from '../../Services/ContentfulServices';
+import { applicationAdvertisementMapper } from '../../Mappers/ApplicationAdvertisementMapper';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
   query ApplicationAdvertisement($id: String!) {
@@ -24,5 +25,5 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
     }
   }`;
     const { applicationAdvertisement } = yield queryData(queryString, { id: EntryId.AppAdvertisement });
-    return applicationAdvertisement;
+    return applicationAdvertisementMapper(applicationAdvertisement);
 });

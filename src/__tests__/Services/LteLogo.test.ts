@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
+import { expect } from '@jest/globals';
 import * as LteLogo from 'src/Services/LteLogo';
-import { testIsAsset } from '../helpers';
 
 dotenv.config();
 
@@ -9,7 +9,6 @@ describe('LTE Logo Service Test', () => {
     const data = await LteLogo.default();
 
     expect(data).toBeDefined();
-    expect(typeof data).toBe('object');
-    testIsAsset(data);
+    expect(typeof data).toBe('string');
   });
 });

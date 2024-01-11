@@ -15,12 +15,12 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('Post Contact Message Tests', () => {
   test('Should throw ValidationError when invalid message object is passed.', async () => {
-    const inputData = validationTests.find((testSet) => !testSet.expected.isValid)?.input as ContactMessage;
+    const inputData = validationTests.find(testSet => !testSet.expected.isValid)?.input as ContactMessage;
     await expect(postMessage(inputData)).rejects.toThrow(ValidationError);
   });
 
   test('Should return an object with id when valid message is passed.', async () => {
-    const inputData = validationTests.find((testSet) => testSet.expected.isValid)?.input as ContactMessage;
+    const inputData = validationTests.find(testSet => testSet.expected.isValid)?.input as ContactMessage;
     const responseData = wrapContentfulPostResponse(convertToContentfulContactMessage(inputData));
 
     mockedAxios.post.mockResolvedValue({ data: responseData });

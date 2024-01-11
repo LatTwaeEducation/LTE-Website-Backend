@@ -18,10 +18,10 @@ describe('BlogCards Test', () => {
     });
 
     test('Each element should have property `tags` with type `BlogTag[]`', () => {
-      data.forEach((element) => {
+      data.forEach(element => {
         testHasPropertyAndType(element, 'tags', 'array', true);
 
-        element.tags?.forEach((tag) => {
+        element.tags?.forEach(tag => {
           testHasPropertyAndType(tag, 'name', 'string');
           testHasPropertyAndType(tag, 'id', 'string');
         });
@@ -29,32 +29,32 @@ describe('BlogCards Test', () => {
     });
 
     test('Each element should have property `id` with type `string`', () => {
-      data.forEach((element) => {
+      data.forEach(element => {
         testHasPropertyAndType(element, 'id', 'string');
       });
     });
 
     test('Each element should have property `thumbnail` with type `Asset`', () => {
-      data.forEach((element) => {
-        testHasPropertyAndType(element, 'thumbnail', 'asset');
+      data.forEach(element => {
+        testHasPropertyAndType(element, 'thumbnail', 'string');
       });
     });
 
     test('Each element should have property `title` with type `string`', () => {
-      data.forEach((element) => {
+      data.forEach(element => {
         testHasPropertyAndType(element, 'title', 'string');
       });
     });
 
     test('Each element should have property `createdAt` with type `string`, and has format as `22 Aug 2022`', () => {
-      data.forEach((element) => {
+      data.forEach(element => {
         testHasPropertyAndType(element, 'createdAt', 'string');
         expect(element.createdAt).toMatch(dateStringRegex);
       });
     });
 
     test('Each element should have property `description` with type `string`', () => {
-      data.forEach((element) => {
+      data.forEach(element => {
         testHasPropertyAndType(element, 'description', 'string');
       });
     });
@@ -83,7 +83,7 @@ describe('BlogCards Test', () => {
       });
 
       test(`All elements should have the tag ${tagIds[0]}.`, () => {
-        expect(data.every((element) => element.tags?.some((tag) => tagIds.includes(tag.id)))).toBeTruthy();
+        expect(data.every(element => element.tags?.some(tag => tagIds.includes(tag.id)))).toBeTruthy();
       });
     });
     describe('Getting Blogs with two or more tags', () => {
@@ -96,9 +96,9 @@ describe('BlogCards Test', () => {
 
       test(`Elements should have one of the tags, ${tagIds.join(',')}`, () => {
         expect(
-          data.every((element) => {
-            const tags = element.tags?.map((tag) => tag.id);
-            return tags?.some((tag) => tagIds.includes(tag));
+          data.every(element => {
+            const tags = element.tags?.map(tag => tag.id);
+            return tags?.some(tag => tagIds.includes(tag));
           })
         ).toBeTruthy();
       });

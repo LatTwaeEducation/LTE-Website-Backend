@@ -1,7 +1,8 @@
 export class JuniorYouthCoursesPageSettings {
     constructor(src) {
+        var _a, _b;
         this._title = src.forJuniorYouthCoursesPageTitle;
-        this._roadmap = src.forJuniorYouthCoursesPageRoadmap;
+        this._roadmap = (_b = (_a = src.forJuniorYouthCoursesPageRoadmap) === null || _a === void 0 ? void 0 : _a.url) !== null && _b !== void 0 ? _b : null;
     }
     get title() {
         return this._title;

@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { queryData } from './ContentfulServices';
 import { EntryId } from '../Types/CommonTypes';
+import { missionVisionMapper } from '../Mappers/MissionVisionMapper';
 export default () => __awaiter(void 0, void 0, void 0, function* () {
     const queryString = `
     query MissionVision($id: String!) {
@@ -27,5 +28,5 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
       }
     }`;
     const { organisationInformation } = yield queryData(queryString, { id: EntryId.OrganisationInformation });
-    return organisationInformation;
+    return missionVisionMapper(organisationInformation);
 });

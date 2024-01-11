@@ -26,5 +26,5 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
   }  
   `;
     const { activityEventCollection } = yield queryData(queryString);
-    return activityEventCollection.items.map((item) => new ActivityEventBanner(item));
+    return activityEventCollection.items.map(item => new ActivityEventBanner(item));
 });

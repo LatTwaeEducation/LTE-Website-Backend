@@ -1,8 +1,6 @@
+import { ContentfulAsset } from './Contentful/CommonTypes';
 export type ClassCategory = 'Junior' | 'Youth' | 'Everyone' | 'IGCSE';
-export interface Asset {
-    title: string;
-    url: string;
-}
+export type Asset = string;
 export interface SocialMediaLinks {
     facebookLink?: string;
     facebookGroupLink?: string;
@@ -16,8 +14,13 @@ export interface MobileApps {
     googlePlayLink?: string;
     appStoreLink?: string;
 }
+export interface ContentfulAppAdvertisement extends MobileApps {
+    featureImage?: ContentfulAsset;
+    title: string;
+    body: string;
+}
 export interface AppAdvertisement extends MobileApps {
-    featureImage: Asset;
+    featureImage?: Asset;
     title: string;
     body: string;
 }
@@ -36,6 +39,14 @@ export interface HomeTopBanner {
 }
 export interface AboutUs {
     aboutUs: string;
+}
+export interface ContentfulMission {
+    mission: string;
+    missionImage: ContentfulAsset;
+}
+export interface ContentfulVision {
+    vision: string;
+    visionImage: ContentfulAsset;
 }
 export interface Mission {
     mission: string;

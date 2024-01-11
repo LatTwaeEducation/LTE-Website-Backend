@@ -23,14 +23,14 @@ describe('FooterContent Service', () => {
 
   test('Should have property `phoneNumbers` with type `string[]?`', () => {
     testHasPropertyAndType(data, 'phoneNumbers', 'array', true);
-    data.phoneNumbers?.forEach((phone) => {
+    data.phoneNumbers?.forEach(phone => {
       expect(typeof phone).toBe('string');
     });
   });
 
   test('Should have property `emailAddresses` with type `string[]?`', () => {
     testHasPropertyAndType(data, 'emailAddresses', 'array', true);
-    data.emailAddresses?.forEach((email) => {
+    data.emailAddresses?.forEach(email => {
       expect(typeof email).toBe('string');
     });
   });

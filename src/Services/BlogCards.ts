@@ -76,11 +76,11 @@ export default async (options?: { limit?: number; tagIds?: string[] }): Promise<
     generateQueryVariable(options?.limit, options?.tagIds)
   );
 
-  return blogCollection.items.map((item) => {
+  return blogCollection.items.map(item => {
     return {
       tags: item.contentfulMetadata?.tags,
       id: item.sys.id,
-      thumbnail: item.thumbnail,
+      thumbnail: item.thumbnail.url,
       title: item.title,
       createdAt: format(new Date(item.sys.publishedAt), DatePattern),
       description: extractFirstParagraph(item.body?.json),

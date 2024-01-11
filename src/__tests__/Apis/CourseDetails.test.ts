@@ -68,7 +68,7 @@ describe('Course Details Page API Tests', () => {
       expect(data).toBeDefined();
       expect(Array.isArray(data)).toBeTruthy();
 
-      data.forEach((course) => {
+      data.forEach(course => {
         expect(course).toBeInstanceOf(CourseCard);
         expect(course.classCategory).toBe(classCategory);
       });

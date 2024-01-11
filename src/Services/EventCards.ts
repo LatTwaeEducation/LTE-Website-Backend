@@ -81,7 +81,7 @@ export default async (
     ContentfulGraphQLActivityEventCollectionResponse<ContentfulActivityEventCardResponse>
   >(queryString, generateQueryVariables(options));
 
-  return activityEventCollection.items.map((event) => {
+  return activityEventCollection.items.map(event => {
     return ActivityEventCardFactory.create(event);
   });
 };

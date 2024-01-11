@@ -16,5 +16,9 @@ export interface ContentfulGraphQLTag extends ContentfulBaseTag {
 export interface ContentfulRESTTag extends ContentfulBaseTag {
     sys: BaseSys;
 }
+export type ContentfulAsset = {
+    url: string;
+    title: string;
+};
 export {};
 //# sourceMappingURL=CommonTypes.d.ts.map

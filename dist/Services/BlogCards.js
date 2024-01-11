@@ -54,12 +54,12 @@ export default (options) => __awaiter(void 0, void 0, void 0, function* () {
     }
   }`;
     const { blogCollection } = yield queryData(queryString, generateQueryVariable(options === null || options === void 0 ? void 0 : options.limit, options === null || options === void 0 ? void 0 : options.tagIds));
-    return blogCollection.items.map((item) => {
+    return blogCollection.items.map(item => {
         var _a, _b;
         return {
             tags: (_a = item.contentfulMetadata) === null || _a === void 0 ? void 0 : _a.tags,
             id: item.sys.id,
-            thumbnail: item.thumbnail,
+            thumbnail: item.thumbnail.url,
             title: item.title,
             createdAt: format(new Date(item.sys.publishedAt), DatePattern),
             description: extractFirstParagraph((_b = item.body) === null || _b === void 0 ? void 0 : _b.json),

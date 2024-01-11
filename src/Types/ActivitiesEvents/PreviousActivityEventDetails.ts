@@ -13,7 +13,7 @@ export class PreviousActivityEventDetails extends BaseActivityEventDetails imple
   constructor(src: ContentfulActivityEventResponse) {
     super(src);
 
-    this._eventImages = src.eventImagesCollection.items;
+    this._eventImages = src.eventImagesCollection.items.map(i => i.url);
     this._replayLink = src.replayLink ?? '';
     this._shareLink = src.shareLink ?? '';
   }

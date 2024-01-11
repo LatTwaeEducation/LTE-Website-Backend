@@ -10,7 +10,7 @@ describe('All Counts Testing', () => {
     expect(data).toBeDefined();
     expect(Array.isArray(data)).toBeTruthy();
 
-    data.forEach((countCard) => {
+    data.forEach(countCard => {
       testHasPropertyAndType(countCard, 'name', 'string');
       testHasPropertyAndType(countCard, 'count', 'number');
       testHasPropertyAndType(countCard, 'message', 'string');

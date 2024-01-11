@@ -1,4 +1,4 @@
-import { Asset } from '../CommonTypes';
+import { ContentfulAsset } from '../Contentful/CommonTypes';
 
 export interface ContentfulForJuniorCoursesColourSetting {
   forJuniorCoursesColour: string;
@@ -23,7 +23,7 @@ export type ContentfulAllCoursesColourSettings = ContentfulForJuniorCoursesColou
 
 export interface ContentfulJuniorYouthCoursesPageSettings {
   forJuniorYouthCoursesPageTitle: string | null;
-  forJuniorYouthCoursesPageRoadmap: Asset | null;
+  forJuniorYouthCoursesPageRoadmap: ContentfulAsset | null;
 }
 
 export interface ContentfulEveryoneCoursesPageSetting {

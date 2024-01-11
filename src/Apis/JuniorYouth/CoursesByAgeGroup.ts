@@ -49,13 +49,13 @@ const getCourseCardsByAgeGroup = async (): Promise<CourseCardGroup[]> => {
   });
 
   const uniqueAgeGroups = courseCollection.items
-    .map((c) => [c.fromAge, c.toAge])
+    .map(c => [c.fromAge, c.toAge])
     .filter(([from, to], i, arr) => arr.findIndex(([f, t]) => from === f && to === t) === i);
 
   return uniqueAgeGroups.map(([from, to]) => {
     const courses = courseCollection.items
-      .filter((c) => c.fromAge === from && c.toAge === to)
-      .map((c) => new CourseCard(c));
+      .filter(c => c.fromAge === from && c.toAge === to)
+      .map(c => new CourseCard(c));
     const category = courses.at(0)?.classCategory;
     return {
       courseGroupTitle: `Courses For (Age ${from} - ${to})`,

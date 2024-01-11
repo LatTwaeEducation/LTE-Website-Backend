@@ -27,5 +27,5 @@ export default async (): Promise<ActivityEventBanner[]> => {
       queryString
     );
 
-  return activityEventCollection.items.map((item) => new ActivityEventBanner(item));
+  return activityEventCollection.items.map(item => new ActivityEventBanner(item));
 };

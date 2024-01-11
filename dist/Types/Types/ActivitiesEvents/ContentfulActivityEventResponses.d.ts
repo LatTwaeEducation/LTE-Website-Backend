@@ -1,9 +1,8 @@
-import { BaseSys } from '../Contentful/CommonTypes';
-import { Asset } from '../CommonTypes';
+import { BaseSys, ContentfulAsset } from '../Contentful/CommonTypes';
 import { ContentfulBaseGraphQLCollectionResponse } from '../Contentful/ResponseTypes';
 export interface ContentfulActivityEventBannerResponse {
     sys: BaseSys;
-    thumbnail: Asset | null;
+    thumbnail: ContentfulAsset | null;
 }
 export interface ContentfulActivityEventCardResponse extends ContentfulActivityEventBannerResponse {
     name: string;
@@ -16,7 +15,7 @@ export interface ContentfulActivityEventResponse extends ContentfulActivityEvent
     topics: string[] | null;
     shareLink: string | null;
     about: string | null;
-    eventImagesCollection: ContentfulBaseGraphQLCollectionResponse<Asset>;
+    eventImagesCollection: ContentfulBaseGraphQLCollectionResponse<ContentfulAsset>;
 }
 export interface ContentfulGraphQLActivityEventCollectionResponse<T extends ContentfulActivityEventBannerResponse> {
     activityEventCollection: ContentfulBaseGraphQLCollectionResponse<T>;

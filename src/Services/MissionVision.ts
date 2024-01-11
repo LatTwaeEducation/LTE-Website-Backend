@@ -1,10 +1,11 @@
 import { queryData } from './ContentfulServices';
-import type { Mission, Vision } from '../Types/CommonTypes';
+import type { ContentfulMission, ContentfulVision, Mission, Vision } from '../Types/CommonTypes';
 import { EntryId } from '../Types/CommonTypes';
+import { missionVisionMapper } from '../Mappers/MissionVisionMapper';
 
 export default async (): Promise<Mission & Vision> => {
   type Response = {
-    organisationInformation: Mission & Vision;
+    organisationInformation: ContentfulMission & ContentfulVision;
   };
 
   const queryString = `
@@ -25,5 +26,5 @@ export default async (): Promise<Mission & Vision> => {
     }`;
 
   const { organisationInformation } = await queryData<Response>(queryString, { id: EntryId.OrganisationInformation });
-  return organisationInformation;
+  return missionVisionMapper(organisationInformation);
 };

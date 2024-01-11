@@ -17,9 +17,8 @@ describe('IGCSE Page API tests', () => {
     const data = await getIgcseCourses();
 
     expect(data).toBeDefined();
-    expect(Array.isArray(data)).toBeTruthy();
-
-    data.forEach((element) => {
+    expect(Array.isArray(data.courses)).toBeTruthy();
+    data.courses.forEach(element => {
       expect(element).toBeInstanceOf(CourseCard);
     });
   });

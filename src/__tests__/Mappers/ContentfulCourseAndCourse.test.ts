@@ -43,7 +43,7 @@ describe('Contentful Course and Course Mappers Tests', () => {
       };
 
       const outputData = convertToCourseCards(inputData);
-      outputData.forEach((element) => {
+      outputData.forEach(element => {
         expect(element).toBeInstanceOf(CourseCard);
       });
     });

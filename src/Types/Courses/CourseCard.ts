@@ -7,7 +7,7 @@ export class CourseCard extends BaseCourse {
 
   constructor(src: ContentfulCourseCardResponse) {
     super(src);
-    this._thumbnail = src.thumbnail;
+    this._thumbnail = src.thumbnail?.url ?? null;
   }
 
   public get thumbnail(): Asset | null {

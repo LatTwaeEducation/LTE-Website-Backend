@@ -75,7 +75,7 @@ describe('Contentful Services Test', () => {
 
       expect(data).toBeDefined();
       expect(Array.isArray(data)).toBeTruthy();
-      data.forEach((element) => {
+      data.forEach(element => {
         expect(element).toMatchObject(
           expect.objectContaining<ContentfulRESTTag>({
             sys: expect.objectContaining<BaseSys>({

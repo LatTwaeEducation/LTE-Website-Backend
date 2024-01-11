@@ -25,7 +25,7 @@ export class CourseDetails extends BaseCourse {
 
   constructor(src: ContentfulCourseDetailsResponse) {
     super(src);
-    this._featuredImage = src.featuredImage;
+    this._featuredImage = src.featuredImage?.url ?? null;
     this._learningPlatforms = src.learningPlatforms?.join(', ') ?? '';
     this._price = src.price;
     this._requirements = src.requirements ?? '';

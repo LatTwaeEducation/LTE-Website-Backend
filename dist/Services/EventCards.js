@@ -53,7 +53,7 @@ export default (options) => __awaiter(void 0, void 0, void 0, function* () {
     }
   }`;
     const { activityEventCollection } = yield queryData(queryString, generateQueryVariables(options));
-    return activityEventCollection.items.map((event) => {
+    return activityEventCollection.items.map(event => {
         return ActivityEventCardFactory.create(event);
     });
 });

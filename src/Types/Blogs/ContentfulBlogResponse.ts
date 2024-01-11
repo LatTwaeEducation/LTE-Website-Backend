@@ -1,7 +1,6 @@
 import { Document } from '@contentful/rich-text-types';
 import { ContentfulBaseGraphQLCollectionResponse } from '../Contentful/ResponseTypes';
-import { ContentfulGraphQLTag, SysGraphQL } from '../Contentful/CommonTypes';
-import { Asset } from '../CommonTypes';
+import { ContentfulAsset, ContentfulGraphQLTag, SysGraphQL } from '../Contentful/CommonTypes';
 
 export interface ContentfulBlogBase {
   contentfulMetadata?: {
@@ -9,7 +8,7 @@ export interface ContentfulBlogBase {
   };
   sys: SysGraphQL;
   title: string;
-  thumbnail: Asset;
+  thumbnail: ContentfulAsset;
   body?: {
     json: Document;
   };

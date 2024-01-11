@@ -1,10 +1,11 @@
-import { EntryId } from '../../Types/CommonTypes';
+import { ContentfulAppAdvertisement, EntryId } from '../../Types/CommonTypes';
 import { queryData } from '../../Services/ContentfulServices';
 import type { AppAdvertisement } from '../../Types/CommonTypes';
+import { applicationAdvertisementMapper } from '../../Mappers/ApplicationAdvertisementMapper';
 
 export default async (): Promise<AppAdvertisement> => {
   type Response = {
-    applicationAdvertisement: AppAdvertisement;
+    applicationAdvertisement: ContentfulAppAdvertisement;
   };
 
   const queryString = `
@@ -22,6 +23,5 @@ export default async (): Promise<AppAdvertisement> => {
   }`;
 
   const { applicationAdvertisement } = await queryData<Response>(queryString, { id: EntryId.AppAdvertisement });
-
-  return applicationAdvertisement;
+  return applicationAdvertisementMapper(applicationAdvertisement);
 };

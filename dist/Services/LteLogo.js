@@ -18,5 +18,5 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
       }
     }`;
     const { asset } = yield queryData(queryString, { id: EntryId.LteLogo });
-    return asset;
+    return asset.url;
 });

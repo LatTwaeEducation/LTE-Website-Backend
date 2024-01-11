@@ -8,7 +8,7 @@ export class ActivityEventBanner implements IActivityEventBanner {
   private readonly _id: string;
 
   public constructor(src: ContentfulActivityEventBannerResponse) {
-    this._thumbnail = src.thumbnail;
+    this._thumbnail = src.thumbnail?.url ?? null;
     this._id = src.sys.id;
   }
 

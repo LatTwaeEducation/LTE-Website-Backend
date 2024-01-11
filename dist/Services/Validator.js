@@ -15,7 +15,7 @@ const createValidationResult = (errorStatus, message) => {
 const MIN_WORD_COUNT = 1;
 const findMissingProperty = (target) => {
     const expectedProps = ['fullName', 'email', 'message'];
-    return expectedProps.filter((prop) => !Object.hasOwn(target, prop));
+    return expectedProps.filter(prop => !Object.hasOwn(target, prop));
 };
 const isValidEmail = (targetEmail) => emailRegex.test(targetEmail);
 export const validate = (target) => {

@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import { beforeAll, expect } from '@jest/globals';
 import * as Home from 'src/Apis/Home';
-import { dateStringRegex, expectAssetObject } from '../helpers';
+import { dateStringRegex } from '../helpers';
 import type { AppAdvertisement, HomeTopBanner, Partnership, Testimonial } from '../../Types/CommonTypes';
 import type { BlogCard } from '../../Types/Blogs/Blog';
 import { AllCoursesAndSettings } from '../../Types/Courses/AllCoursesAndSettings';
@@ -55,7 +55,7 @@ describe('Home Page API tests', () => {
       expect(data).toBeDefined();
       expect(Array.isArray(data)).toBeTruthy();
 
-      data.forEach((item) => {
+      data.forEach(item => {
         expect(item).toBeInstanceOf(ActivityEventBanner);
       });
     });
@@ -126,12 +126,14 @@ describe('Home Page API tests', () => {
       const expectedResponse = expect.objectContaining({
         title: expect.any(String),
         body: expect.any(String),
-        featureImage: expect.assetOrNull(),
         appStoreLink: expect.stringOrNull(),
         googlePlayLink: expect.stringOrNull(),
       });
 
       expect(data).toMatchObject(expectedResponse);
+      if (data.featureImage) {
+        expect(typeof data.featureImage).toBe('string');
+      }
     });
   });
 
@@ -154,7 +156,7 @@ describe('Home Page API tests', () => {
         description: expect.any(String),
         createdAt: expect.stringMatching(dateStringRegex),
         title: expect.any(String),
-        thumbnail: expectAssetObject,
+        thumbnail: expect.any(String),
         tags: expect.arrayContaining([
           expect.objectContaining({
             id: expect.any(String),

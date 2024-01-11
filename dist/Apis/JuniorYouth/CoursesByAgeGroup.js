@@ -43,13 +43,13 @@ const getCourseCardsByAgeGroup = () => __awaiter(void 0, void 0, void 0, functio
         coursePageSettingsId: EntryId.CoursesPageSettings,
     });
     const uniqueAgeGroups = courseCollection.items
-        .map((c) => [c.fromAge, c.toAge])
+        .map(c => [c.fromAge, c.toAge])
         .filter(([from, to], i, arr) => arr.findIndex(([f, t]) => from === f && to === t) === i);
     return uniqueAgeGroups.map(([from, to]) => {
         var _a;
         const courses = courseCollection.items
-            .filter((c) => c.fromAge === from && c.toAge === to)
-            .map((c) => new CourseCard(c));
+            .filter(c => c.fromAge === from && c.toAge === to)
+            .map(c => new CourseCard(c));
         const category = (_a = courses.at(0)) === null || _a === void 0 ? void 0 : _a.classCategory;
         return {
             courseGroupTitle: `Courses For (Age ${from} - ${to})`,
