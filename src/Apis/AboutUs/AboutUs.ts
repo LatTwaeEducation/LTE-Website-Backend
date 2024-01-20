@@ -22,7 +22,7 @@ const getAboutUs = async (): Promise<AboutUs> => {
 
   return {
     aboutUs: organisationInformation.aboutUs,
-  } as AboutUs;
+  } satisfies AboutUs;
 };
 
 export default getAboutUs;
