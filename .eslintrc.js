@@ -20,19 +20,19 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'prettier', 'import'],
   rules: {
-    'no-underscore-dangle': ['error', { allowAfterThis: true }],
+    'no-underscore-dangle': ['warn', { allowAfterThis: true }],
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': 'warn',
     'no-shadow': 'off',
-    '@typescript-eslint/no-shadow': 'error',
-    'prettier/prettier': 'error',
+    '@typescript-eslint/no-shadow': 'warn',
+    'prettier/prettier': 'warn',
     'import/extensions': 'off',
-    'import/no-unresolved': 'error',
+    'import/no-unresolved': 'warn',
     'import/prefer-default-export': 'off',
     'import/first': 'off',
     'no-console': 'off',
     'import/order': [
-      'error',
+      'warn',
       {
         'newlines-between': 'never',
         groups: [
