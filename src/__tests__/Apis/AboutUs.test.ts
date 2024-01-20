@@ -34,6 +34,7 @@ describe('About Us Page tests', () => {
       expect(Array.isArray(data)).toBeTruthy();
 
       const expectedElement = expect.objectContaining<InfographicTimeline>({
+        title: expect.any(String),
         description: expect.any(String),
         startDate: expect.stringMatching(dateStringRegex),
         endDate: expect.stringMatching(dateStringRegex),

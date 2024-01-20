@@ -14,6 +14,7 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
   query InfographicTimeline {
       infographicTimelineCollection(order: startDate_ASC) {
         items {
+          event
           startDate
           endDate
           description
@@ -22,8 +23,9 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
     }      
     `;
     const { infographicTimelineCollection } = yield queryData(queryString);
-    return infographicTimelineCollection.items.map(({ startDate, endDate, description }) => {
+    return infographicTimelineCollection.items.map(({ event, startDate, endDate, description }) => {
         return {
+            title: event,
             startDate: format(new Date(startDate), 'dd LLL yyyy'),
             endDate: endDate ? format(new Date(endDate), 'dd LLL yyyy') : undefined,
             description,

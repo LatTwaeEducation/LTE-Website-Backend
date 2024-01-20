@@ -94,7 +94,15 @@ export interface BaseActivityEvent {
   thumbnail: Asset;
 }
 
+export interface ContentfulInfographicTimeline {
+  event: string;
+  startDate: string;
+  endDate?: string;
+  description: string;
+}
+
 export interface InfographicTimeline {
+  title: string;
   startDate: string;
   endDate?: string;
   description: string;

@@ -1,11 +1,11 @@
 import { format } from 'date-fns';
 import { queryData } from '../../Services/ContentfulServices';
-import type { InfographicTimeline } from '../../Types/CommonTypes';
+import type { ContentfulInfographicTimeline, InfographicTimeline } from '../../Types/CommonTypes';
 
 export default async (): Promise<InfographicTimeline[]> => {
   type Response = {
     infographicTimelineCollection: {
-      items: InfographicTimeline[];
+      items: ContentfulInfographicTimeline[];
     };
   };
 
@@ -13,6 +13,7 @@ export default async (): Promise<InfographicTimeline[]> => {
   query InfographicTimeline {
       infographicTimelineCollection(order: startDate_ASC) {
         items {
+          event
           startDate
           endDate
           description
@@ -23,11 +24,12 @@ export default async (): Promise<InfographicTimeline[]> => {
 
   const { infographicTimelineCollection } = await queryData<Response>(queryString);
 
-  return infographicTimelineCollection.items.map(({ startDate, endDate, description }) => {
+  return infographicTimelineCollection.items.map(({ event, startDate, endDate, description }) => {
     return {
+      title: event,
       startDate: format(new Date(startDate), 'dd LLL yyyy'),
       endDate: endDate ? format(new Date(endDate), 'dd LLL yyyy') : undefined,
       description,
-    } as InfographicTimeline;
+    } satisfies InfographicTimeline;
   });
 };
