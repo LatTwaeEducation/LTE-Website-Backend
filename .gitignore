@@ -3,4 +3,3 @@
 node_modules
 coverage
 .env
-test_and_build.ps1
