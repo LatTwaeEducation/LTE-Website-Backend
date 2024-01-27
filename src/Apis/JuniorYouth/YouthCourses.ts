@@ -1,6 +1,7 @@
-import { ContentfulCoursePageSettings, CourseCardGroup } from '../../Types/Courses/CourseCardGroup';
+import { CourseCardGroup } from '../../Types/Courses/CourseCardGroup';
 import {
   ContentfulCourseCardResponse,
+  ContentfulCoursePageSettings,
   ContentfulCoursesPageResponse,
 } from '../../Types/Courses/ContentfulCourseResponses';
 import { queryData } from '../../Services/ContentfulServices';

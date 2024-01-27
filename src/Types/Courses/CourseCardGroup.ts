@@ -5,7 +5,3 @@ export type CourseCardGroup = {
   courseCardColor: string;
   courses: CourseCard[];
 };
-
-export type ContentfulCoursePageSettings<TCoursesColor> = {
-  coursePageSettings: TCoursesColor;
-};

@@ -15,14 +15,15 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
   query($coursesPageSettingsId: String!) {
     coursePageSettings(id: $coursesPageSettingsId) {
       forJuniorYouthCoursesPageTitle
+      forJuniorYouthCoursesPageBody
       forJuniorYouthCoursesPageRoadmap {
         url
         title
       }
     }
   }`;
-    const response = yield queryData(queryString, {
+    const { coursePageSettings } = yield queryData(queryString, {
         coursesPageSettingsId: EntryId.CoursesPageSettings,
     });
-    return new JuniorYouthCoursesPageSettings(response);
+    return new JuniorYouthCoursesPageSettings(coursePageSettings);
 });

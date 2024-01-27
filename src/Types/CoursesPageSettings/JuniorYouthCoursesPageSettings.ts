@@ -12,7 +12,7 @@ export class JuniorYouthCoursesPageSettings implements ICoursesPageTitle {
   constructor(src: ContentfulJuniorYouthCoursesPageSettings) {
     this._title = src.forJuniorYouthCoursesPageTitle;
     this._roadmap = src.forJuniorYouthCoursesPageRoadmap?.url ?? null;
-    this._body = src.forJuniorYouthCoursesPageTitle;
+    this._body = src.forJuniorYouthCoursesPageBody;
   }
 
   public get title(): string | null {

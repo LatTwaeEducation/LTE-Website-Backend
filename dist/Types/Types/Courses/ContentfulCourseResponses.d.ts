@@ -41,5 +41,8 @@ export interface ContentfulGraphQLCourseEntryResponse<T extends ContentfulBaseCo
 export interface ContentfulCoursesPageResponse<TCollection extends ContentfulBaseCourseResponse> {
     courseCollection: ContentfulBaseGraphQLCollectionResponse<TCollection>;
 }
+export type ContentfulCoursePageSettings<TCoursePageSettings> = {
+    coursePageSettings: TCoursePageSettings;
+};
 export {};
 //# sourceMappingURL=ContentfulCourseResponses.d.ts.map

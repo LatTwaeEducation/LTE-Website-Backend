@@ -1,10 +1,11 @@
 import {
   ContentfulCourseCardResponse,
+  ContentfulCoursePageSettings,
   ContentfulCoursesPageResponse,
 } from '../../Types/Courses/ContentfulCourseResponses';
 import { queryData } from '../../Services/ContentfulServices';
 import { EntryId } from '../../Types/CommonTypes';
-import { ContentfulCoursePageSettings, CourseCardGroup } from '../../Types/Courses/CourseCardGroup';
+import { CourseCardGroup } from '../../Types/Courses/CourseCardGroup';
 import { CourseCard } from '../../Types/Courses/CourseCard';
 import {
   ContentfulForJuniorCoursesColourSetting,

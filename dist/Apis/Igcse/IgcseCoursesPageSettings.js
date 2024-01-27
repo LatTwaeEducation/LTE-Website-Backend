@@ -18,8 +18,8 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
       forIgcseCoursesPageBody
     }
   }`;
-    const response = yield queryData(queryString, {
+    const { coursePageSettings } = yield queryData(queryString, {
         coursesPageSettingsId: EntryId.CoursesPageSettings,
     });
-    return new IgcseCoursesPageSettings(response);
+    return new IgcseCoursesPageSettings(coursePageSettings);
 });

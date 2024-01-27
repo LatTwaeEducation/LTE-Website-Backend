@@ -15,10 +15,11 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
   query($coursesPageSettingsId: String!) {
     coursePageSettings(id: $coursesPageSettingsId) {
       forEveryoneCoursesPageTitle
+      forEveryoneCoursesPageBody
     }
   }`;
-    const response = yield queryData(queryString, {
+    const { coursePageSettings } = yield queryData(queryString, {
         coursesPageSettingsId: EntryId.CoursesPageSettings,
     });
-    return new EveryoneCoursesPageSettings(response);
+    return new EveryoneCoursesPageSettings(coursePageSettings);
 });
