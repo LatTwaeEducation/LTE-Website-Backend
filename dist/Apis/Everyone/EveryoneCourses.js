@@ -43,7 +43,7 @@ const getJuniorCourses = () => __awaiter(void 0, void 0, void 0, function* () {
         coursePageSettingsId: EntryId.CoursesPageSettings,
     });
     return {
-        courseCardColor: coursePageSettings.forEveryoneCoursesColour,
+        courseCardColor: coursePageSettings.forEveryoneCoursesColour.toLowerCase(),
         courseGroupTitle: getCourseGroupTitle(courseCollection),
         courses: courseCollection.items.map(c => new CourseCard(c)),
     };

@@ -46,7 +46,7 @@ const getYouthCourses = async (): Promise<CourseCardGroup> => {
   });
 
   return {
-    courseCardColor: coursePageSettings.forYouthCoursesColour,
+    courseCardColor: coursePageSettings.forYouthCoursesColour.toLowerCase(),
     courseGroupTitle: getCourseGroupTitle(courseCollection),
     courses: courseCollection.items.map(c => new CourseCard(c)),
   };

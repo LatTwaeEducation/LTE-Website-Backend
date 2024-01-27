@@ -24,10 +24,12 @@ export type ContentfulAllCoursesColourSettings = ContentfulForJuniorCoursesColou
 export interface ContentfulJuniorYouthCoursesPageSettings {
   forJuniorYouthCoursesPageTitle: string | null;
   forJuniorYouthCoursesPageRoadmap: ContentfulAsset | null;
+  forJuniorYouthCoursesPageBody: string | null;
 }
 
 export interface ContentfulEveryoneCoursesPageSetting {
   forEveryoneCoursesPageTitle: string | null;
+  forEveryoneCoursesPageBody: string | null;
 }
 
 export interface ContentfulIgcseCoursesPageSetting {

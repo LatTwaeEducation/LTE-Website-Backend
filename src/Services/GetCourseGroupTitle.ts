@@ -6,5 +6,5 @@ export function getCourseGroupTitle(
 ): string {
   const course = courseCollection.items.length > 0 ? courseCollection.items.at(0) : null;
 
-  return `Courses For ${course?.classCategory} (Age ${course?.fromAge} - ${course?.toAge}`;
+  return `Courses For ${course?.classCategory} (Age ${course?.fromAge} - ${course?.toAge})`;
 }
