@@ -1,15 +1,6 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import { queryData } from './ContentfulServices';
 import { EntryId } from '../Types/CommonTypes';
-export default () => __awaiter(void 0, void 0, void 0, function* () {
+export default async () => {
     const queryString = `
   query FooterContent(
     $organisationInformationId: String!
@@ -38,11 +29,16 @@ export default () => __awaiter(void 0, void 0, void 0, function* () {
       appStoreLink
     }
   }`;
-    const { organisationInformation, contactInfo, socialMediaLinks, applicationAdvertisement } = yield queryData(queryString, {
+    const { organisationInformation, contactInfo, socialMediaLinks, applicationAdvertisement } = await queryData(queryString, {
         organisationInformationId: EntryId.OrganisationInformation,
         contactInfoId: EntryId.ContactInfo,
         socialMediaLinksId: EntryId.SocialMedia,
         applicationAdvertisementId: EntryId.AppAdvertisement,
     });
-    return Object.assign(Object.assign(Object.assign(Object.assign({}, organisationInformation), contactInfo), socialMediaLinks), applicationAdvertisement);
-});
+    return {
+        ...organisationInformation,
+        ...contactInfo,
+        ...socialMediaLinks,
+        ...applicationAdvertisement,
+    };
+};

@@ -1,4 +1,6 @@
 export class EveryoneCoursesPageSettings {
+    _title;
+    _body;
     constructor(src) {
         this._title = src.forEveryoneCoursesPageTitle;
         this._body = src.forEveryoneCoursesPageBody;

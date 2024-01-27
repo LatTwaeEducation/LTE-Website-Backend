@@ -2,6 +2,9 @@ import { format } from 'date-fns-tz';
 import { ActivityEventBanner } from './ActivityEventBanner';
 import { DatePattern } from '../CommonTypes';
 export class BaseActivityEventCard extends ActivityEventBanner {
+    _eventDateTime;
+    _name;
+    _timezone;
     constructor(src) {
         super(src);
         this._timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;

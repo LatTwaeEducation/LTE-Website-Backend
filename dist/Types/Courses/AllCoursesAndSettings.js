@@ -1,4 +1,12 @@
 export class AllCoursesAndSettings {
+    _igcseCourses;
+    _everyoneCourses;
+    _juniorCourses;
+    _youthCourses;
+    _igcseColour;
+    _everyoneColour;
+    _juniorColour;
+    _youthColour;
     constructor(coursesAndSettings) {
         this._igcseCourses = coursesAndSettings.igcseCourses.items.map(course => course.name);
         this._everyoneCourses = coursesAndSettings.everyoneCourses.items.map(course => course.name);

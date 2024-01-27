@@ -1,12 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import { format } from 'date-fns';
 import { extractFirstParagraph } from './CustomHtmlRenderers';
 import { queryData } from './ContentfulServices';
@@ -27,7 +18,7 @@ const generateQueryVariable = (limit, tags) => {
     }
     return queryVariable;
 };
-export default (options) => __awaiter(void 0, void 0, void 0, function* () {
+export default async (options) => {
     const queryString = `
   query BlogCards($limit: Int, $filter: BlogFilter) {
     blogCollection(limit: $limit, where: $filter) {
@@ -53,16 +44,15 @@ export default (options) => __awaiter(void 0, void 0, void 0, function* () {
       }
     }
   }`;
-    const { blogCollection } = yield queryData(queryString, generateQueryVariable(options === null || options === void 0 ? void 0 : options.limit, options === null || options === void 0 ? void 0 : options.tagIds));
+    const { blogCollection } = await queryData(queryString, generateQueryVariable(options?.limit, options?.tagIds));
     return blogCollection.items.map(item => {
-        var _a, _b;
         return {
-            tags: (_a = item.contentfulMetadata) === null || _a === void 0 ? void 0 : _a.tags,
+            tags: item.contentfulMetadata?.tags,
             id: item.sys.id,
             thumbnail: item.thumbnail.url,
             title: item.title,
             createdAt: format(new Date(item.sys.publishedAt), DatePattern),
-            description: extractFirstParagraph((_b = item.body) === null || _b === void 0 ? void 0 : _b.json),
+            description: extractFirstParagraph(item.body?.json),
         };
     });
-});
+};

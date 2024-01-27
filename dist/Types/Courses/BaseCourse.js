@@ -1,4 +1,12 @@
 export class BaseCourse {
+    _id;
+    _name;
+    _fromAge;
+    _toAge;
+    _duration;
+    _hoursPerWeek;
+    _students;
+    _classCategory;
     constructor(src) {
         this._id = src.sys.id;
         this._name = src.name;

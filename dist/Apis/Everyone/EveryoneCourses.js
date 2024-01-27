@@ -1,17 +1,8 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import { queryData } from '../../Services/ContentfulServices';
 import { EntryId } from '../../Types/CommonTypes';
 import { CourseCard } from '../../Types/Courses/CourseCard';
 import { getCourseGroupTitle } from '../../Services/GetCourseGroupTitle';
-const getJuniorCourses = () => __awaiter(void 0, void 0, void 0, function* () {
+const getJuniorCourses = async () => {
     const queryString = `
   query($filter: CourseFilter, $coursePageSettingsId: String!) {
     coursePageSettings(id: $coursePageSettingsId) {
@@ -36,7 +27,7 @@ const getJuniorCourses = () => __awaiter(void 0, void 0, void 0, function* () {
       }
     }
   }`;
-    const { coursePageSettings, courseCollection } = yield queryData(queryString, {
+    const { coursePageSettings, courseCollection } = await queryData(queryString, {
         filter: {
             classCategory: 'Everyone',
         },
@@ -47,5 +38,5 @@ const getJuniorCourses = () => __awaiter(void 0, void 0, void 0, function* () {
         courseGroupTitle: getCourseGroupTitle(courseCollection),
         courses: courseCollection.items.map(c => new CourseCard(c)),
     };
-});
+};
 export default getJuniorCourses;

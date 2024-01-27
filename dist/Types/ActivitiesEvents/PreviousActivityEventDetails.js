@@ -1,11 +1,13 @@
 import { BaseActivityEventDetails } from './BaseActivityEventDetails';
 export class PreviousActivityEventDetails extends BaseActivityEventDetails {
+    _eventImages;
+    _replayLink;
+    _shareLink;
     constructor(src) {
-        var _a, _b;
         super(src);
         this._eventImages = src.eventImagesCollection.items.map(i => i.url);
-        this._replayLink = (_a = src.replayLink) !== null && _a !== void 0 ? _a : '';
-        this._shareLink = (_b = src.shareLink) !== null && _b !== void 0 ? _b : '';
+        this._replayLink = src.replayLink ?? '';
+        this._shareLink = src.shareLink ?? '';
     }
     get eventImages() {
         return this._eventImages;

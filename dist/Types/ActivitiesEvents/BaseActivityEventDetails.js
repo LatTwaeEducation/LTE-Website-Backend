@@ -1,11 +1,13 @@
 import { BaseActivityEventCard } from './BaseActivityEventCard';
 export class BaseActivityEventDetails extends BaseActivityEventCard {
+    _speaker;
+    _about;
+    _topics;
     constructor(src) {
-        var _a, _b;
         super(src);
         this._speaker = src.speaker;
-        this._about = (_a = src.about) !== null && _a !== void 0 ? _a : '';
-        this._topics = (_b = src.topics) !== null && _b !== void 0 ? _b : [];
+        this._about = src.about ?? '';
+        this._topics = src.topics ?? [];
     }
     get about() {
         return this._about;

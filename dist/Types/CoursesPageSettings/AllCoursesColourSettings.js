@@ -1,4 +1,8 @@
 export class AllCoursesColourSettings {
+    _juniorColour;
+    _youthColour;
+    _everyoneColour;
+    _igcseColour;
     constructor(src) {
         this._juniorColour = src.forJuniorCoursesColour;
         this._youthColour = src.forYouthCoursesColour;

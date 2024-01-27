@@ -1,9 +1,9 @@
 import { BaseActivityEventCard } from './BaseActivityEventCard';
 export class UpcomingActivityEventCard extends BaseActivityEventCard {
+    _registrationLink;
     constructor(src) {
-        var _a;
         super(src);
-        this._registrationLink = (_a = src.registrationLink) !== null && _a !== void 0 ? _a : '';
+        this._registrationLink = src.registrationLink ?? '';
     }
     get registrationLink() {
         return this._registrationLink;

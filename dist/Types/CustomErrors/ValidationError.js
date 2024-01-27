@@ -1,4 +1,5 @@
 export class ValidationError extends Error {
+    errorStatus;
     constructor(errorStatus, message) {
         super(message);
         this.errorStatus = errorStatus;

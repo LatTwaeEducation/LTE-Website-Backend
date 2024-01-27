@@ -2,10 +2,10 @@ import { format } from 'date-fns-tz';
 import { BaseActivityEventDetails } from './BaseActivityEventDetails';
 import { TimePattern } from '../CommonTypes';
 export class UpcomingActivityEventDetails extends BaseActivityEventDetails {
+    _registrationLink;
     constructor(src) {
-        var _a;
         super(src);
-        this._registrationLink = (_a = src.registrationLink) !== null && _a !== void 0 ? _a : '';
+        this._registrationLink = src.registrationLink ?? '';
     }
     get registrationLink() {
         return this._registrationLink;

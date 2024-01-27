@@ -1,9 +1,9 @@
 import { BaseActivityEventCard } from './BaseActivityEventCard';
 export class PreviousActivityEventCard extends BaseActivityEventCard {
+    _replayLink;
     constructor(src) {
-        var _a;
         super(src);
-        this._replayLink = (_a = src.replayLink) !== null && _a !== void 0 ? _a : '';
+        this._replayLink = src.replayLink ?? '';
     }
     get replayLink() {
         return this._replayLink;
