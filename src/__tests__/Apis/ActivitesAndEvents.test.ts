@@ -16,7 +16,6 @@ describe('Activities and Events Page Test', () => {
     test('Should return an array containing PreviousActivityEventCard instances', () => {
       expect(data).toBeDefined();
       expect(Array.isArray(data)).toBeTruthy();
-
       data.forEach(item => {
         expect(item).toBeInstanceOf(PreviousActivityEventCard);
       });

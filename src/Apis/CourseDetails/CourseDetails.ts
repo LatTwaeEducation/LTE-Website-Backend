@@ -29,6 +29,7 @@ const getCourseDetails = async (courseId: string) => {
       fromAge
       toAge
       duration
+      hoursPerWeek
       students
       learningPlatforms
       price
