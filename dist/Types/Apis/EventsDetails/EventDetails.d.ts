@@ -1,3 +1,4 @@
-declare const _default: (eventId: string) => Promise<import("../../Types/ActivitiesEvents/PreviousActivityEventDetails").PreviousActivityEventDetails | import("../../Types/ActivitiesEvents/UpcomingActivityEventDetails").UpcomingActivityEventDetails>;
+import { EventDetails } from "../../Domain/ActivityEvent";
+declare const _default: (eventId: string) => Promise<EventDetails>;
 export default _default;
 //# sourceMappingURL=EventDetails.d.ts.map

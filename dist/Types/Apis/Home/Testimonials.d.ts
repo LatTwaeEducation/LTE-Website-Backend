@@ -1,7 +1,4 @@
-import type { Testimonial } from '../../Types/CommonTypes';
-declare const _default: () => Promise<{
-    testimonials: Testimonial[];
-    recruitmentFormLink: string;
-}>;
+import { TestimonialGroup } from "../../Domain/Home";
+declare const _default: () => Promise<TestimonialGroup>;
 export default _default;
 //# sourceMappingURL=Testimonials.d.ts.map

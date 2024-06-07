@@ -1,1 +1,1 @@
-{"version":3,"file":"InfographicTimelines.d.ts","sourceRoot":"","sources":["../../../../src/Apis/AboutUs/InfographicTimelines.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,mBAAmB,EAAE,MAAM,yBAAyB,CAAC;8BAE1C,QAAQ,mBAAmB,EAAE,CAAC;AAAvD,wBA4BE"}
+{"version":3,"file":"InfographicTimelines.d.ts","sourceRoot":"","sources":["../../../../src/Apis/AboutUs/InfographicTimelines.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,mBAAmB,EAAE,6BAAwB;8BAI7B,QAAQ,mBAAmB,EAAE,CAAC;AAAvD,wBAGE"}

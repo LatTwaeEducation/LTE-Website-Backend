@@ -1,20 +1,13 @@
-import { queryData } from '../../Services/ContentfulServices';
-import { ContentfulIgcseCoursesPageSetting } from '../../Types/CoursesPageSettings/ContentfulCoursesPageSettingsResponse';
-import { EntryId } from '../../Types/CommonTypes';
-import { IgcseCoursesPageSettings } from '../../Types/CoursesPageSettings/IgcseCoursesPageSettings';
+import { PageSettingName } from '@data/Constraints';
+import { CoursePageSetting } from '@domain/CoursePageSetting';
+import { mapCoursePageSetting } from '@mappers/CoursePageSettingMapper';
+import { getCoursePageSettingById, getCoursePageSettingId } from '@persistence/CoursePageSettingRepository';
 
-export default async (): Promise<IgcseCoursesPageSettings> => {
-  const queryString = `
-  query($coursesPageSettingsId: String!) {
-    coursePageSettings(id: $coursesPageSettingsId) {
-      forIgcseCoursesPageTitle
-      forIgcseCoursesPageBody
-    }
-  }`;
-
-  const response = await queryData<ContentfulIgcseCoursesPageSetting>(queryString, {
-    coursesPageSettingsId: EntryId.CoursesPageSettings,
-  });
-
-  return new IgcseCoursesPageSettings(response);
+export default async (): Promise<CoursePageSetting | null> => {
+  const pageId = await getCoursePageSettingId(PageSettingName.Igcse);
+  if (!pageId) {
+    return null;
+  }
+  const response = await getCoursePageSettingById(pageId);
+  return mapCoursePageSetting(response);
 };

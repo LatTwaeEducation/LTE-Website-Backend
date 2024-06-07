@@ -1,6 +1,8 @@
-import * as BlogCards from '../../Services/BlogCards';
+import { BlogCard } from '@domain/Blog';
+import { mapToBlogCard } from '@mappers/BlogMapper';
+import { getBlogs } from '@persistence/BlogRepository';
 
-export default async (tags: string[]) =>
-  BlogCards.default({
-    tagIds: tags,
-  });
+export default async (): Promise<BlogCard[]> => {
+  const response = await getBlogs();
+  return response.map(mapToBlogCard);
+};

@@ -1,1 +1,1 @@
-{"version":3,"file":"Tags.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Blogs/Tags.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,OAAO,EAAE,MAAM,wBAAwB,CAAC;8BAG7B,QAAQ,OAAO,EAAE,CAAC;AAA3C,wBAA0F"}
+{"version":3,"file":"Tags.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Blogs/Tags.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,0BAAqB;8BAGd,QAAQ,OAAO,EAAE,CAAC;AAA3C,wBAGE"}

@@ -1,13 +1,12 @@
+import * as ContactUs from '@apis/ContactUs';
 import { expect } from '@jest/globals';
 import dotenv from 'dotenv';
-import * as ContactUs from 'src/Apis/ContactUs';
-import type { ContactInfo, SocialMediaLinks } from '../../Types/CommonTypes';
 
 dotenv.config();
 
 describe('Contact Us Page API tests', () => {
   describe('Getting Contact Info', () => {
-    let data: Awaited<Promise<ContactInfo>>;
+    let data: Awaited<Promise<ReturnType<typeof ContactUs.getContactInfo>>>;
 
     beforeEach(async () => {
       data = await ContactUs.getContactInfo();
@@ -30,7 +29,7 @@ describe('Contact Us Page API tests', () => {
     });
   });
   describe('Getting Social Media', () => {
-    let data: Awaited<Promise<SocialMediaLinks>>;
+    let data: Awaited<Promise<ReturnType<typeof ContactUs.getSocialMediaLinks>>>;
     beforeEach(async () => {
       data = await ContactUs.getSocialMediaLinks();
     });

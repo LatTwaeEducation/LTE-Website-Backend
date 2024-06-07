@@ -1,54 +1,22 @@
-import { ContentfulCoursePageSettings, CourseCardGroup } from '../../Types/Courses/CourseCardGroup';
-import {
-  ContentfulCourseCardResponse,
-  ContentfulCoursesPageResponse,
-} from '../../Types/Courses/ContentfulCourseResponses';
-import { queryData } from '../../Services/ContentfulServices';
-import { ContentfulForYouthCoursesColourSetting } from '../../Types/CoursesPageSettings/ContentfulCoursesPageSettingsResponse';
-import { EntryId } from '../../Types/CommonTypes';
-import { CourseCard } from '../../Types/Courses/CourseCard';
-import { getCourseGroupTitle } from '../../Services/GetCourseGroupTitle';
+import { CourseCategory, PageSettingName } from '@data/Constraints';
+import { CourseCardGroup } from '@domain/Course';
+import { getCourseGroupTitle } from '@helpers/Humaniser';
+import { mapCourseCard } from '@mappers/CourseMapper';
+import { getCourseColor } from '@persistence/CoursePageSettingRepository';
+import { getCoursesByCategory } from '@persistence/CourseRepository';
 
-const getYouthCourses = async (): Promise<CourseCardGroup> => {
-  const queryString = `
-  query($filter: CourseFilter, $coursePageSettingsId: String!) {
-    coursePageSettings(id: $coursePageSettingsId) {
-      forYouthCoursesColour
-    }
-    courseCollection(where: $filter) {
-      items {
-        sys {
-          id
-        }
-        thumbnail {
-          url
-          title
-        }
-        name
-        duration
-        hoursPerWeek
-        fromAge
-        toAge
-        students
-        classCategory
-      }
-    }
-  }`;
-
-  const { coursePageSettings, courseCollection } = await queryData<
-    ContentfulCoursesPageResponse<ContentfulCourseCardResponse> &
-      ContentfulCoursePageSettings<ContentfulForYouthCoursesColourSetting>
-  >(queryString, {
-    filter: {
-      classCategory: 'Youth',
-    },
-    coursePageSettingsId: EntryId.CoursesPageSettings,
+export default async (): Promise<CourseCardGroup> => {
+  const coursesTask = getCoursesByCategory({
+    courseCategory: CourseCategory.Youth,
   });
+  const pageSettingTask = getCourseColor(PageSettingName.JuniorYouth);
+
+  const courses = await coursesTask;
+  const pageSetting = await pageSettingTask;
 
   return {
-    courseCardColor: coursePageSettings.forYouthCoursesColour,
-    courseGroupTitle: getCourseGroupTitle(courseCollection),
-    courses: courseCollection.items.map((c) => new CourseCard(c)),
+    courseCardColor: pageSetting?.secondaryColor ?? pageSetting?.color ?? '',
+    courseGroupTitle: getCourseGroupTitle(CourseCategory.Youth, courses),
+    courses: courses.map(mapCourseCard),
   };
 };
-export default getYouthCourses;

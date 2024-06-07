@@ -1,22 +1,8 @@
-import { queryData } from '../../Services/ContentfulServices';
-import { EntryId } from '../../Types/CommonTypes';
-import type { HomeTopBanner } from '../../Types/CommonTypes';
+import { HomeTopBanner } from '@domain/Home';
+import { mapHomeTopBanner } from '@mappers/HomeMapper';
+import { getHomeTopBanner } from '@persistence/HomeTopBannerRepository';
 
-export default async () => {
-  type Response = {
-    homeTopBanner: HomeTopBanner;
-  };
-
-  const queryString = `
-  query HomeTopBanner($id: String!) {
-    homeTopBanner(id: $id) {
-      title
-      body
-      learnMoreLink
-    }
-  }`;
-
-  const { homeTopBanner } = await queryData<Response>(queryString, { id: EntryId.HomeTopBanner });
-
-  return homeTopBanner;
+export default async (): Promise<HomeTopBanner> => {
+  const response = await getHomeTopBanner();
+  return mapHomeTopBanner(response);
 };

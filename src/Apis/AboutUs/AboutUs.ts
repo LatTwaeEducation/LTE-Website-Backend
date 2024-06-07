@@ -1,28 +1,9 @@
-import { queryData } from '../../Services/ContentfulServices';
-import { EntryId } from '../../Types/CommonTypes';
-import type { AboutUs } from '../../Types/CommonTypes';
+import { AboutUs } from '@domain/AboutUs';
+import { getAboutUs } from '@persistence/OrganisationInformationRepository';
 
-const getAboutUs = async (): Promise<AboutUs> => {
-  type Response = {
-    organisationInformation: {
-      aboutUs: string;
-    };
-  };
-
-  const queryString = `
-  query AboutUs($organisationInformationId: String!) {
-    organisationInformation(id: $organisationInformationId) {
-      aboutUs
-    }
-  }`;
-
-  const { organisationInformation } = await queryData<Response>(queryString, {
-    organisationInformationId: EntryId.OrganisationInformation,
-  });
-
+export default async (): Promise<AboutUs> => {
+  const aboutUs = await getAboutUs();
   return {
-    aboutUs: organisationInformation.aboutUs,
-  } as AboutUs;
+    aboutUs,
+  };
 };
-
-export default getAboutUs;

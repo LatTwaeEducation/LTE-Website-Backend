@@ -1,1 +1,1 @@
-{"version":3,"file":"JuniorYouthCoursesPageSettings.d.ts","sourceRoot":"","sources":["../../../../src/Apis/JuniorYouth/JuniorYouthCoursesPageSettings.ts"],"names":[],"mappings":"AAGA,OAAO,EAAE,8BAA8B,EAAE,MAAM,gEAAgE,CAAC;8BAEvF,QAAQ,8BAA8B,CAAC;AAAhE,wBAiBE"}
+{"version":3,"file":"JuniorYouthCoursesPageSettings.d.ts","sourceRoot":"","sources":["../../../../src/Apis/JuniorYouth/JuniorYouthCoursesPageSettings.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,iBAAiB,EAAE,uCAAkC;8BAIrC,QAAQ,iBAAiB,GAAG,IAAI,CAAC;AAA1D,wBAQE"}

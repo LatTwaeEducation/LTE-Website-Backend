@@ -1,0 +1,1 @@
+{"version":3,"file":"Testimonial.d.ts","sourceRoot":"","sources":["../../../../src/Persistence/Data/Testimonial.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,iBAAiB,EAAE,MAAM,UAAU,CAAC;AAE7C,MAAM,WAAW,WAAW;IAC1B,QAAQ,EAAE,MAAM,CAAC;IACjB,IAAI,EAAE,MAAM,CAAC;IACb,UAAU,EAAE,MAAM,CAAC;CACpB;AAED,MAAM,MAAM,kBAAkB,GAAG;IAC/B,qBAAqB,EAAE,iBAAiB,CAAC,WAAW,CAAC,CAAC;CACvD,CAAC"}

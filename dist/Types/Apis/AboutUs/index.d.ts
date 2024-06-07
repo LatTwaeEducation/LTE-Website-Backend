@@ -1,5 +1,5 @@
+export { default as getAllCounts } from '../Common/AllCounts';
+export { default as getMissionVision } from '../Common/MissionVision';
 export { default as getAboutUs } from './AboutUs';
 export { default as getInfographicTimelines } from './InfographicTimelines';
-export { default as getAllCounts } from '../../Services/AllCounts';
-export { default as getMissionVision } from '../../Services/MissionVision';
 //# sourceMappingURL=index.d.ts.map

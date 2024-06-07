@@ -1,1 +1,1 @@
-{"version":3,"file":"Testimonials.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Home/Testimonials.ts"],"names":[],"mappings":"AACA,OAAO,KAAK,EAAE,WAAW,EAAE,MAAM,yBAAyB,CAAC;8BAGlC,QAAQ;IAC/B,YAAY,EAAE,WAAW,EAAE,CAAC;IAC5B,mBAAmB,EAAE,MAAM,CAAC;CAC7B,CAAC;AAHF,wBAoCE"}
+{"version":3,"file":"Testimonials.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Home/Testimonials.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,0BAAqB;8BAKvB,QAAQ,gBAAgB,CAAC;AAAlD,wBAQE"}

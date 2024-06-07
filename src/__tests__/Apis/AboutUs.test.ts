@@ -1,13 +1,15 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { getAboutUs, getInfographicTimelines } from '@apis/AboutUs';
+import type { AboutUs, InfographicTimeline } from '@domain/AboutUs';
 import dotenv from 'dotenv';
-import { getAboutUs, getInfographicTimelines } from 'src/Apis/AboutUs';
+
 import { dateStringRegex } from '../helpers';
-import type { AboutUs, InfographicTimeline } from '../../Types/CommonTypes';
 
 dotenv.config();
 
 describe('About Us Page tests', () => {
   describe('Getting About Us', () => {
-    let data: Awaited<Promise<AboutUs>>;
+    let data: Awaited<ReturnType<typeof getAboutUs>>;
     beforeAll(async () => {
       data = await getAboutUs();
     });
@@ -18,13 +20,13 @@ describe('About Us Page tests', () => {
       expect(data).toEqual(
         expect.objectContaining<AboutUs>({
           aboutUs: expect.any(String),
-        })
+        }),
       );
     });
   });
 
   describe('Infographic Timeline tests', () => {
-    let data: Awaited<Promise<InfographicTimeline[]>>;
+    let data: Awaited<Promise<ReturnType<typeof getInfographicTimelines>>>;
     beforeAll(async () => {
       data = await getInfographicTimelines();
     });

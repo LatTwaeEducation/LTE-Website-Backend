@@ -1,5 +1,12 @@
-import * as BlogCards from '../../Services/BlogCards';
-import { BlogCard } from '../../Types/Blogs/Blog';
+import { BlogCard } from '@domain/Blog';
+import { mapToBlogCard } from '@mappers/BlogMapper';
+import { getBlogs } from '@persistence/BlogRepository';
 
 const LIMIT_COUNT = 3;
-export default async (): Promise<BlogCard[]> => BlogCards.default({ limit: LIMIT_COUNT });
+export default async (): Promise<BlogCard[]> => {
+  const response = await getBlogs({
+    limit: LIMIT_COUNT,
+  });
+
+  return response.map(mapToBlogCard);
+};

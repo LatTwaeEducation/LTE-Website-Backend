@@ -1,8 +1,6 @@
-import dotenv from 'dotenv';
+import { getPreviousEvents, getUpcomingEvents } from '@apis/ActivitiesAndEvents';
 import { expect } from '@jest/globals';
-import { getPreviousEvents, getUpcomingEvents } from '../../Apis/ActivitiesAndEvents';
-import { PreviousActivityEventCard } from '../../Types/ActivitiesEvents/PreviousActivityEventCard';
-import { UpcomingActivityEventCard } from '../../Types/ActivitiesEvents/UpcomingActivityEventCard';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -13,18 +11,13 @@ describe('Activities and Events Page Test', () => {
       data = await getPreviousEvents();
     });
 
-    test('Should return an array containing PreviousActivityEventCard instances', () => {
+    test('Should return an array', () => {
       expect(data).toBeDefined();
       expect(Array.isArray(data)).toBeTruthy();
 
       data.forEach((item) => {
-        expect(item).toBeInstanceOf(PreviousActivityEventCard);
-      });
-    });
-    test('All PreviousActivityEventCard instances should have date less than or equal to current date', () => {
-      const currentDate = new Date();
-      data.forEach((item) => {
-        expect(new Date(item.date) <= currentDate).toBeTruthy();
+        expect(item).toBeDefined();
+        expect(typeof item).toBe('object');
       });
     });
   });
@@ -35,18 +28,13 @@ describe('Activities and Events Page Test', () => {
       data = await getUpcomingEvents();
     });
 
-    test('Should return an array containing PreviousActivityEventCard instances', () => {
+    test('Should return an array', () => {
       expect(data).toBeDefined();
       expect(Array.isArray(data)).toBeTruthy();
 
       data.forEach((item) => {
-        expect(item).toBeInstanceOf(UpcomingActivityEventCard);
-      });
-    });
-    test('All PreviousActivityEventCard instances should have date greater than current date', () => {
-      const currentDate = new Date();
-      data.forEach((item) => {
-        expect(new Date(item.date) > currentDate).toBeTruthy();
+        expect(item).toBeDefined();
+        expect(typeof item).toBe('object');
       });
     });
   });

@@ -1,41 +1,14 @@
-import { queryData } from '../../Services/ContentfulServices';
-import type { Testimonial } from '../../Types/CommonTypes';
-import { EntryId } from '../../Types/CommonTypes';
+import { TestimonialGroup } from '@domain/Home';
+import { mapTestimonial } from '@mappers/HomeMapper';
+import { getRecruitmentFormLink } from '@persistence/OrganisationInformationRepository';
+import { getTestimonials } from '@persistence/TestimonialRepository';
 
-export default async (): Promise<{
-  testimonials: Testimonial[];
-  recruitmentFormLink: string;
-}> => {
-  type Response = {
-    testimonialCollection: {
-      items: Testimonial[];
-    };
-    organisationInformation: {
-      recruitmentFormLink: string;
-    };
-  };
-
-  const queryString = `
-  query Testimonials($organisationId: String!) {
-    testimonialCollection {
-      items {
-        feedback
-        name
-        occupation
-      }
-    }
-    organisationInformation(id: $organisationId) {
-      recruitmentFormLink
-    }
-  }  
-  `;
-
-  const { testimonialCollection, organisationInformation } = await queryData<Response>(queryString, {
-    organisationId: EntryId.OrganisationInformation,
-  });
+export default async (): Promise<TestimonialGroup> => {
+  const testimonials = await getTestimonials();
+  const recruitmentFormLink = await getRecruitmentFormLink();
 
   return {
-    testimonials: testimonialCollection.items,
-    recruitmentFormLink: organisationInformation.recruitmentFormLink,
+    testimonials: testimonials.map(mapTestimonial),
+    recruitmentFormLink,
   };
 };

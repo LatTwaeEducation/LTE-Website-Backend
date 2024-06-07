@@ -1,3 +1,3 @@
-export { default as getUpcomingEvents } from './UpcomingEvents';
 export { default as getPreviousEvents } from './PreviousEvents';
+export { default as getUpcomingEvents } from './UpcomingEvents';
 //# sourceMappingURL=index.d.ts.map

@@ -1,1 +1,1 @@
-{"version":3,"file":"SocialMedia.d.ts","sourceRoot":"","sources":["../../../../src/Apis/ContactUs/SocialMedia.ts"],"names":[],"mappings":"AAAA,OAAO,EAAW,gBAAgB,EAAE,MAAM,yBAAyB,CAAC;8BAG3C,QAAQ,gBAAgB,CAAC;AAAlD,wBAsBE"}
+{"version":3,"file":"SocialMedia.d.ts","sourceRoot":"","sources":["../../../../src/Apis/ContactUs/SocialMedia.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,4BAAuB;8BAGzB,QAAQ,gBAAgB,CAAC;AAAlD,wBAGE"}

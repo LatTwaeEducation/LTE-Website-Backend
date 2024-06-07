@@ -1,13 +1,13 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-import EventCards from '../../Services/EventCards';
+import { getActivitiesEvents } from "../../Persistence/ActivityEventRepository";
+import { mapToUpcomingEventCard } from "../../Mappers/ActivityEventMapper";
 const DEFAULT_SKIP = 0;
 const DEFAULT_LIMIT = 2;
-export default (skip = DEFAULT_SKIP, limit = DEFAULT_LIMIT) => __awaiter(void 0, void 0, void 0, function* () { return EventCards({ skip, limit }); });
+export default async (currentEventId, skip = DEFAULT_SKIP, limit = DEFAULT_LIMIT) => {
+    const response = await getActivitiesEvents({
+        from: new Date(),
+        currentEventId,
+        skip,
+        limit,
+    });
+    return response.map(mapToUpcomingEventCard);
+};

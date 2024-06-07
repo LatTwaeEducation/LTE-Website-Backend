@@ -1,31 +1,8 @@
-import { queryData } from '../../Services/ContentfulServices';
-import {
-  ContentfulActivityEventBannerResponse,
-  ContentfulGraphQLActivityEventCollectionResponse,
-} from '../../Types/ActivitiesEvents/ContentfulActivityEventResponses';
-import { ActivityEventBanner } from '../../Types/ActivitiesEvents/ActivityEventBanner';
+import { ActivityEventBanner } from '@domain/ActivityEvent';
+import { mapToBanner } from '@mappers/ActivityEventMapper';
+import { getActivitiesEvents } from '@persistence/ActivityEventRepository';
 
 export default async (): Promise<ActivityEventBanner[]> => {
-  const queryString = `
-  query ActivitiesEvents_Home {
-    activityEventCollection(limit: 3) {
-      items {
-        sys {
-          id
-        }
-        thumbnail {
-          title
-          url
-        }
-      }
-    }
-  }  
-  `;
-
-  const { activityEventCollection } =
-    await queryData<ContentfulGraphQLActivityEventCollectionResponse<ContentfulActivityEventBannerResponse>>(
-      queryString
-    );
-
-  return activityEventCollection.items.map((item) => new ActivityEventBanner(item));
+  const response = await getActivitiesEvents();
+  return response.map(mapToBanner);
 };

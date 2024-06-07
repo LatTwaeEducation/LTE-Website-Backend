@@ -1,4 +1,4 @@
-import { JuniorYouthCoursesPageSettings } from '../../Types/CoursesPageSettings/JuniorYouthCoursesPageSettings';
-declare const _default: () => Promise<JuniorYouthCoursesPageSettings>;
+import { CoursePageSetting } from "../../Domain/CoursePageSetting";
+declare const _default: () => Promise<CoursePageSetting | null>;
 export default _default;
 //# sourceMappingURL=JuniorYouthCoursesPageSettings.d.ts.map

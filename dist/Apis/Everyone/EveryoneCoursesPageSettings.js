@@ -1,24 +1,11 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-import { queryData } from '../../Services/ContentfulServices';
-import { EntryId } from '../../Types/CommonTypes';
-import { EveryoneCoursesPageSettings } from '../../Types/CoursesPageSettings/EveryoneCoursesPageSettings';
-export default () => __awaiter(void 0, void 0, void 0, function* () {
-    const queryString = `
-  query($coursesPageSettingsId: String!) {
-    coursePageSettings(id: $coursesPageSettingsId) {
-      forEveryoneCoursesPageTitle
+import { PageSettingName } from "../../Persistence/Data/Constraints";
+import { mapCoursePageSetting } from "../../Mappers/CoursePageSettingMapper";
+import { getCoursePageSettingById, getCoursePageSettingId } from "../../Persistence/CoursePageSettingRepository";
+export default async () => {
+    const settingId = await getCoursePageSettingId(PageSettingName.Everyone);
+    if (!settingId) {
+        return null;
     }
-  }`;
-    const response = yield queryData(queryString, {
-        coursesPageSettingsId: EntryId.CoursesPageSettings,
-    });
-    return new EveryoneCoursesPageSettings(response);
-});
+    const response = await getCoursePageSettingById(settingId);
+    return mapCoursePageSetting(response);
+};

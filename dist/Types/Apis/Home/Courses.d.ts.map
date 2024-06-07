@@ -1,1 +1,1 @@
-{"version":3,"file":"Courses.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Home/Courses.ts"],"names":[],"mappings":"AAGA,OAAO,EAAE,qBAAqB,EAAE,MAAM,2CAA2C,CAAC;8BAGzD,QAAQ,qBAAqB,CAAC;AAAvD,wBA2CE"}
+{"version":3,"file":"Courses.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Home/Courses.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,qBAAqB,EAAE,0BAAqB;8BAI5B,QAAQ,qBAAqB,CAAC;AAAvD,wBAwBE"}

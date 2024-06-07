@@ -1,5 +1,11 @@
-import EventCards from '../../Services/EventCards';
-import { UpcomingActivityEventCard } from '../../Types/ActivitiesEvents/UpcomingActivityEventCard';
+import { UpcomingActivityEventCard } from '@domain/ActivityEvent';
+import { mapToUpcomingEventCard } from '@mappers/ActivityEventMapper';
+import { getActivitiesEvents } from '@persistence/ActivityEventRepository';
 
-export default async (): Promise<UpcomingActivityEventCard[]> =>
-  (await EventCards({ upcomingOrPrevious: 'upcoming' })) as UpcomingActivityEventCard[];
+export default async (): Promise<UpcomingActivityEventCard[]> => {
+  const response = await getActivitiesEvents({
+    from: new Date(),
+  });
+
+  return response.map(mapToUpcomingEventCard);
+};

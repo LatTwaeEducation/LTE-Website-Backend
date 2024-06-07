@@ -1,0 +1,1 @@
+{"version":3,"file":"CoursePageSetting.d.ts","sourceRoot":"","sources":["../../../src/Domain/CoursePageSetting.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,UAAU,CAAC;AAEzC,MAAM,MAAM,iBAAiB,GAAG;IAC9B,KAAK,EAAE,MAAM,CAAC;IACd,WAAW,EAAE,MAAM,CAAC;IACpB,KAAK,CAAC,EAAE,MAAM,CAAC;IACf,IAAI,CAAC,EAAE,aAAa,CAAC;CACtB,CAAC"}

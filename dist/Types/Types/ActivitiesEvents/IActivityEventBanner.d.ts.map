@@ -1,1 +1,0 @@
-{"version":3,"file":"IActivityEventBanner.d.ts","sourceRoot":"","sources":["../../../../src/Types/ActivitiesEvents/IActivityEventBanner.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,KAAK,EAAE,MAAM,gBAAgB,CAAC;AAEvC,MAAM,WAAW,oBAAoB;IACnC,IAAI,SAAS,IAAI,KAAK,GAAG,IAAI,CAAC;IAE9B,IAAI,EAAE,IAAI,MAAM,CAAC;CAClB"}

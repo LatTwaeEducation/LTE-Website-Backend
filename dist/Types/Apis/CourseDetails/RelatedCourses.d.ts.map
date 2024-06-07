@@ -1,1 +1,1 @@
-{"version":3,"file":"RelatedCourses.d.ts","sourceRoot":"","sources":["../../../../src/Apis/CourseDetails/RelatedCourses.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,yBAAyB,CAAC;wCAiBnB,aAAa;AAAlD,wBAoCE"}
+{"version":3,"file":"RelatedCourses.d.ts","sourceRoot":"","sources":["../../../../src/Apis/CourseDetails/RelatedCourses.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,UAAU,EAAE,4BAAuB;0CAQL,MAAM,KAAG,QAAQ,UAAU,EAAE,CAAC;AAArE,wBAOE"}

@@ -1,54 +1,17 @@
-import { ClassCategory } from '../../Types/CommonTypes';
-import { queryData } from '../../Services/ContentfulServices';
-import {
-  ContentfulCourseCardResponse,
-  ContentfulCoursesPageResponse,
-} from '../../Types/Courses/ContentfulCourseResponses';
-import { convertToCourseCards } from '../../Mappers/ContentfulCourseAndCourse';
+import { CourseCategory } from '@data/Constraints';
+import { CourseCard } from '@domain/Course';
+import { mapCourseCard } from '@mappers/CourseMapper';
+import { getCoursesByCategory } from '@persistence/CourseRepository';
 
-type CourseFilter = {
-  classCategory: ClassCategory;
+const parseEnum = (courseCategory: string): CourseCategory => {
+  return CourseCategory[courseCategory as keyof typeof CourseCategory];
 };
 
-type QueryVariables = {
-  limit?: number;
-  filter?: CourseFilter;
-};
-
-export default async (classCategory: ClassCategory) => {
-  const queryString = `
-  query($limit: Int, $filter: CourseFilter) {
-    courseCollection(limit: $limit, where: $filter) {
-      items {
-        sys {
-          id
-        }
-        thumbnail {
-          url
-          title
-        }
-        name
-        classCategory
-        fromAge
-        toAge
-        duration
-        hoursPerWeek
-        students
-      }
-    }
-  }`;
-
-  const queryVariables: QueryVariables = {
+export default async (relatedCategory: string): Promise<CourseCard[]> => {
+  const response = await getCoursesByCategory({
+    courseCategory: parseEnum(relatedCategory),
     limit: 3,
-    filter: {
-      classCategory,
-    },
-  };
+  });
 
-  const response = await queryData<ContentfulCoursesPageResponse<ContentfulCourseCardResponse>>(
-    queryString,
-    queryVariables
-  );
-
-  return convertToCourseCards(response);
+  return response.map(mapCourseCard);
 };

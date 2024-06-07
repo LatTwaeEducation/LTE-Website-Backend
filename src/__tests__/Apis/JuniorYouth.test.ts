@@ -1,8 +1,6 @@
-import dotenv from 'dotenv';
+import { getJuniorCourses, getJuniorYouthCoursesPageSettings, getYouthCourses } from '@apis/JuniorYouth';
 import { expect } from '@jest/globals';
-import { getJuniorCourses, getJuniorYouthCoursesPageSettings, getYouthCourses } from '../../Apis/JuniorYouth';
-import { CourseCard } from '../../Types/Courses/CourseCard';
-import { JuniorYouthCoursesPageSettings } from '../../Types/CoursesPageSettings/JuniorYouthCoursesPageSettings';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -11,39 +9,27 @@ describe('Junior and Youth Page API tests', () => {
     test('Should return an JuniorYouthPageSettings', async () => {
       const data = await getJuniorYouthCoursesPageSettings();
       expect(data).toBeDefined();
-      expect(data).toBeInstanceOf(JuniorYouthCoursesPageSettings);
     });
   });
 
   describe('Junior Courses Tests', () => {
-    let data: Awaited<Promise<CourseCard[]>>;
-    beforeAll(async () => {
-      data = await getJuniorCourses();
-    });
-
-    test('Should return an array of CourseCard instance, and has "Junior" class category', () => {
+    test('Should return an array of CourseCardGroup, and has "Junior" class category', async () => {
+      const data = await getJuniorCourses();
       expect(data).toBeDefined();
-      expect(Array.isArray(data)).toBeTruthy();
-
-      data.forEach((element) => {
-        expect(element).toBeInstanceOf(CourseCard);
+      expect(Array.isArray(data.courses)).toBeTruthy();
+      data.courses.forEach((element) => {
         expect(element.classCategory).toBe('Junior');
       });
     });
   });
 
   describe('Youth Courses Tests', () => {
-    let data: Awaited<Promise<CourseCard[]>>;
-    beforeAll(async () => {
-      data = await getYouthCourses();
-    });
-
-    test('Should return an array of CourseCard instance, and has "Youth" class category', () => {
+    test('Should return an array of CourseCardGroup, and has "Youth" class category', async () => {
+      const data = await getYouthCourses();
       expect(data).toBeDefined();
-      expect(Array.isArray(data)).toBeTruthy();
-
-      data.forEach((element) => {
-        expect(element).toBeInstanceOf(CourseCard);
+      expect(Array.isArray(data.courses)).toBeTruthy();
+      data.courses.forEach((element) => {
+        expect(element.classCategory).toBe('Youth');
       });
     });
   });

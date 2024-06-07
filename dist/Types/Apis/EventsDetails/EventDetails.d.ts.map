@@ -1,1 +1,1 @@
-{"version":3,"file":"EventDetails.d.ts","sourceRoot":"","sources":["../../../../src/Apis/EventsDetails/EventDetails.ts"],"names":[],"mappings":"kCAO+B,MAAM;AAArC,wBAqCE"}
+{"version":3,"file":"EventDetails.d.ts","sourceRoot":"","sources":["../../../../src/Apis/EventsDetails/EventDetails.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,YAAY,EAAE,mCAA8B;kCAItB,MAAM,KAAG,QAAQ,YAAY,CAAC;AAA7D,wBAGE"}

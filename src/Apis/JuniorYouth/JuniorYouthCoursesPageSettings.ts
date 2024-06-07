@@ -1,23 +1,14 @@
-import { queryData } from '../../Services/ContentfulServices';
-import { ContentfulJuniorYouthCoursesPageSettings } from '../../Types/CoursesPageSettings/ContentfulCoursesPageSettingsResponse';
-import { EntryId } from '../../Types/CommonTypes';
-import { JuniorYouthCoursesPageSettings } from '../../Types/CoursesPageSettings/JuniorYouthCoursesPageSettings';
+import { PageSettingName } from '@data/Constraints';
+import { CoursePageSetting } from '@domain/CoursePageSetting';
+import { mapCoursePageSetting } from '@mappers/CoursePageSettingMapper';
+import { getCoursePageSettingById, getCoursePageSettingId } from '@persistence/CoursePageSettingRepository';
 
-export default async (): Promise<JuniorYouthCoursesPageSettings> => {
-  const queryString = `
-  query($coursesPageSettingsId: String!) {
-    coursePageSettings(id: $coursesPageSettingsId) {
-      forJuniorYouthCoursesPageTitle
-      forJuniorYouthCoursesPageRoadmap {
-        url
-        title
-      }
-    }
-  }`;
+export default async (): Promise<CoursePageSetting | null> => {
+  const pageId = await getCoursePageSettingId(PageSettingName.JuniorYouth);
+  if (!pageId) {
+    return null;
+  }
 
-  const response = await queryData<ContentfulJuniorYouthCoursesPageSettings>(queryString, {
-    coursesPageSettingsId: EntryId.CoursesPageSettings,
-  });
-
-  return new JuniorYouthCoursesPageSettings(response);
+  const response = await getCoursePageSettingById(pageId);
+  return mapCoursePageSetting(response);
 };

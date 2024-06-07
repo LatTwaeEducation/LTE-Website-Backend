@@ -1,43 +1,14 @@
-import { queryData } from '../../Services/ContentfulServices';
-import type { Partnership } from '../../Types/CommonTypes';
-import { EntryId } from '../../Types/CommonTypes';
+import { PartnershipGroup } from '@domain/Home';
+import { mapPartnership } from '@mappers/HomeMapper';
+import { getPartnershipFormLink } from '@persistence/OrganisationInformationRepository';
+import { getPartnerships } from '@persistence/PartnershipRepository';
 
-export default async (): Promise<{
-  partnerships: Partnership[];
-  partnershipFormLink: string;
-}> => {
-  type Response = {
-    partnershipCollection: {
-      items: Partnership[];
-    };
-    organisationInformation: {
-      partnershipFormLink: string;
-    };
-  };
-
-  const queryString = `
-  query Partnerships($organisationId: String!) {
-    partnershipCollection {
-      items {
-        logo {
-          title
-          url
-        }
-        company
-      }
-    }
-    organisationInformation(id: $organisationId) {
-      partnershipFormLink
-    }
-  }
-  `;
-
-  const { partnershipCollection, organisationInformation } = await queryData<Response>(queryString, {
-    organisationId: EntryId.OrganisationInformation,
-  });
+export default async (): Promise<PartnershipGroup> => {
+  const partnerships = await getPartnerships();
+  const partnershipFormLink = await getPartnershipFormLink();
 
   return {
-    partnerships: partnershipCollection.items,
-    partnershipFormLink: organisationInformation.partnershipFormLink,
+    partnerships: partnerships.map(mapPartnership),
+    partnershipFormLink,
   };
 };

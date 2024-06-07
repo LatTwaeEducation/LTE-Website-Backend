@@ -1,1 +1,1 @@
-{"version":3,"file":"AppAdvertisement.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Home/AppAdvertisement.ts"],"names":[],"mappings":"AAEA,OAAO,KAAK,EAAE,gBAAgB,EAAE,MAAM,yBAAyB,CAAC;8BAEvC,QAAQ,gBAAgB,CAAC;AAAlD,wBAsBE"}
+{"version":3,"file":"AppAdvertisement.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Home/AppAdvertisement.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,gBAAgB,EAAE,0BAAqB;8BAIvB,QAAQ,gBAAgB,CAAC;AAAlD,wBAGE"}

@@ -1,50 +1,30 @@
-import { queryData } from '../../Services/ContentfulServices';
-import { ContentfulAllCategoriesCoursesNamesResponse } from '../../Types/Courses/ContentfulCourseResponses';
-import { EntryId } from '../../Types/CommonTypes';
-import { AllCoursesAndSettings } from '../../Types/Courses/AllCoursesAndSettings';
-import { ContentfulAllCoursesColourSettings } from '../../Types/CoursesPageSettings/ContentfulCoursesPageSettingsResponse';
+import { CourseCategory, PageSettingName } from '@data/Constraints';
+import { AllCoursesAndSettings } from '@domain/Home';
+import { getCourseColor } from '@persistence/CoursePageSettingRepository';
+import { getCourseNamesByCategory } from '@persistence/CourseRepository';
 
 export default async (): Promise<AllCoursesAndSettings> => {
-  const queryString = `
-  query Course_Home($coursesPageSettingsId: String!) {
-    juniorCourses: courseCollection(where: { classCategory: "Junior" }) {
-      items {
-        name
-      }
-    }
+  const juniorCoursesTask = getCourseNamesByCategory(CourseCategory.Junior);
+  const youthCoursesTask = getCourseNamesByCategory(CourseCategory.Youth);
+  const everyoneCoursesTask = getCourseNamesByCategory(CourseCategory.Everyone);
+  const igcseCoursesTask = getCourseNamesByCategory(CourseCategory.IGCSE);
 
-    youthCourses: courseCollection(where: { classCategory: "Youth" }) {
-      items {
-        name
-      }
-    }
+  const juniorYouthColorTask = getCourseColor(PageSettingName.JuniorYouth);
+  const everyoneColorTask = getCourseColor(PageSettingName.JuniorYouth);
+  const igcseColorTask = getCourseColor(PageSettingName.JuniorYouth);
 
-    everyoneCourses: courseCollection(where: { classCategory: "Everyone" }) {
-      items {
-        name
-      }
-    }
+  const juniorYouthColor = await juniorYouthColorTask;
+  const everyoneColor = await everyoneColorTask;
+  const igcseColor = await igcseColorTask;
 
-    igcseCourses: courseCollection(where: { classCategory: "IGCSE" }) {
-      items {
-        name
-      }
-    }
-    
-    coursePageSettings(id: $coursesPageSettingsId) {
-      forIgcseCoursesColour
-      forYouthCoursesColour
-      forJuniorCoursesColour
-      forEveryoneCoursesColour
-    }
-  }
-  `;
-
-  const response = await queryData<ContentfulAllCategoriesCoursesNamesResponse & ContentfulAllCoursesColourSettings>(
-    queryString,
-    {
-      coursesPageSettingsId: EntryId.CoursesPageSettings,
-    }
-  );
-  return new AllCoursesAndSettings(response);
+  return {
+    juniorCourses: await juniorCoursesTask,
+    youthCourses: await youthCoursesTask,
+    everyoneCourses: await everyoneCoursesTask,
+    igcseCourses: await igcseCoursesTask,
+    juniorCoursesColour: juniorYouthColor?.color ?? '',
+    youthCoursesColour: juniorYouthColor?.secondaryColor ?? '',
+    everyoneCoursesColour: everyoneColor?.color ?? '',
+    igcseCoursesColour: igcseColor?.color ?? '',
+  };
 };

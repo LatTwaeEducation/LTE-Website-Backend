@@ -1,19 +1,13 @@
-import { queryData } from '../../Services/ContentfulServices';
-import { ContentfulEveryoneCoursesPageSetting } from '../../Types/CoursesPageSettings/ContentfulCoursesPageSettingsResponse';
-import { EntryId } from '../../Types/CommonTypes';
-import { EveryoneCoursesPageSettings } from '../../Types/CoursesPageSettings/EveryoneCoursesPageSettings';
+import { PageSettingName } from '@data/Constraints';
+import { CoursePageSetting } from '@domain/CoursePageSetting';
+import { mapCoursePageSetting } from '@mappers/CoursePageSettingMapper';
+import { getCoursePageSettingById, getCoursePageSettingId } from '@persistence/CoursePageSettingRepository';
 
-export default async (): Promise<EveryoneCoursesPageSettings> => {
-  const queryString = `
-  query($coursesPageSettingsId: String!) {
-    coursePageSettings(id: $coursesPageSettingsId) {
-      forEveryoneCoursesPageTitle
-    }
-  }`;
-
-  const response = await queryData<ContentfulEveryoneCoursesPageSetting>(queryString, {
-    coursesPageSettingsId: EntryId.CoursesPageSettings,
-  });
-
-  return new EveryoneCoursesPageSettings(response);
+export default async (): Promise<CoursePageSetting | null> => {
+  const settingId = await getCoursePageSettingId(PageSettingName.Everyone);
+  if (!settingId) {
+    return null;
+  }
+  const response = await getCoursePageSettingById(settingId);
+  return mapCoursePageSetting(response);
 };

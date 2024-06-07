@@ -1,1 +1,1 @@
-{"version":3,"file":"ActivitiesEvents.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Home/ActivitiesEvents.ts"],"names":[],"mappings":"AAKA,OAAO,EAAE,mBAAmB,EAAE,MAAM,kDAAkD,CAAC;8BAE9D,QAAQ,mBAAmB,EAAE,CAAC;AAAvD,wBAuBE"}
+{"version":3,"file":"ActivitiesEvents.d.ts","sourceRoot":"","sources":["../../../../src/Apis/Home/ActivitiesEvents.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,mBAAmB,EAAE,mCAA8B;8BAInC,QAAQ,mBAAmB,EAAE,CAAC;AAAvD,wBAGE"}

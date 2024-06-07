@@ -1,5 +1,4 @@
 import type { MatcherFunction } from 'expect';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { printReceived } from 'jest-matcher-utils';
 
 export const stringOrNull: MatcherFunction = (actual: unknown) => {
